@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#jsf#carga#actividadEconomicaPage.xhtml"
+  PATH="/jsf/carga/actividadEconomicaPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#actividadEconomicaPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/actividadEconomicaPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="actividadEconomica::#jsf#carga#actividadEconomicaPage.xhtml"
+    NAME="output" PATH="/jsf/carga/actividadEconomicaPage.xhtml"
+    TARGET="rules:#jsf#carga#actividadEconomicaPage.xhtml"
+    TITLE="actividadEconomica" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#cierreMensualPage.xhtml"
+  PATH="/jsf/carga/cierreMensualPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#cierreMensualPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/cierreMensualPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cierreMensual::#jsf#carga#cierreMensualPage.xhtml" NAME="output"
+    PATH="/jsf/carga/cierreMensualPage.xhtml"
+    TARGET="rules:#jsf#carga#cierreMensualPage.xhtml"
+    TITLE="cierreMensual" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#claseRiesgoPage.xhtml"
+  PATH="/jsf/carga/claseRiesgoPage.xhtml" SHAPE="304,2081,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#claseRiesgoPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/claseRiesgoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="claseRiesgo::#jsf#carga#claseRiesgoPage.xhtml" NAME="output"
+    PATH="/jsf/carga/claseRiesgoPage.xhtml"
+    TARGET="rules:#jsf#carga#claseRiesgoPage.xhtml" TITLE="claseRiesgo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#clientePage.xhtml"
+  PATH="/jsf/carga/clientePage.xhtml" SHAPE="304,2193,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#clientePage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/clientePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cliente::#jsf#carga#clientePage.xhtml"
+    NAME="output" PATH="/jsf/carga/clientePage.xhtml"
+    TARGET="rules:#jsf#carga#clientePage.xhtml" TITLE="cliente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#contratoPage.xhtml"
+  PATH="/jsf/carga/contratoPage.xhtml" SHAPE="304,2305,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#contratoPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/contratoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="contrato::#jsf#carga#contratoPage.xhtml"
+    NAME="output" PATH="/jsf/carga/contratoPage.xhtml"
+    TARGET="rules:#jsf#carga#contratoPage.xhtml" TITLE="contrato" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#departamentoPage.xhtml"
+  PATH="/jsf/carga/departamentoPage.xhtml" SHAPE="304,2417,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#departamentoPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/departamentoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="departamento::#jsf#carga#departamentoPage.xhtml" NAME="output"
+    PATH="/jsf/carga/departamentoPage.xhtml"
+    TARGET="rules:#jsf#carga#departamentoPage.xhtml"
+    TITLE="departamento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#divisaPage.xhtml"
+  PATH="/jsf/carga/divisaPage.xhtml" SHAPE="304,2529,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#divisaPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/divisaPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="divisa::#jsf#carga#divisaPage.xhtml"
+    NAME="output" PATH="/jsf/carga/divisaPage.xhtml"
+    TARGET="rules:#jsf#carga#divisaPage.xhtml" TITLE="divisa" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#errorValidacionPage.xhtml"
+  PATH="/jsf/carga/errorValidacionPage.xhtml" SHAPE="304,2641,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#errorValidacionPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/errorValidacionPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="errorValidacion::#jsf#carga#errorValidacionPage.xhtml"
+    NAME="output" PATH="/jsf/carga/errorValidacionPage.xhtml"
+    TARGET="rules:#jsf#carga#errorValidacionPage.xhtml"
+    TITLE="errorValidacion" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#festivoPage.xhtml"
+  PATH="/jsf/carga/festivoPage.xhtml" SHAPE="304,2753,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#festivoPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/festivoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="festivo::#jsf#carga#festivoPage.xhtml"
+    NAME="output" PATH="/jsf/carga/festivoPage.xhtml"
+    TARGET="rules:#jsf#carga#festivoPage.xhtml" TITLE="festivo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#hadtaplPage.xhtml"
+  PATH="/jsf/carga/hadtaplPage.xhtml" SHAPE="304,2865,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#hadtaplPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/hadtaplPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="hadtapl::#jsf#carga#hadtaplPage.xhtml"
+    NAME="output" PATH="/jsf/carga/hadtaplPage.xhtml"
+    TARGET="rules:#jsf#carga#hadtaplPage.xhtml" TITLE="hadtapl" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#municipioPage.xhtml"
+  PATH="/jsf/carga/municipioPage.xhtml" SHAPE="304,2977,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#municipioPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/municipioPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="municipio::#jsf#carga#municipioPage.xhtml"
+    NAME="output" PATH="/jsf/carga/municipioPage.xhtml"
+    TARGET="rules:#jsf#carga#municipioPage.xhtml" TITLE="municipio" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#partidaPendientePage.xhtml"
+  PATH="/jsf/carga/partidaPendientePage.xhtml" SHAPE="304,3313,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#partidaPendientePage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/partidaPendientePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="partPendiente::#jsf#carga#partidaPendientePage.xhtml"
+    NAME="output" PATH="/jsf/carga/partidaPendientePage.xhtml"
+    TARGET="rules:#jsf#carga#partidaPendientePage.xhtml"
+    TITLE="partPendiente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#carga#perdidaOperacionalClaseRiesgoPage.xhtml"
+  PATH="/jsf/carga/perdidaOperacionalClaseRiesgoPage.xhtml"
+  SHAPE="304,3089,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#carga#perdidaOperacionalClaseRiesgoPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/perdidaOperacionalClaseRiesgoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="perdOperClasRies::#jsf#carga#perdidaOperacionalClaseRiesgoPage.xhtml"
+    NAME="output"
+    PATH="/jsf/carga/perdidaOperacionalClaseRiesgoPage.xhtml"
+    TARGET="rules:#jsf#carga#perdidaOperacionalClaseRiesgoPage.xhtml"
+    TITLE="perdOperClasRies" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#perdidaOperacionalPage.xhtml"
+  PATH="/jsf/carga/perdidaOperacionalPage.xhtml" SHAPE="304,3201,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#perdidaOperacionalPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/perdidaOperacionalPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="perdOper::#jsf#carga#perdidaOperacionalPage.xhtml" NAME="output"
+    PATH="/jsf/carga/perdidaOperacionalPage.xhtml"
+    TARGET="rules:#jsf#carga#perdidaOperacionalPage.xhtml"
+    TITLE="perdOper" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#productoPage.xhtml"
+  PATH="/jsf/carga/productoPage.xhtml" SHAPE="304,3425,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#productoPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/productoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="producto::#jsf#carga#productoPage.xhtml"
+    NAME="output" PATH="/jsf/carga/productoPage.xhtml"
+    TARGET="rules:#jsf#carga#productoPage.xhtml" TITLE="producto" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#pucPage.xhtml"
+  PATH="/jsf/carga/pucPage.xhtml" SHAPE="304,3537,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#pucPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/pucPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="puc::#jsf#carga#pucPage.xhtml" NAME="output"
+    PATH="/jsf/carga/pucPage.xhtml"
+    TARGET="rules:#jsf#carga#pucPage.xhtml" TITLE="puc" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#carga#riesgoOperacionalLineaOperativaPage.xhtml"
+  PATH="/jsf/carga/riesgoOperacionalLineaOperativaPage.xhtml"
+  SHAPE="304,3649,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#carga#riesgoOperacionalLineaOperativaPage.xhtml:0"
+   NAME="item"
+   PATH="/jsf/carga/riesgoOperacionalLineaOperativaPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="riesOperLinOper::#jsf#carga#riesgoOperacionalLineaOperativaPage.xhtml"
+    NAME="output"
+    PATH="/jsf/carga/riesgoOperacionalLineaOperativaPage.xhtml"
+    TARGET="rules:#jsf#carga#riesgoOperacionalLineaOperativaPage.xhtml"
+    TITLE="riesOperLinOper" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#carga#riesgoOperacionalProcesoPage.xhtml"
+  PATH="/jsf/carga/riesgoOperacionalProcesoPage.xhtml"
+  SHAPE="304,3761,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#carga#riesgoOperacionalProcesoPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/riesgoOperacionalProcesoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="riesOperProceso::#jsf#carga#riesgoOperacionalProcesoPage.xhtml"
+    NAME="output" PATH="/jsf/carga/riesgoOperacionalProcesoPage.xhtml"
+    TARGET="rules:#jsf#carga#riesgoOperacionalProcesoPage.xhtml"
+    TITLE="riesOperProceso" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#carga#riesgoOperacionalProductoPage.xhtml"
+  PATH="/jsf/carga/riesgoOperacionalProductoPage.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#carga#riesgoOperacionalProductoPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/riesgoOperacionalProductoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="riesOperProducto::#jsf#carga#riesgoOperacionalProductoPage.xhtml"
+    NAME="output" PATH="/jsf/carga/riesgoOperacionalProductoPage.xhtml"
+    TARGET="rules:#jsf#carga#riesgoOperacionalProductoPage.xhtml"
+    TITLE="riesOperProducto" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#sucursalPage.xhtml"
+  PATH="/jsf/carga/sucursalPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#sucursalPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/sucursalPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="sucursal::#jsf#carga#sucursalPage.xhtml"
+    NAME="output" PATH="/jsf/carga/sucursalPage.xhtml"
+    TARGET="rules:#jsf#carga#sucursalPage.xhtml" TITLE="sucursal" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#terceroPage.xhtml"
+  PATH="/jsf/carga/terceroPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#terceroPage.xhtml:0" NAME="item"
+   PATH="/jsf/carga/terceroPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="tercero::#jsf#carga#terceroPage.xhtml"
+    NAME="output" PATH="/jsf/carga/terceroPage.xhtml"
+    TARGET="rules:#jsf#carga#terceroPage.xhtml" TITLE="tercero" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#tipoIdentificacionPage.xhtml"
+  PATH="/jsf/carga/tipoIdentificacionPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#tipoIdentificacionPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/tipoIdentificacionPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="tipoIdentificacion::#jsf#carga#tipoIdentificacionPage.xhtml"
+    NAME="output" PATH="/jsf/carga/tipoIdentificacionPage.xhtml"
+    TARGET="rules:#jsf#carga#tipoIdentificacionPage.xhtml"
+    TITLE="tipoIdentificacion" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#tipoIndicativoPage.xhtml"
+  PATH="/jsf/carga/tipoIndicativoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#tipoIndicativoPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/tipoIndicativoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="tipoIndicativo::#jsf#carga#tipoIndicativoPage.xhtml"
+    NAME="output" PATH="/jsf/carga/tipoIndicativoPage.xhtml"
+    TARGET="rules:#jsf#carga#tipoIndicativoPage.xhtml"
+    TITLE="tipoIndicativo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#tipoTelefonoPage.xhtml"
+  PATH="/jsf/carga/tipoTelefonoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#tipoTelefonoPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/tipoTelefonoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="tipoTelefono::#jsf#carga#tipoTelefonoPage.xhtml" NAME="output"
+    PATH="/jsf/carga/tipoTelefonoPage.xhtml"
+    TARGET="rules:#jsf#carga#tipoTelefonoPage.xhtml"
+    TITLE="tipoTelefono" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#carga#usuarioAltamiraPage.xhtml"
+  PATH="/jsf/carga/usuarioAltamiraPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#carga#usuarioAltamiraPage.xhtml:0"
+   NAME="item" PATH="/jsf/carga/usuarioAltamiraPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="usuarioAltamira::#jsf#carga#usuarioAltamiraPage.xhtml"
+    NAME="output" PATH="/jsf/carga/usuarioAltamiraPage.xhtml"
+    TARGET="rules:#jsf#carga#usuarioAltamiraPage.xhtml"
+    TITLE="usuarioAltamira" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#auditoriaPage.xhtml"
+  PATH="/jsf/parametros/auditoriaPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#auditoriaPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/auditoriaPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="auditoriaPage::#jsf#parametros#auditoriaPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/auditoriaPage.xhtml"
+    TARGET="rules:#jsf#parametros#auditoriaPage.xhtml"
+    TITLE="auditoriaPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#causalDevolucionPage.xhtml"
+  PATH="/jsf/parametros/causalDevolucionPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#causalDevolucionPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/causalDevolucionPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="causalDevolucionPage::#jsf#parametros#causalDevolucionPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/causalDevolucionPage.xhtml"
+    TARGET="rules:#jsf#parametros#causalDevolucionPage.xhtml"
+    TITLE="causalDevolucionPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#centroDestinoPage.xhtml"
+  PATH="/jsf/parametros/centroDestinoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#centroDestinoPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/centroDestinoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="centroDestinoPage::#jsf#parametros#centroDestinoPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/centroDestinoPage.xhtml"
+    TARGET="rules:#jsf#parametros#centroDestinoPage.xhtml"
+    TITLE="centroDestinoPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#centroEspecialPage.xhtml"
+  PATH="/jsf/parametros/centroEspecialPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#centroEspecialPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/centroEspecialPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="centroEspecialPage::#jsf#parametros#centroEspecialPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/centroEspecialPage.xhtml"
+    TARGET="rules:#jsf#parametros#centroEspecialPage.xhtml"
+    TITLE="centroEspecialPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#centroOrigenPage.xhtml"
+  PATH="/jsf/parametros/centroOrigenPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#centroOrigenPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/centroOrigenPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="centroOrigenPage::#jsf#parametros#centroOrigenPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/centroOrigenPage.xhtml"
+    TARGET="rules:#jsf#parametros#centroOrigenPage.xhtml"
+    TITLE="centroOrigenPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#conceptoPage.xhtml"
+  PATH="/jsf/parametros/conceptoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#conceptoPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/conceptoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="conceptoPage::#jsf#parametros#conceptoPage.xhtml" NAME="output"
+    PATH="/jsf/parametros/conceptoPage.xhtml"
+    TARGET="rules:#jsf#parametros#conceptoPage.xhtml"
+    TITLE="conceptoPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#cuentaCODPage.xhtml"
+  PATH="/jsf/parametros/cuentaCODPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#cuentaCODPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/cuentaCODPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cuentaCODPage::#jsf#parametros#cuentaCODPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/cuentaCODPage.xhtml"
+    TARGET="rules:#jsf#parametros#cuentaCODPage.xhtml"
+    TITLE="cuentaCODPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#enteAutorizadorPage.xhtml"
+  PATH="/jsf/parametros/enteAutorizadorPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#enteAutorizadorPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/enteAutorizadorPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="enteAutorizadorPage::#jsf#parametros#enteAutorizadorPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/enteAutorizadorPage.xhtml"
+    TARGET="rules:#jsf#parametros#enteAutorizadorPage.xhtml"
+    TITLE="enteAutorizadorPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#fechaHabilitadaPage.xhtml"
+  PATH="/jsf/parametros/fechaHabilitadaPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#fechaHabilitadaPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/fechaHabilitadaPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="fechaHabilitadaPage::#jsf#parametros#fechaHabilitadaPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/fechaHabilitadaPage.xhtml"
+    TARGET="rules:#jsf#parametros#fechaHabilitadaPage.xhtml"
+    TITLE="fechaHabilitadaPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#impuestoPage.xhtml"
+  PATH="/jsf/parametros/impuestoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#impuestoPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/impuestoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="impuestoPage::#jsf#parametros#impuestoPage.xhtml" NAME="output"
+    PATH="/jsf/parametros/impuestoPage.xhtml"
+    TARGET="rules:#jsf#parametros#impuestoPage.xhtml"
+    TITLE="impuestoPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#parametros#montoAutorizadoGeneralPage.xhtml"
+  PATH="/jsf/parametros/montoAutorizadoGeneralPage.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#parametros#montoAutorizadoGeneralPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/montoAutorizadoGeneralPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="montoAutorizadoGeneralPage::#jsf#parametros#montoAutorizadoGeneralPage.xhtml"
+    NAME="output"
+    PATH="/jsf/parametros/montoAutorizadoGeneralPage.xhtml"
+    TARGET="rules:#jsf#parametros#montoAutorizadoGeneralPage.xhtml"
+    TITLE="montoAutorizadoGeneralPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#montoAutorizadoPage.xhtml"
+  PATH="/jsf/parametros/montoAutorizadoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#montoAutorizadoPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/montoAutorizadoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="montoAutorizadoPage::#jsf#parametros#montoAutorizadoPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/montoAutorizadoPage.xhtml"
+    TARGET="rules:#jsf#parametros#montoAutorizadoPage.xhtml"
+    TITLE="montoAutorizadoPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#montoMaximoPage.xhtml"
+  PATH="/jsf/parametros/montoMaximoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#montoMaximoPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/montoMaximoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="montoMaximoPage::#jsf#parametros#montoMaximoPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/montoMaximoPage.xhtml"
+    TARGET="rules:#jsf#parametros#montoMaximoPage.xhtml"
+    TITLE="montoMaximoPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#padrinoPage.xhtml"
+  PATH="/jsf/parametros/padrinoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#padrinoPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/padrinoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="padrinoPage::#jsf#parametros#padrinoPage.xhtml" NAME="output"
+    PATH="/jsf/parametros/padrinoPage.xhtml"
+    TARGET="rules:#jsf#parametros#padrinoPage.xhtml" TITLE="padrinoPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#rolPage.xhtml"
+  PATH="/jsf/parametros/rolPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#rolPage.xhtml:0" NAME="item"
+   PATH="/jsf/parametros/rolPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="rolPage::#jsf#parametros#rolPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/rolPage.xhtml"
+    TARGET="rules:#jsf#parametros#rolPage.xhtml" TITLE="rolPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#temaAutorizacionPage.xhtml"
+  PATH="/jsf/parametros/temaAutorizacionPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#temaAutorizacionPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/temaAutorizacionPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="temaAutorizacionPage::#jsf#parametros#temaAutorizacionPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/temaAutorizacionPage.xhtml"
+    TARGET="rules:#jsf#parametros#temaAutorizacionPage.xhtml"
+    TITLE="temaAutorizacionPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#temaPage.xhtml"
+  PATH="/jsf/parametros/temaPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#temaPage.xhtml:0" NAME="item"
+   PATH="/jsf/parametros/temaPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="temaPage::#jsf#parametros#temaPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/temaPage.xhtml"
+    TARGET="rules:#jsf#parametros#temaPage.xhtml" TITLE="temaPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#tipoEventoPage.xhtml"
+  PATH="/jsf/parametros/tipoEventoPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#tipoEventoPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/tipoEventoPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="tipoEventoPage::#jsf#parametros#tipoEventoPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/tipoEventoPage.xhtml"
+    TARGET="rules:#jsf#parametros#tipoEventoPage.xhtml"
+    TITLE="tipoEventoPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#unidadAnalisisPage.xhtml"
+  PATH="/jsf/parametros/unidadAnalisisPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#unidadAnalisisPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/unidadAnalisisPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="unidadAnalisisPage::#jsf#parametros#unidadAnalisisPage.xhtml"
+    NAME="output" PATH="/jsf/parametros/unidadAnalisisPage.xhtml"
+    TARGET="rules:#jsf#parametros#unidadAnalisisPage.xhtml"
+    TITLE="unidadAnalisisPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#usuarioPage.xhtml"
+  PATH="/jsf/parametros/usuarioPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#parametros#usuarioPage.xhtml:0"
+   NAME="item" PATH="/jsf/parametros/usuarioPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="usuarioPage::#jsf#parametros#usuarioPage.xhtml" NAME="output"
+    PATH="/jsf/parametros/usuarioPage.xhtml"
+    TARGET="rules:#jsf#parametros#usuarioPage.xhtml" TITLE="usuarioPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#*" PATH="/*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:0" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login::#loginPage.xhtml" NAME="output"
+    PATH="/loginPage.xhtml" TARGET="rules:#loginPage.xhtml"
+    TITLE="login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="bienvenido::#principal.xhtml" NAME="output1"
+    PATH="/principal.xhtml" TARGET="rules:#principal.xhtml"
+    TITLE="bienvenido" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="inicio::#inicio.xhtml" NAME="output2"
+    PATH="/inicio.xhtml" TARGET="rules:#inicio.xhtml" TITLE="inicio" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="actividadEconomica::#jsf#carga#actividadEconomicaPage.xhtml"
+    NAME="output3" PATH="/jsf/carga/actividadEconomicaPage.xhtml"
+    TARGET="rules:#jsf#carga#actividadEconomicaPage.xhtml"
+    TITLE="actividadEconomica" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="claseRiesgo::#jsf#carga#claseRiesgoPage.xhtml" NAME="output4"
+    PATH="/jsf/carga/claseRiesgoPage.xhtml"
+    TARGET="rules:#jsf#carga#claseRiesgoPage.xhtml" TITLE="claseRiesgo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cliente::#jsf#carga#clientePage.xhtml"
+    NAME="output5" PATH="/jsf/carga/clientePage.xhtml"
+    TARGET="rules:#jsf#carga#clientePage.xhtml" TITLE="cliente" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="contrato::#jsf#carga#contratoPage.xhtml"
+    NAME="output6" PATH="/jsf/carga/contratoPage.xhtml"
+    TARGET="rules:#jsf#carga#contratoPage.xhtml" TITLE="contrato" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="departamento::#jsf#carga#departamentoPage.xhtml" NAME="output7"
+    PATH="/jsf/carga/departamentoPage.xhtml"
+    TARGET="rules:#jsf#carga#departamentoPage.xhtml"
+    TITLE="departamento" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="divisa::#jsf#carga#divisaPage.xhtml"
+    NAME="output8" PATH="/jsf/carga/divisaPage.xhtml"
+    TARGET="rules:#jsf#carga#divisaPage.xhtml" TITLE="divisa" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="errorValidacion::#jsf#carga#errorValidacionPage.xhtml"
+    NAME="output9" PATH="/jsf/carga/errorValidacionPage.xhtml"
+    TARGET="rules:#jsf#carga#errorValidacionPage.xhtml"
+    TITLE="errorValidacion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="festivo::#jsf#carga#festivoPage.xhtml"
+    NAME="output10" PATH="/jsf/carga/festivoPage.xhtml"
+    TARGET="rules:#jsf#carga#festivoPage.xhtml" TITLE="festivo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="hadtapl::#jsf#carga#hadtaplPage.xhtml"
+    NAME="output11" PATH="/jsf/carga/hadtaplPage.xhtml"
+    TARGET="rules:#jsf#carga#hadtaplPage.xhtml" TITLE="hadtapl" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="municipio::#jsf#carga#municipioPage.xhtml"
+    NAME="output12" PATH="/jsf/carga/municipioPage.xhtml"
+    TARGET="rules:#jsf#carga#municipioPage.xhtml" TITLE="municipio" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="perdOperClasRies::#jsf#carga#perdidaOperacionalClaseRiesgoPage.xhtml"
+    NAME="output13"
+    PATH="/jsf/carga/perdidaOperacionalClaseRiesgoPage.xhtml"
+    TARGET="rules:#jsf#carga#perdidaOperacionalClaseRiesgoPage.xhtml"
+    TITLE="perdOperClasRies" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="perdOperClasRiesTiPer::#jsf#carga#perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml"
+    NAME="output14"
+    PATH="/jsf/carga/perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml"
+    TARGET="rules:#jsf#carga#perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml"
+    TITLE="perdOperClasRiesTiPer" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="perdOper::#jsf#carga#perdidaOperacionalPage.xhtml"
+    NAME="output15" PATH="/jsf/carga/perdidaOperacionalPage.xhtml"
+    TARGET="rules:#jsf#carga#perdidaOperacionalPage.xhtml"
+    TITLE="perdOper" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="partPendiente::#jsf#carga#partidaPendientePage.xhtml"
+    NAME="output16" PATH="/jsf/carga/partidaPendientePage.xhtml"
+    TARGET="rules:#jsf#carga#partidaPendientePage.xhtml"
+    TITLE="partPendiente" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="producto::#jsf#carga#productoPage.xhtml"
+    NAME="output17" PATH="/jsf/carga/productoPage.xhtml"
+    TARGET="rules:#jsf#carga#productoPage.xhtml" TITLE="producto" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="puc::#jsf#carga#pucPage.xhtml"
+    NAME="output18" PATH="/jsf/carga/pucPage.xhtml"
+    TARGET="rules:#jsf#carga#pucPage.xhtml" TITLE="puc" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="riesOperLinOper::#jsf#carga#riesgoOperacionalLineaOperativaPage.xhtml"
+    NAME="output19"
+    PATH="/jsf/carga/riesgoOperacionalLineaOperativaPage.xhtml"
+    TARGET="rules:#jsf#carga#riesgoOperacionalLineaOperativaPage.xhtml"
+    TITLE="riesOperLinOper" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="riesOperProceso::#jsf#carga#riesgoOperacionalProcesoPage.xhtml"
+    NAME="output20" PATH="/jsf/carga/riesgoOperacionalProcesoPage.xhtml"
+    TARGET="rules:#jsf#carga#riesgoOperacionalProcesoPage.xhtml"
+    TITLE="riesOperProceso" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="riesOperProducto::#jsf#carga#riesgoOperacionalProductoPage.xhtml"
+    NAME="output21"
+    PATH="/jsf/carga/riesgoOperacionalProductoPage.xhtml"
+    TARGET="rules:#jsf#carga#riesgoOperacionalProductoPage.xhtml"
+    TITLE="riesOperProducto" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="sucursal::#jsf#carga#sucursalPage.xhtml"
+    NAME="output22" PATH="/jsf/carga/sucursalPage.xhtml"
+    TARGET="rules:#jsf#carga#sucursalPage.xhtml" TITLE="sucursal" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="tercero::#jsf#carga#terceroPage.xhtml"
+    NAME="output23" PATH="/jsf/carga/terceroPage.xhtml"
+    TARGET="rules:#jsf#carga#terceroPage.xhtml" TITLE="tercero" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="tipoIdentificacion::#jsf#carga#tipoIdentificacionPage.xhtml"
+    NAME="output24" PATH="/jsf/carga/tipoIdentificacionPage.xhtml"
+    TARGET="rules:#jsf#carga#tipoIdentificacionPage.xhtml"
+    TITLE="tipoIdentificacion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="tipoIndicativo::#jsf#carga#tipoIndicativoPage.xhtml"
+    NAME="output25" PATH="/jsf/carga/tipoIndicativoPage.xhtml"
+    TARGET="rules:#jsf#carga#tipoIndicativoPage.xhtml"
+    TITLE="tipoIndicativo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="tipoTelefono::#jsf#carga#tipoTelefonoPage.xhtml" NAME="output26"
+    PATH="/jsf/carga/tipoTelefonoPage.xhtml"
+    TARGET="rules:#jsf#carga#tipoTelefonoPage.xhtml"
+    TITLE="tipoTelefono" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="usuarioAltamira::#jsf#carga#usuarioAltamiraPage.xhtml"
+    NAME="output27" PATH="/jsf/carga/usuarioAltamiraPage.xhtml"
+    TARGET="rules:#jsf#carga#usuarioAltamiraPage.xhtml"
+    TITLE="usuarioAltamira" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="cierreMensual::#jsf#carga#cierreMensualPage.xhtml"
+    NAME="output28" PATH="/jsf/carga/cierreMensualPage.xhtml"
+    TARGET="rules:#jsf#carga#cierreMensualPage.xhtml"
+    TITLE="cierreMensual" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="usuarioPage::#jsf#parametros#usuarioPage.xhtml" NAME="output29"
+    PATH="/jsf/parametros/usuarioPage.xhtml"
+    TARGET="rules:#jsf#parametros#usuarioPage.xhtml" TITLE="usuarioPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="rolPage::#jsf#parametros#rolPage.xhtml"
+    NAME="output30" PATH="/jsf/parametros/rolPage.xhtml"
+    TARGET="rules:#jsf#parametros#rolPage.xhtml" TITLE="rolPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="tipoEventoPage::#jsf#parametros#tipoEventoPage.xhtml"
+    NAME="output31" PATH="/jsf/parametros/tipoEventoPage.xhtml"
+    TARGET="rules:#jsf#parametros#tipoEventoPage.xhtml"
+    TITLE="tipoEventoPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="temaAutorizacionPage::#jsf#parametros#temaAutorizacionPage.xhtml"
+    NAME="output32" PATH="/jsf/parametros/temaAutorizacionPage.xhtml"
+    TARGET="rules:#jsf#parametros#temaAutorizacionPage.xhtml"
+    TITLE="temaAutorizacionPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="causalDevolucionPage::#jsf#parametros#causalDevolucionPage.xhtml"
+    NAME="output33" PATH="/jsf/parametros/causalDevolucionPage.xhtml"
+    TARGET="rules:#jsf#parametros#causalDevolucionPage.xhtml"
+    TITLE="causalDevolucionPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="unidadAnalisisPage::#jsf#parametros#unidadAnalisisPage.xhtml"
+    NAME="output34" PATH="/jsf/parametros/unidadAnalisisPage.xhtml"
+    TARGET="rules:#jsf#parametros#unidadAnalisisPage.xhtml"
+    TITLE="unidadAnalisisPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="centroEspecialPage::#jsf#parametros#centroEspecialPage.xhtml"
+    NAME="output35" PATH="/jsf/parametros/centroEspecialPage.xhtml"
+    TARGET="rules:#jsf#parametros#centroEspecialPage.xhtml"
+    TITLE="centroEspecialPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="enteAutorizadorPage::#jsf#parametros#enteAutorizadorPage.xhtml"
+    NAME="output36" PATH="/jsf/parametros/enteAutorizadorPage.xhtml"
+    TARGET="rules:#jsf#parametros#enteAutorizadorPage.xhtml"
+    TITLE="enteAutorizadorPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="montoAutorizadoPage::#jsf#parametros#montoAutorizadoPage.xhtml"
+    NAME="output37" PATH="/jsf/parametros/montoAutorizadoPage.xhtml"
+    TARGET="rules:#jsf#parametros#montoAutorizadoPage.xhtml"
+    TITLE="montoAutorizadoPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="padrinoPage::#jsf#parametros#padrinoPage.xhtml" NAME="output38"
+    PATH="/jsf/parametros/padrinoPage.xhtml"
+    TARGET="rules:#jsf#parametros#padrinoPage.xhtml" TITLE="padrinoPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="impuestoPage::#jsf#parametros#impuestoPage.xhtml"
+    NAME="output39" PATH="/jsf/parametros/impuestoPage.xhtml"
+    TARGET="rules:#jsf#parametros#impuestoPage.xhtml"
+    TITLE="impuestoPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="cuentaCODPage::#jsf#parametros#cuentaCODPage.xhtml"
+    NAME="output40" PATH="/jsf/parametros/cuentaCODPage.xhtml"
+    TARGET="rules:#jsf#parametros#cuentaCODPage.xhtml"
+    TITLE="cuentaCODPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="centroOrigenPage::#jsf#parametros#centroOrigenPage.xhtml"
+    NAME="output41" PATH="/jsf/parametros/centroOrigenPage.xhtml"
+    TARGET="rules:#jsf#parametros#centroOrigenPage.xhtml"
+    TITLE="centroOrigenPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="centroDestinoPage::#jsf#parametros#centroDestinoPage.xhtml"
+    NAME="output42" PATH="/jsf/parametros/centroDestinoPage.xhtml"
+    TARGET="rules:#jsf#parametros#centroDestinoPage.xhtml"
+    TITLE="centroDestinoPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="conceptoPage::#jsf#parametros#conceptoPage.xhtml"
+    NAME="output43" PATH="/jsf/parametros/conceptoPage.xhtml"
+    TARGET="rules:#jsf#parametros#conceptoPage.xhtml"
+    TITLE="conceptoPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="temaPage::#jsf#parametros#temaPage.xhtml"
+    NAME="output44" PATH="/jsf/parametros/temaPage.xhtml"
+    TARGET="rules:#jsf#parametros#temaPage.xhtml" TITLE="temaPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="montoMaximoPage::#jsf#parametros#montoMaximoPage.xhtml"
+    NAME="output45" PATH="/jsf/parametros/montoMaximoPage.xhtml"
+    TARGET="rules:#jsf#parametros#montoMaximoPage.xhtml"
+    TITLE="montoMaximoPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="auditoriaPage::#jsf#parametros#auditoriaPage.xhtml"
+    NAME="output46" PATH="/jsf/parametros/auditoriaPage.xhtml"
+    TARGET="rules:#jsf#parametros#auditoriaPage.xhtml"
+    TITLE="auditoriaPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="montoAutorizadoGeneralPage::#jsf#parametros#montoAutorizadoGeneralPage.xhtml"
+    NAME="output47"
+    PATH="/jsf/parametros/montoAutorizadoGeneralPage.xhtml"
+    TARGET="rules:#jsf#parametros#montoAutorizadoGeneralPage.xhtml"
+    TITLE="montoAutorizadoGeneralPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="consultaNotaContablePage::#jsf#consultas#consultaNotaContablePage.xhtml"
+    NAME="output48" PATH="/jsf/consultas/consultaNotaContablePage.xhtml"
+    TARGET="rules:#jsf#consultas#consultaNotaContablePage.xhtml"
+    TITLE="consultaNotaContablePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="consultaAnexoNotaContablePage::#jsf#consultas#consultaAnexoNotaContablePage.xhtml"
+    NAME="output61" PATH="/jsf/consultas/consultaAnexoNotaContablePage.xhtml"
+    TARGET="rules:#jsf#consultas#consultaAnexoNotaContablePage.xhtml"
+    TITLE="consultaAnexoNotaContablePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="consultaMovimientosContablesPage::#jsf#consultas#consultaMovimientosContablesPage.xhtml"
+    NAME="output49"
+    PATH="/jsf/consultas/consultaMovimientosContablesPage.xhtml"
+    TARGET="rules:#jsf#consultas#consultaMovimientosContablesPage.xhtml"
+    TITLE="consultaMovimientosContablesPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="notaContablePage::#jsf#notacontable#notaContablePage.xhtml"
+    NAME="output50" PATH="/jsf/notacontable/notaContablePage.xhtml"
+    TARGET="rules:#jsf#notacontable#notaContablePage.xhtml"
+    TITLE="notaContablePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="notaContableLibrePage::#jsf#notacontable#notaContableLibrePage.xhtml"
+    NAME="output51" PATH="/jsf/notacontable/notaContableLibrePage.xhtml"
+    TARGET="rules:#jsf#notacontable#notaContableLibrePage.xhtml"
+    TITLE="notaContableLibrePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="notaRefCrucePage::#jsf#notacontable#notaRefCrucePage.xhtml"
+    NAME="output52" PATH="/jsf/notacontable/notaRefCrucePage.xhtml"
+    TARGET="rules:#jsf#notacontable#notaRefCrucePage.xhtml"
+    TITLE="notaRefCrucePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="pendientePage::#jsf#adminnotacontable#pendientePage.xhtml"
+    NAME="output53" PATH="/jsf/adminnotacontable/pendientePage.xhtml"
+    TARGET="rules:#jsf#adminnotacontable#pendientePage.xhtml"
+    TITLE="pendientePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="precierrePage::#jsf#adminnotacontable#precierrePage.xhtml"
+    NAME="output54" PATH="/jsf/adminnotacontable/precierrePage.xhtml"
+    TARGET="rules:#jsf#adminnotacontable#precierrePage.xhtml"
+    TITLE="precierrePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="cierrePage::#jsf#adminnotacontable#cierrePage.xhtml"
+    NAME="output55" PATH="/jsf/adminnotacontable/cierrePage.xhtml"
+    TARGET="rules:#jsf#adminnotacontable#cierrePage.xhtml"
+    TITLE="cierrePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="cargaUsuarioPage::#jsf#adminnotacontable#cargaUsuarioPage.xhtml"
+    NAME="output56" PATH="/jsf/adminnotacontable/cargaUsuarioPage.xhtml"
+    TARGET="rules:#jsf#adminnotacontable#cargaUsuarioPage.xhtml"
+    TITLE="cargaUsuarioPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="reporteGeneralPage::#jsf#consultas#reporteGeneralPage.xhtml"
+    NAME="output57" PATH="/jsf/consultas/reporteGeneralPage.xhtml"
+    TARGET="rules:#jsf#consultas#reporteGeneralPage.xhtml"
+    TITLE="reporteGeneralPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="parametrosSchedulePage::#jsf#parametros#parametrosSchedulePage.xhtml"
+    NAME="output58" PATH="/jsf/parametros/parametrosSchedulePage.xhtml"
+    TARGET="rules:#jsf#parametros#parametrosSchedulePage.xhtml"
+    TITLE="parametrosSchedulePage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="usuariosAltamiraInactivosPage::#jsf#consultas#usuariosAltamiraInactivosPage.xhtml"
+    NAME="output59"
+    PATH="/jsf/consultas/usuariosAltamiraInactivosPage.xhtml"
+    TARGET="rules:#jsf#consultas#usuariosAltamiraInactivosPage.xhtml"
+    TITLE="usuariosAltamiraInactivosPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="temasCuentasInactivasPage::#jsf#consultas#temasCuentasInactivasPage.xhtml"
+    NAME="output60"
+    PATH="/jsf/consultas/temasCuentasInactivasPage.xhtml"
+    TARGET="rules:#jsf#consultas#temasCuentasInactivasPage.xhtml"
+    TITLE="temasCuentasInactivasPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="reporteTiemposPage::#jsf#consultas#reporteTiemposPage.xhtml"
+    NAME="output61" PATH="/jsf/consultas/reporteTiemposPage.xhtml"
+    TARGET="rules:#jsf#consultas#reporteTiemposPage.xhtml"
+    TITLE="reporteTiemposPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#consultas#consultaNotaContablePage.xhtml"
+  PATH="/jsf/consultas/consultaNotaContablePage.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#consultas#consultaNotaContablePage.xhtml:0"
+   NAME="item" PATH="/jsf/consultas/consultaNotaContablePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="consultaNotaContablePage::#jsf#consultas#consultaNotaContablePage.xhtml"
+    NAME="output" PATH="/jsf/consultas/consultaNotaContablePage.xhtml"
+    TARGET="rules:#jsf#consultas#consultaNotaContablePage.xhtml"
+    TITLE="consultaNotaContablePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#consultas#consultaAnexoNotaContablePage.xhtml"
+  PATH="/jsf/consultas/consultaAnexoNotaContablePage.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#consultas#consultaAnexoNotaContablePage.xhtml:0"
+   NAME="item" PATH="/jsf/consultas/consultaAnexoNotaContablePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="consultaAnexoNotaContablePage::#jsf#consultas#consultaAnexoNotaContablePage.xhtml"
+    NAME="output" PATH="/jsf/consultas/consultaAnexoNotaContablePage.xhtml"
+    TARGET="rules:#jsf#consultas#consultaAnexoNotaContablePage.xhtml"
+    TITLE="consultaAnexoNotaContablePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#consultas#consultaMovimientosContablesPage.xhtml"
+  PATH="/jsf/consultas/consultaMovimientosContablesPage.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#consultas#consultaMovimientosContablesPage.xhtml:0"
+   NAME="item"
+   PATH="/jsf/consultas/consultaMovimientosContablesPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="consultaMovimientosContablesPage::#jsf#consultas#consultaMovimientosContablesPage.xhtml"
+    NAME="output"
+    PATH="/jsf/consultas/consultaMovimientosContablesPage.xhtml"
+    TARGET="rules:#jsf#consultas#consultaMovimientosContablesPage.xhtml"
+    TITLE="consultaMovimientosContablesPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#notacontable#notaContablePage.xhtml"
+  PATH="/jsf/notacontable/notaContablePage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#notacontable#notaContablePage.xhtml:0"
+   NAME="item" PATH="/jsf/notacontable/notaContablePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="notaContablePage::#jsf#notacontable#notaContablePage.xhtml"
+    NAME="output" PATH="/jsf/notacontable/notaContablePage.xhtml"
+    TARGET="rules:#jsf#notacontable#notaContablePage.xhtml"
+    TITLE="notaContablePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#principal.xhtml" PATH="/principal.xhtml"
+  SHAPE="304,1857,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#inicio.xhtml" PATH="/inicio.xhtml"
+  SHAPE="304,1969,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#loginPage.xhtml" PATH="/loginPage.xhtml"
+  SHAPE="304,1745,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#carga#perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml"
+  PATH="/jsf/carga/perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml"
+  SHAPE="32,5425,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#carga#perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml:0"
+   NAME="item"
+   PATH="/jsf/carga/perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="perdOperClasRiesTiPer::#jsf#carga#perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml"
+    NAME="output"
+    PATH="/jsf/carga/perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml"
+    TARGET="rules:#jsf#carga#perdidaOperacionalClaseRiesgoTipoPerdidaPage.xhtml"
+    TITLE="perdOperClasRiesTiPer" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#adminnotacontable#pendientePage.xhtml"
+  PATH="/jsf/adminnotacontable/pendientePage.xhtml" SHAPE="32,7105,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#adminnotacontable#pendientePage.xhtml:0"
+   NAME="item" PATH="/jsf/adminnotacontable/pendientePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="pendientePage::#jsf#adminnotacontable#pendientePage.xhtml"
+    NAME="output" PATH="/jsf/adminnotacontable/pendientePage.xhtml"
+    TARGET="rules:#jsf#adminnotacontable#pendientePage.xhtml"
+    TITLE="pendientePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#notacontable#notaContableLibrePage.xhtml"
+  PATH="/jsf/notacontable/notaContableLibrePage.xhtml"
+  SHAPE="32,8817,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#notacontable#notaContableLibrePage.xhtml:0"
+   NAME="item" PATH="/jsf/notacontable/notaContableLibrePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="notaContableLibrePage::#jsf#notacontable#notaContableLibrePage.xhtml"
+    NAME="output" PATH="/jsf/notacontable/notaContableLibrePage.xhtml"
+    TARGET="rules:#jsf#notacontable#notaContableLibrePage.xhtml"
+    TITLE="notaContableLibrePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#adminnotacontable#precierrePage.xhtml"
+  PATH="/jsf/adminnotacontable/precierrePage.xhtml" SHAPE="320,1841,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#adminnotacontable#precierrePage.xhtml:0"
+   NAME="item" PATH="/jsf/adminnotacontable/precierrePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="precierrePage::#jsf#adminnotacontable#precierrePage.xhtml"
+    NAME="output" PATH="/jsf/adminnotacontable/precierrePage.xhtml"
+    TARGET="rules:#jsf#adminnotacontable#precierrePage.xhtml"
+    TITLE="precierrePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#notacontable#notaRefCrucePage.xhtml"
+  PATH="/jsf/notacontable/notaRefCrucePage.xhtml" SHAPE="320,1841,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#notacontable#notaRefCrucePage.xhtml:0"
+   NAME="item" PATH="/jsf/notacontable/notaRefCrucePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="notaRefCrucePage::#jsf#notacontable#notaRefCrucePage.xhtml"
+    NAME="output" PATH="/jsf/notacontable/notaRefCrucePage.xhtml"
+    TARGET="rules:#jsf#notacontable#notaRefCrucePage.xhtml"
+    TITLE="notaRefCrucePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#adminnotacontable#cierrePage.xhtml"
+  PATH="/jsf/adminnotacontable/cierrePage.xhtml" SHAPE="32,10657,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#adminnotacontable#cierrePage.xhtml:0"
+   NAME="item" PATH="/jsf/adminnotacontable/cierrePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cierrePage::#jsf#adminnotacontable#cierrePage.xhtml"
+    NAME="output" PATH="/jsf/adminnotacontable/cierrePage.xhtml"
+    TARGET="rules:#jsf#adminnotacontable#cierrePage.xhtml"
+    TITLE="cierrePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#adminnotacontable#cargaUsuarioPage.xhtml"
+  PATH="/jsf/adminnotacontable/cargaUsuarioPage.xhtml"
+  SHAPE="320,1937,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#adminnotacontable#cargaUsuarioPage.xhtml:0"
+   NAME="item" PATH="/jsf/adminnotacontable/cargaUsuarioPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cargaUsuarioPage::#jsf#adminnotacontable#cargaUsuarioPage.xhtml"
+    NAME="output" PATH="/jsf/adminnotacontable/cargaUsuarioPage.xhtml"
+    TARGET="rules:#jsf#adminnotacontable#cargaUsuarioPage.xhtml"
+    TITLE="cargaUsuarioPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#consultas#reporteGeneralPage.xhtml"
+  PATH="/jsf/consultas/reporteGeneralPage.xhtml" SHAPE="320,2049,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#consultas#reporteGeneralPage.xhtml:0"
+   NAME="item" PATH="/jsf/consultas/reporteGeneralPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="reporteGeneralPage::#jsf#consultas#reporteGeneralPage.xhtml"
+    NAME="output" PATH="/jsf/consultas/reporteGeneralPage.xhtml"
+    TARGET="rules:#jsf#consultas#reporteGeneralPage.xhtml"
+    TITLE="reporteGeneralPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#parametros#parametrosSchedulePage.xhtml"
+  PATH="/jsf/parametros/parametrosSchedulePage.xhtml"
+  SHAPE="32,14497,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#parametros#parametrosSchedulePage.xhtml:0" NAME="item"
+   PATH="/jsf/parametros/parametrosSchedulePage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="parametrosSchedulePage::#jsf#parametros#parametrosSchedulePage.xhtml"
+    NAME="output" PATH="/jsf/parametros/parametrosSchedulePage.xhtml"
+    TARGET="rules:#jsf#parametros#parametrosSchedulePage.xhtml"
+    TITLE="parametrosSchedulePage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#consultas#usuariosAltamiraInactivosPage.xhtml"
+  PATH="/jsf/consultas/usuariosAltamiraInactivosPage.xhtml"
+  SHAPE="320,2065,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#consultas#usuariosAltamiraInactivosPage.xhtml:0"
+   NAME="item" PATH="/jsf/consultas/usuariosAltamiraInactivosPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="usuariosAltamiraInactivosPage::#jsf#consultas#usuariosAltamiraInactivosPage.xhtml"
+    NAME="output"
+    PATH="/jsf/consultas/usuariosAltamiraInactivosPage.xhtml"
+    TARGET="rules:#jsf#consultas#usuariosAltamiraInactivosPage.xhtml"
+    TITLE="usuariosAltamiraInactivosPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#jsf#consultas#temasCuentasInactivasPage.xhtml"
+  PATH="/jsf/consultas/temasCuentasInactivasPage.xhtml"
+  SHAPE="320,2177,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#jsf#consultas#temasCuentasInactivasPage.xhtml:0"
+   NAME="item" PATH="/jsf/consultas/temasCuentasInactivasPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="temasCuentasInactivasPage::#jsf#consultas#temasCuentasInactivasPage.xhtml"
+    NAME="output" PATH="/jsf/consultas/temasCuentasInactivasPage.xhtml"
+    TARGET="rules:#jsf#consultas#temasCuentasInactivasPage.xhtml"
+    TITLE="temasCuentasInactivasPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#jsf#consultas#reporteTiemposPage.xhtml"
+  PATH="/jsf/consultas/reporteTiemposPage.xhtml" SHAPE="32,15153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#jsf#consultas#reporteTiemposPage.xhtml:0"
+   NAME="item" PATH="/jsf/consultas/reporteTiemposPage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="reporteTiemposPage::#jsf#consultas#reporteTiemposPage.xhtml"
+    NAME="output" PATH="/jsf/consultas/reporteTiemposPage.xhtml"
+    TARGET="rules:#jsf#consultas#reporteTiemposPage.xhtml"
+    TITLE="reporteTiemposPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

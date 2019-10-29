@@ -1,0 +1,91 @@
+-- Estructura para carga de datos desde archivos:
+-- Descripcion: 
+-- TABLA;
+-- ARCHIVO;
+-- DEFINICIÓN DE DATOS CON TIPO Y LONGITUD POR DATO(C: CARACTER, N: NUMERO); 
+-- Palabra "Schedule", Fecha de inicio de ejecución, periodicidad en minutos, 1 para borrado de todos los datos de la tabla antes de cargar, 1 para ejecución en hilo independiente
+-- Dos guiones (--) para omitir linea. Similar a un comentario
+--
+-- Clase riesgo (diario) 
+NC_CLASE_RIESGO;ARCHIVO_CLASRIES_NTCON.TXT;C:3;C:30;Schedule,2012060313,1440,1,0;
+--
+-- Actualizacion de clientes (diario, sin borrado previo)
+NC_CLIENTE;ARCHIVO_CLIENTES_NTCON.TXT;C:8;C:1;C:15;C:1;C:20;C:20;C:20;Schedule,2012060313,1140,0,0;
+--
+-- Carga completa de nuevos clientes (Anual, con borrado previo y en hilo independiente)
+NC_CLIENTE;ARCHIVO_CLIENTES_NTCON_TOT.TXT;C:8;C:1;C:15;C:1;C:20;C:20;C:20;Schedule,2012060306,525600,1,1;
+--
+-- Actividades (diario)
+NC_ACTIVIDAD_ECONOMICA;ARCHIVO_CODICIIU_NTCON.TXT;C:4;C:150;Schedule,2012060306,1440,1,0;
+--
+-- Contrato (diario, sin borrado)
+NC_CONTRATO;ARCHIVO_CONTRATO_NTCON.TXT;C:8;C:18;Schedule,2012060306,1440,0,0;
+--
+-- Contrato (anual, borrado total y en hilo independiente)
+NC_CONTRATO;ARCHIVO_CONTRATO_NTCON_TOT.TXT;C:8;C:18;Schedule,2012060306,525600,1,1;
+--
+-- Perdida operacional clase riesgo (diario)
+NC_PERD_OPER_CLAS_RIES;ARCHIVO_CTAPERCL_NTCON.TXT;C:15;C:3;C:4;Schedule,2012060306,1440,1,0;
+--
+-- Departamiento (diario)
+NC_DEPARTAMENTO;ARCHIVO_DEPARTAMENTOS_NTCON.TXT;C:2;C:30;Schedule,2012060306,1440,1,0;
+--
+-- Cierre mensual (Revision diaria, sin borrado previo)
+NC_CIERRE_MENSUAL;ARCHIVO_FECIERRE_NTCON.TXT;C:4;C:2;Schedule,2012060306,1440,0,0;
+--
+-- Festivos (diario)
+NC_FESTIVO;ARCHIVO_FESTIVOS_NTCON.TXT;C:10;Schedule,2012060306,1440,1,0;
+--
+-- Partidadas pendientes (diario, borrado previo e hilo independiente)
+NC_PARTIDA_PENDIENTE;ARCHIVO_PARTPEND_NTCON.TXT;C:18;C:40;C:4;C:1;C:8;C:3;C:17;C:35;C:8;Schedule,2012060306,1440,1,0;Schedule,2012060306,1440,1,1;
+--
+-- Perdida operacion (diario)
+NC_PERDIDA_OPERACION;ARCHIVO_PERDOPER_NTCON.TXT;C:4;C:40;Schedule,2012060306,1440,1,0;
+--
+-- Usuarios altamira (diario, sin borrado)
+NC_USUARIO_ALTAMIRA;ARCHIVO_PERFTOTAL_NTCON.TXT;C:7;C:70;C:4;C:70;C:4;C:40;C:60;Schedule,2012060306,1440,0,0;
+--
+-- Cuentas puc que requieren contrato (diario)
+NC_HADTAPL;ARCHIVO_PHADTAPL_NTCON.TXT;C:15;C:1;Schedule,2012060306,1440,1,0;
+--
+-- producto (diario)
+NC_PRODUCTO;ARCHIVO_PRODUCTO_NTCON.TXT;C:2;C:30;Schedule,2012060306,1440,1,0;
+--
+-- sucursales (diario)
+NC_SUCURSAL;ARCHIVO_SUCURSAL_NTCON.TXT;I:4;C:70;C:1;I:4;C:70;Schedule,2012060306,1440,1,0;
+--
+-- cuentas puc (diario, sin borrado, en hilo independiente)
+NC_PUC;ARCHIVO_TCTASPUC_NTCON.TXT;C:15;C:2;C:65;C:1;I:4;C:1;C:1;C:1;C:1;C:15;C:15;C:1;C:5;C:1;C:84;C:5;C:1;C:84;C:1;C:1;C:1;Schedule,2012060306,1440,0,1;
+--
+-- Divisas (diario)
+NC_DIVISA;ARCHIVO_TDIVISAS_NTCON.TXT;C:3;C:25;Schedule,2012060306,1440,1,0;
+--
+-- Terceros (diario)
+NC_TERCERO;ARCHIVO_TERCEROS_NTCON.TXT;C:1;C:15;C:1;C:20;C:20;C:20;C:20;C:3;C:50;C:2;C:3;C:4;C:1;C:6;C:7;C:5;C:8;C:4;C:26;Schedule,2012060306,1440,1,1;
+--
+-- Terceros (anual, borrado total e hilo independiente)
+NC_TERCERO;ARCHIVO_TERCEROS_NTCON_TOT.TXT;C:1;C:15;C:1;C:20;C:20;C:20;C:20;C:3;C:50;C:2;C:3;C:4;C:1;C:6;C:7;C:5;C:8;C:4;C:26;Schedule,2012060306,525600,1,1;
+--
+-- Tipos de identificacion (diario)
+NC_TIPO_IDENTIFICACION;ARCHIVO_TIPOIDEN_NTCON.TXT;C:1;C:30;Schedule,2012060306,1440,1,0;
+--
+-- Telefono (diario)
+NC_TIPO_TELEFONO;ARCHIVO_TIPTELEFONO_NTCON.TXT;C:1;C:30;Schedule,2012060306,1440,1,0;
+--
+-- Tipo Indicativo (diario)
+NC_TIPO_INDICATIVO;ARCHIVO_TIPINDICATIVO_NTCON.TXT;C:20;C:15;C:3;Schedule,2012060306,1440,1,0;
+--
+-- Riesgo operacional - producto (diario)
+NC_RIES_OPER_PROD;ARCHIVO_RIESOPEPROD_NTCON.TXT;C11;C:30;Schedule,2012060306,1440,1,0;
+--
+-- Riesgo operacional - proceso (diario)
+NC_RIES_OPER_PROC;ARCHIVO_RIESOPEPROC_NTCON.TXT;C:2;C:50;Schedule,2012060306,1440,1,0;
+--
+-- Riesgo operacional - linea operativa (diario)
+NC_RIES_OPER_LINE_OPER;ARCHIVO_RIESOPELINOP_NTCON.TXT;C:4;C:65;Schedule,2012060306,1440,1,0;
+--
+-- municipio (diario)
+NC_MUNICIPIO;ARCHIVO_POBLACIO_NTCON.TXT;C:2;C:3;C:30;Schedule,2012060306,1440,1,0;
+--
+-- Error de validacion (diario)
+NC_ERROR_VALIDACION;ARCHIVO_ERRORVALI_NTCON.TXT;C:5;C:60;Schedule,2012060306,1440,1,0;

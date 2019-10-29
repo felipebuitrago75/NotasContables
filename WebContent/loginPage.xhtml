@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	template="./common/template.xhtml">
+	<ui:param name="title" value="Autenticaci�n" />
+	<ui:define name="body">
+		<div style="width: 100%;">
+			<rich:panel header="Datos de usuario" style="width: 420px" id="loginform">
+
+				<h:panelGrid columns="2" >
+					<h:outputText value="Usuario: " rendered="#{contablesSessionBean.loginUser==null}" />
+					<h:inputText id="Usuario" value="#{homePage.username}" required="true" rendered="#{contablesSessionBean.loginUser==null}" validatorMessage="El Usuario es requerido y debe tener m�nimo 3 caracteres" requiredMessage="El Usuario es requerido y debe tener m�nimo 3 caracteres">
+						<f:validateLength minimum="3" maximum="30" />
+					</h:inputText>
+					<h:outputText value="Clave: " rendered="#{contablesSessionBean.loginUser==null}"/>
+					<h:inputSecret id="Clave" value="#{homePage.pwd}" required="true" rendered="#{contablesSessionBean.loginUser==null}"  validatorMessage="La clave es requerida y debe tener m�nimo 3 caracteres" requiredMessage="La clave es requerida y debe tener m�nimo 3 caracteres">
+						<f:validateLength minimum="3" maximum="30" />
+					</h:inputSecret>
+					<h:outputText value="Rol a usar:" rendered="#{contablesSessionBean.loginUser!=null}" />
+					<h:selectOneMenu value="#{homePage.rolActual}" rendered="#{contablesSessionBean.loginUser!=null}" >
+						<f:selectItem itemValue="-1" itemLabel="Seleccione una opcion" />
+						<f:selectItems value="#{homePage.roles}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<ui:include src="./common/mensajes.xhtml" />
+				<h:panelGrid columns="1" width="100%" style="text-align:center;">
+					<a4j:commandButton action="#{homePage.loguear}" value="Ingresar" rendered="#{contablesSessionBean.loginUser==null}" reRender="loginform"/>
+					<a4j:commandButton action="#{homePage.asignarRol}" value="Asignar rol" rendered="#{contablesSessionBean.loginUser!=null}" reRender="loginform"/>
+
+				</h:panelGrid>
+			</rich:panel>
+		</div>
+	</ui:define>
+</ui:composition>

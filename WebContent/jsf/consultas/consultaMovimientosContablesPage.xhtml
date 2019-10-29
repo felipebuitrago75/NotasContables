@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	template="../../common/template.xhtml">
+	<ui:param name="title" value="Reporte General" />
+	<ui:define name="body">
+
+		<ui:include src="../common/flujoSubPage.xhtml" />
+		<ui:include src="../notacontable/flujoNotaContablePage.xhtml" />
+		<ui:include src="../notacontable/flujoNotaContableLibrePage.xhtml"/>
+		<ui:include src="../notacontable/flujoNotaRefCrucePage.xhtml"/>
+
+		<!--Filtro de busqueda	-->
+		<div style="width: 990px;">
+			<h:panelGrid columns="1" width="100%">
+				<h1 align="center">Movimientos Contables</h1>
+			</h:panelGrid> 
+		
+			<!-- Panel de opciones --> 
+			<h:panelGrid id="informacion" columns="1" width="60%" cellpadding="0" cellspacing="0">
+				<rich:simpleTogglePanel label="Filtro de búsqueda" width="100%" opened="#{ empty consultaMovimientosContablesPage.datos }" switchType="client">
+					<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="5">
+						<h:panelGrid columns="2" id="filtro">
+							<h:outputText value="Sucursal Origen" rendered="#{consultaMovimientosContablesPage.usuarioLogueado.rolActual.codigo != 6 and consultaMovimientosContablesPage.usuarioLogueado.rolActual.codigo != 7 and consultaMovimientosContablesPage.usuarioLogueado.rolActual.codigo != 10}"/>
+							<h:selectOneMenu value="#{consultaMovimientosContablesPage.sucOrigen}" rendered="#{consultaMovimientosContablesPage.usuarioLogueado.rolActual.codigo != 6 and consultaMovimientosContablesPage.usuarioLogueado.rolActual.codigo != 7 and consultaMovimientosContablesPage.usuarioLogueado.rolActual.codigo != 10}">
+							    <f:selectItem itemValue="" itemLabel="Cualquiera"/>
+							    <f:selectItems value="#{consultaMovimientosContablesPage.sucursales}"/>
+							</h:selectOneMenu>
+	
+							<h:outputText value="Sucursal Destino"/>
+							<h:selectOneMenu value="#{consultaMovimientosContablesPage.sucDestino}">
+							    <f:selectItem itemValue="" itemLabel="Cualquiera"/>
+							    <f:selectItems value="#{consultaMovimientosContablesPage.sucursales}"/>
+							</h:selectOneMenu>
+	
+							<h:outputText value="Cuenta Contable" />
+							<h:inputText value="#{consultaMovimientosContablesPage.partida}"/>
+	
+							<h:outputText value="Número Identificación" />
+							<h:inputText value="#{consultaMovimientosContablesPage.numIdentificacion}"/>
+	
+							<h:outputText value="Desde" />
+							<rich:calendar value="#{consultaMovimientosContablesPage.desde}"/>
+	
+							<h:outputText value="Hasta" />
+							<rich:calendar value="#{consultaMovimientosContablesPage.hasta}"/>
+							
+							<h:outputText value="Divisa" />
+							<h:selectOneMenu value="#{consultaMovimientosContablesPage.divisa}" >
+							    <f:selectItem itemValue="" itemLabel="Cualquiera"/>
+							    <f:selectItems value="#{consultaMovimientosContablesPage.divisas}"/>
+							</h:selectOneMenu>
+						</h:panelGrid>
+	
+						<h:panelGrid columns="1" styleClass="center">
+							<a4j:commandButton action="#{consultaMovimientosContablesPage.buscar}" reRender="informacion,lista" value="Buscar" />
+						</h:panelGrid>
+					</h:panelGrid>
+				</rich:simpleTogglePanel>
+			</h:panelGrid> 
+			
+			<ui:include src="../../common/mensajes.xhtml" /> 
+			
+			<!-- Tabla de registros --> 
+			
+			<h:panelGrid columns="1" width="100%" style="align:center;" id="lista">
+				<a4j:commandButton value="Generar Archivo Excel" action="#{consultaMovimientosContablesPage.generarArchivoExcel}" reRender="lista"  rendered="#{! empty consultaMovimientosContablesPage.datos}"/>
+				<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{precierreCierrePage.excelFileName}" target="_blank" rendered="#{precierreCierrePage.mostrarArchExc}">
+					<a4j:actionparam name="type1" value="#{downloadGeneralPage.REPORTE_EXCEL}" assignTo="#{downloadGeneralPage.type}"/>
+					<a4j:actionparam name="file1" value="#{precierreCierrePage.excelFileName}" assignTo="#{downloadGeneralPage.file}"/>
+				</a4j:htmlCommandLink>
+				<rich:dataTable value="#{consultaMovimientosContablesPage.datos}" var="dato" id="table" rows="15" rendered="#{! empty consultaMovimientosContablesPage.datos}" rowKeyVar="rowKey" width="100%" footerClass="row2" onRowMouseOver="this.style.backgroundColor='#9fbdeb'"
+					onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+					<f:facet name="header">
+						<rich:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="table" maxPages="5" renderIfSinglePage="false" page="#{consultaMovimientosContablesPage.scrollPage}" id="up" reRender="lista, filtro"
+							limitToList="true" ajaxSingle="true">
+						</rich:datascroller>
+					</f:facet>
+	
+					<rich:column sortable="true" sortBy="#{dato.NC.numeroRadicacion}">
+						<f:facet name="header">
+							<h:panelGroup><h:outputText value="Número" /><br /><h:outputText value="Radicación" /></h:panelGroup>
+						</f:facet>
+						<h:outputText value="#{dato.NC.numeroRadicacion}" />
+					</rich:column>
+					<rich:column sortable="true" sortBy="#{dato.sucursal.codigo}">
+						<f:facet name="header">
+							<h:outputText value="Sucursal Origen" />
+						</f:facet>
+						<h:panelGrid columns="2">
+							<h:outputText value="#{dato.sucursal.codigo}" />
+							<h:outputText value="#{dato.sucursal.nombre}" />
+						</h:panelGrid>
+					</rich:column>
+					<rich:column sortable="true" sortBy="#{dato.NC.fechaRegistroAltamira}">
+						<f:facet name="header">
+							<h:outputText value="Fecha" />
+						</f:facet>
+						<h:outputText value="#{dato.NC.fechaRegistroAltamira}" />
+					</rich:column>
+					<rich:column style="text-align: right;">
+						<f:facet name="header">
+							<h:outputText value="Detalle de la nota contable" />
+						</f:facet>
+						<h:panelGrid columns="1" rendered="#{dato.NC.tipoNota eq 'R' }" width="100%">
+							<rich:dataTable style="border-width: 0px; background-color: transparent;" var="tema" value="#{dato.NC.temas}">
+								<rich:column style="border-width: 0px; text-align: left;" >
+									<h:outputText value="${tema.tema.nombre}" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align: left;" width="80" >
+									<h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+										<h:outputText value="#{tema.partidaContable} " />
+										<h:outputText value="#{tema.contrapartidaContable}" />
+									</h:panelGrid>
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align: left;" width="20" >
+									<h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+										<h:outputText value="[#{tema.naturalezaPartidaContable}]" />
+										<h:outputText value="[#{tema.naturalezaContrapartidaContable}]" />
+									</h:panelGrid>
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align: left;" width="30" >
+									<h:outputText value="#{tema.codigoDivisa}" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align:right;" width="140" >
+									<h:outputText value="#{tema.monto}" ><f:convertNumber type="currency" /></h:outputText>
+								</rich:column>
+							</rich:dataTable>
+						</h:panelGrid>
+						<h:panelGrid columns="1" rendered="#{dato.NC.tipoNota eq 'C' }" style="width: 100%">
+							<rich:dataTable style="border-width: 0px; background-color: transparent;" var="temaCruce" value="#{dato.NC.temasCruce}" cellpadding="0" cellspacing="0">
+								<rich:column style="border-width: 0px; text-align: left;" >
+									<h:outputText value="REFERENCIA DE CRUCE" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align: left;" width="80">
+									<h:outputText value="${temaCruce.cuentaContable}" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align: left;" width="20">
+									<h:outputText value="[${temaCruce.naturaleza}]" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align: left;" width="30">
+									<h:outputText value="${temaCruce.divisa}" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align:right;" width="140">
+									<h:outputText value="#{temaCruce.importe}" ><f:convertNumber type="currency" /></h:outputText>
+								</rich:column>
+			
+							</rich:dataTable>
+						</h:panelGrid>
+						<h:panelGrid columns="1" rendered="#{dato.NC.tipoNota eq 'L' }"  width="100%">
+							<rich:dataTable style="border-width: 0px; background-color: transparent; " var="temaLibre" value="#{dato.NC.temasLibre}" cellpadding="0" cellspacing="0">
+								<rich:column style="border-width: 0px; text-align: left;" >
+									<h:outputText value="CONTABILIDAD LIBRE"/>
+								</rich:column>
+								<rich:column  style="border-width: 0px; text-align: left;" width="80">
+									<h:outputText value="${temaLibre.cuentaContable}" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align: left;" width="20">
+									<h:outputText value="[${temaLibre.naturalezaCuentaContable}]" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align: left;" width="30">
+									<h:outputText value="${temaLibre.codigoDivisa}" />
+								</rich:column>
+								<rich:column style="border-width: 0px; text-align:right;" width="140">
+									<h:outputText value="#{temaLibre.monto}" ><f:convertNumber type="currency" /></h:outputText>
+								</rich:column>
+							</rich:dataTable>
+						</h:panelGrid>
+					</rich:column>
+	
+					<rich:column style="text-align: center;">
+						<f:facet name="header">
+							<h:panelGroup>
+								<h:outputText value="Ver Nota" /><br/>
+								<h:outputText value="Contable" />
+							</h:panelGroup>
+						</f:facet>
+						<a4j:commandButton value="Ver" oncomplete="#{rich:component('popupFlujoNotaContableVer')}.show()" action="#{flujoNotaContablePage.consultarFlujo}" reRender="popupFlujoNotaContableVer" rendered="#{dato.NC.tipoNota eq 'R'}">
+							<a4j:actionparam name="codNotaVer" value="#{dato.codigoNotaContable}" assignTo="#{flujoNotaContablePage.nota.codigo}" converter="javax.faces.Integer" />
+						</a4j:commandButton>
+						<a4j:commandButton value="Ver" oncomplete="#{rich:component('notaContableLibreVer')}.show()" action="#{flujoNotaContableLibrePage.consultarFlujo}" reRender="notaContableLibreVer" rendered="#{dato.NC.tipoNota eq 'L'}">
+							<a4j:actionparam name="codNotaLibreVer" value="#{dato.codigoNotaContable}" assignTo="#{flujoNotaContableLibrePage.nota.codigo}" converter="javax.faces.Integer" />
+						</a4j:commandButton>
+						<a4j:commandButton value="Ver" oncomplete="#{rich:component('popupFlujoNotaContableRefCruceVer')}.show()" action="#{notaRefCrucePage.consultarFlujo}" reRender="popupFlujoNotaContableRefCruceVer" rendered="#{dato.NC.tipoNota eq 'C'}">
+							<a4j:actionparam name="codNotaRefCruceVer" value="#{dato.codigoNotaContable}" assignTo="#{notaRefCrucePage.nota.codigo}" converter="javax.faces.Integer" />
+						</a4j:commandButton>
+					</rich:column>
+					<rich:column style="text-align: center;">
+						<f:facet name="header">
+							<h:panelGroup>
+								<h:outputText value="Flujo Nota" /><br/>
+								<h:outputText value="Contable" />
+							</h:panelGroup>
+						</f:facet>
+						<a4j:commandButton value="Consultar" oncomplete="#{rich:component('popupFlujo')}.show()" action="#{flujoSubPage.consultarFlujo}" reRender="popupFlujo" >
+							<a4j:actionparam name="codConsultar" value="#{dato.codigo}" assignTo="#{flujoSubPage.actividadRealizada.codigoInstancia}" converter="javax.faces.Integer" />
+						</a4j:commandButton>
+					</rich:column>
+	
+					<f:facet name="footer">
+						<rich:datascroller style="color:black;" align="center" for="table" page="#{consultaMovimientosContablesPage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide" renderIfSinglePage="true">
+							<f:facet name="pages">
+								<h:outputText value="Visualizando del #{((pageIndex-1)*15)+1 } al #{(pages!=pageIndex)?(pageIndex*15):consultaMovimientosContablesPage.totalFilas} de un total de #{consultaMovimientosContablesPage.totalFilas} registros." />
+							</f:facet>
+						</rich:datascroller>
+					</f:facet>
+				</rich:dataTable>
+			</h:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

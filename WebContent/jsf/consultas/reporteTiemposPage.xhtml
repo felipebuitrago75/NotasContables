@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	template="../../common/template.xhtml">
+	<ui:param name="title" value="Reporte de Tiempos por Usuario" />
+	<ui:define name="body">
+
+		<!--Filtro de busqueda	-->
+		<div style="width: 990px;">
+			<h:panelGrid columns="1" width="100%">
+				<h1 align="center">Reporte de Tiempos por Usuario</h1>
+			</h:panelGrid> 
+		
+		
+			<rich:modalPanel id="popupDetalle" autosized="true" domElementAttachment="form" minWidth="550">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Detalle por Usuario" />
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="../../../common/images/close.png" alt="cerrar" styleClass="hidelink" id="hidelink" height="20" width="20" />
+						<rich:componentControl for="popupDetalle" attachTo="hidelink" operation="hide" event="onclick" />
+					</h:panelGroup>
+				</f:facet>
+				
+				<h:panelGrid columns="1" id="detalleAct" cellspacing="0" cellpadding="0">
+		
+					<rich:dataTable value="#{reporteTiemposPage.objActual.actividades}" var="act" id="tableAct" rendered="#{! empty reporteTiemposPage.objActual.actividades}" rowKeyVar="rowKeyAct" width="970px"  
+						onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+		
+						<rich:column >
+							<f:facet name="header"><h:outputText value="Num Radicación" /></f:facet>
+							<h:outputText value="#{act.numeroRadicacionNC}"/>
+						</rich:column>
+
+						<rich:column >
+							<f:facet name="header"><h:outputText value="Recepción" /></f:facet>
+							<h:outputText value="#{act.fechaHora}" />
+						</rich:column>
+
+						<rich:column >
+							<f:facet name="header"><h:outputText value="Cierre" /></f:facet>
+							<h:outputText value="#{act.fechaHoraCierre}" />
+						</rich:column>
+
+						<rich:column >
+							<f:facet name="header"><h:outputText value="Duración" /></f:facet>
+							<h:outputText value="#{act.duracionActividad}" />
+						</rich:column>
+		
+					</rich:dataTable>
+				</h:panelGrid>
+			</rich:modalPanel>
+			
+			<!-- Tabla de registros --> 
+			<h:panelGrid id="filtro" columns="1" width="60%" cellpadding="0" cellspacing="0">
+				<rich:simpleTogglePanel label="Filtro de búsqueda" width="100%" opened="#{ empty consultaNotaContablePage.datos }" switchType="client">
+					<h:panelGrid columns="2" width="100%" cellpadding="0" cellspacing="5">
+	
+						<h:outputText value="Año" />
+						<h:selectOneMenu value="#{reporteTiemposPage.anio}" immediate="true">
+							<f:selectItems value="#{reporteTiemposPage.anios}" />
+						</h:selectOneMenu>
+	
+						<h:outputText value="Mes" />
+						<h:selectOneMenu value="#{reporteTiemposPage.mes}" immediate="true">
+							<f:selectItems value="#{reporteTiemposPage.meses}" />
+						</h:selectOneMenu>
+	
+						<a4j:commandButton action="#{reporteTiemposPage.buscar}" reRender="filtro" value="Buscar" />
+					</h:panelGrid>
+				</rich:simpleTogglePanel>
+			</h:panelGrid> 
+			
+			<ui:include src="../../common/mensajes.xhtml" /> 
+			
+			<h:panelGrid columns="1" width="100%" style="align:center;" id="lista">
+				<a4j:commandButton value="Generar Archivo Excel" action="#{reporteTiemposPage.generarArchivoExcel}" reRender="lista"  rendered="#{! empty reporteTiemposPage.datos}"/>
+				<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{reporteTiemposPage.excelFileName}" target="_blank" rendered="#{reporteTiemposPage.mostrarArchExc}">
+					<a4j:actionparam name="type1" value="#{downloadGeneralPage.REPORTE_EXCEL}" assignTo="#{downloadGeneralPage.type}"/>
+					<a4j:actionparam name="file1" value="#{reporteTiemposPage.excelFileName}" assignTo="#{downloadGeneralPage.file}"/>
+				</a4j:htmlCommandLink>
+				<rich:dataTable value="#{reporteTiemposPage.datos}" var="dato" id="table" rows="15" rendered="#{! empty reporteTiemposPage.datos}" rowKeyVar="rowKey" width="100%" footerClass="row2" onRowMouseOver="this.style.backgroundColor='#9fbdeb'"
+					onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+					<f:facet name="header">
+						<rich:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="table" maxPages="5" renderIfSinglePage="false" page="#{reporteTiemposPage.scrollPage}" id="up"
+							limitToList="true" ajaxSingle="true">
+						</rich:datascroller>
+					</f:facet>
+	
+					<rich:column sortable="true" sortBy="#{dato.codigoEmpleado}">
+						<f:facet name="header">
+							<h:panelGroup><h:outputText value="Código" /><br /><h:outputText value="Empleado" /></h:panelGroup>
+						</f:facet>
+						<h:outputText value="#{dato.codigoEmpleado}" />
+					</rich:column>
+					<rich:column sortable="true" sortBy="#{dato.usuAlt.nombreEmpleado}">
+						<f:facet name="header">
+							<h:panelGroup><h:outputText value="Nombre" /><br /><h:outputText value="Empleado" /></h:panelGroup>
+						</f:facet>
+						<h:outputText value="#{dato.usuAlt.nombreEmpleado}" />
+					</rich:column>
+
+					<rich:column sortable="true" sortBy="#{dato.codigoAreaModificado}">
+						<f:facet name="header">
+							<h:panelGroup><h:outputText value="Código" /><br /><h:outputText value="Área" /></h:panelGroup>
+						</f:facet>
+						<h:outputText value="#{dato.codigoAreaModificado}" />
+					</rich:column>
+
+					<rich:column sortable="true" sortBy="#{dato.nombreAreaModificado}">
+						<f:facet name="header">
+							<h:panelGroup><h:outputText value="Nombre" /><br /><h:outputText value="Área" /></h:panelGroup>
+						</f:facet>
+						<h:outputText value="#{dato.nombreAreaModificado}" />
+					</rich:column>
+
+					<rich:column sortable="true" sortBy="#{dato.Rol}">
+						<f:facet name="header"><h:outputText value="Rol"/></f:facet>
+						<h:outputText value="#{dato.rol.nombre}" />
+					</rich:column>
+
+					<rich:column sortable="true" sortBy="#{dato.duracionPromedio}" style="text-align: right;">
+						<f:facet name="header"><h:panelGroup><h:outputText value="Promedio"/><br/><h:outputText value="(Minutos)"/></h:panelGroup></f:facet>
+						<h:outputText value="#{dato.duracionPromedio}" ><f:convertNumber maxFractionDigits="2"/></h:outputText>
+					</rich:column>
+
+					<rich:column style="text-align: center;">
+						<f:facet name="header"><h:outputText value="Detalle" /></f:facet>
+						<a4j:commandButton value="Ver" oncomplete="#{rich:component('popupDetalle')}.show()" action="#{reporteTiemposPage.obtenerListaDetalle}" reRender="popupDetalle" >
+							<a4j:actionparam name="codUsuario" value="#{dato.codigo}" assignTo="#{reporteTiemposPage.objActual.codigo}" converter="javax.faces.Integer" />
+						</a4j:commandButton>
+					</rich:column>
+	
+					<f:facet name="footer">
+						<rich:datascroller style="color:black;" align="center" for="table" page="#{reporteTiemposPage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide" renderIfSinglePage="true">
+							<f:facet name="pages">
+								<h:outputText value="Visualizando del #{((pageIndex-1)*15)+1 } al #{(pages!=pageIndex)?(pageIndex*15):reporteTiemposPage.totalFilas} de un total de #{reporteTiemposPage.totalFilas} registros." />
+							</f:facet>
+						</rich:datascroller>
+					</f:facet>
+				</rich:dataTable>
+			</h:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

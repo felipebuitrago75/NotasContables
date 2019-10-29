@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	template="../../common/template.xhtml">
+	<ui:param name="title" value="Notas Contables en Precierre" />
+	<ui:define name="body">
+
+		<ui:include src="../common/flujoSubPage.xhtml" />
+		<ui:include src="../notacontable/flujoNotaContablePage.xhtml" />
+		<ui:include src="../notacontable/flujoNotaContableLibrePage.xhtml"/>
+		<ui:include src="../notacontable/flujoNotaRefCrucePage.xhtml"/>
+
+		<!--Filtro de busqueda	-->
+		<div style="width: 1000px;">
+			<h:panelGrid columns="1" width="100%">
+				<h1 align="center">Notas Contables en Precierre</h1>
+			</h:panelGrid> 
+			
+			<ui:include src="../../common/mensajes.xhtml" /> 
+			
+			<!-- Tabla de registros --> 
+			<h:panelGrid columns="1" width="100%" style="align:center;" id="lista">
+				<a4j:poll action="#{precierrePage.mostrar}" rendered="#{empty precierreCierrePage.datos and facesContext.maximumSeverity == null}" reRender="lista" interval="0"/>
+				<h:panelGrid columns="2" width="100%" style="text-align:center;">
+					<a4j:commandButton value="Generar Archivo Altamira" action="#{precierrePage.generarArchivoAltamira}" reRender="lista" rendered="#{!empty precierreCierrePage.datos}"/>
+					<a4j:commandButton value="Generar Archivo Excel" action="#{precierrePage.generarArchivoExcel}" reRender="lista" rendered="#{!empty precierreCierrePage.datos}"/>
+				</h:panelGrid>
+				<h:panelGrid columns="4" width="100%" style="align:center;">
+					<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{precierreCierrePage.excelFileName}" target="_blank" rendered="#{precierreCierrePage.mostrarArchExc}">
+						<a4j:actionparam name="type1" value="#{downloadGeneralPage.REPORTE_EXCEL}" assignTo="#{downloadGeneralPage.type}"/>
+						<a4j:actionparam name="file1" value="#{precierreCierrePage.excelFileName}" assignTo="#{downloadGeneralPage.file}"/>
+					</a4j:htmlCommandLink>
+					<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{precierrePage.INTERFAZ_CONTABLE_FILE_NAME}" target="_blank" rendered="#{precierreCierrePage.mostrarArchAlt}">
+						<a4j:actionparam name="type2" value="#{downloadGeneralPage.TRANSMISION_ALTAMIRA}" assignTo="#{downloadGeneralPage.type}"/>
+						<a4j:actionparam name="file2" value="#{precierrePage.INTERFAZ_CONTABLE_FILE_NAME}" assignTo="#{downloadGeneralPage.file}"/>
+					</a4j:htmlCommandLink>
+					<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{precierrePage.PUC_FILE_NAME}" target="_blank" rendered="#{precierreCierrePage.mostrarArchAlt}">
+						<a4j:actionparam name="type3" value="#{downloadGeneralPage.TRANSMISION_ALTAMIRA}" assignTo="#{downloadGeneralPage.type}"/>
+						<a4j:actionparam name="file3" value="#{precierrePage.PUC_FILE_NAME}" assignTo="#{downloadGeneralPage.file}"/>
+					</a4j:htmlCommandLink>
+					<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{precierrePage.TERCEROS_FILE_NAME}" target="_blank" rendered="#{precierreCierrePage.mostrarArchAlt}">
+						<a4j:actionparam name="type4" value="#{downloadGeneralPage.TRANSMISION_ALTAMIRA}" assignTo="#{downloadGeneralPage.type}"/>
+						<a4j:actionparam name="file4" value="#{precierrePage.TERCEROS_FILE_NAME}" assignTo="#{downloadGeneralPage.file}"/>
+					</a4j:htmlCommandLink>
+					<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{precierrePage.NC_INDICAPC}" target="_blank" rendered="#{precierreCierrePage.mostrarArchAlt}">
+						<a4j:actionparam name="type4" value="#{downloadGeneralPage.TRANSMISION_ALTAMIRA}" assignTo="#{downloadGeneralPage.type}"/>
+						<a4j:actionparam name="file4" value="#{precierrePage.NC_INDICAPC}" assignTo="#{downloadGeneralPage.file}"/>
+					</a4j:htmlCommandLink>
+										
+				</h:panelGrid>
+				<ui:include src="precierreCierreFormPage.xhtml" />
+			</h:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

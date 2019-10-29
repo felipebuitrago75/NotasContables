@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+	<managed-bean>
+		<managed-bean-name>consultaNotaContablePage</managed-bean-name>
+		<managed-bean-class>com.papelesinteligentes.bbva.notascontables.jsf.consultas.ConsultaNotaContablePage</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>datos</property-name>
+			<property-class>java.util.List</property-class>
+			<list-entries />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>consultaMovimientosContablesPage</managed-bean-name>
+		<managed-bean-class>com.papelesinteligentes.bbva.notascontables.jsf.consultas.ConsultaMovimientosContablesPage</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>datos</property-name>
+			<property-class>java.util.List</property-class>
+			<list-entries />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>reporteGeneralPage</managed-bean-name>
+		<managed-bean-class>com.papelesinteligentes.bbva.notascontables.jsf.consultas.ReporteGeneralPage</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>datos</property-name>
+			<property-class>java.util.List</property-class>
+			<list-entries />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>usuariosAltamiraInactivosPage</managed-bean-name>
+		<managed-bean-class>com.papelesinteligentes.bbva.notascontables.jsf.consultas.UsuariosAltamiraInactivosPage</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>datos</property-name>
+			<property-class>java.util.List</property-class>
+			<list-entries />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>temasCuentasInactivasPage</managed-bean-name>
+		<managed-bean-class>com.papelesinteligentes.bbva.notascontables.jsf.consultas.TemasCuentasInactivasPage</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>datos</property-name>
+			<property-class>java.util.List</property-class>
+			<list-entries />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>reporteTiemposPage</managed-bean-name>
+		<managed-bean-class>com.papelesinteligentes.bbva.notascontables.jsf.consultas.ReporteTiemposPage</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>datos</property-name>
+			<property-class>java.util.List</property-class>
+			<list-entries />
+		</managed-property>
+	</managed-bean>
+</faces-config>

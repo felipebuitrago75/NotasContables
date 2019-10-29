@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	template="../../common/template.xhtml">
+	<ui:param name="title" value="Días no Habiles" />
+	<ui:define name="body">
+		
+		<!--Filtro de busqueda	-->
+		<div style="width: 300px;">
+			<h:panelGrid columns="1" width="100%"><h1 align="center">Días no Habiles</h1></h:panelGrid>
+			
+			<ui:include src="../../common/mensajes.xhtml" /> 
+			
+			<!--	Tabla de resultados	-->
+			<h:panelGrid columns="1" width="100%" style="align:center;" id="lista">
+				
+				<rich:dataTable value="#{festivoPage.datos}" var="dato" id="table" rows="15" rendered="#{! empty festivoPage.datos}" rowKeyVar="rowKey"
+				footerClass="row2" onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+					<f:facet name="header">
+						<rich:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="table" maxPages="5" renderIfSinglePage="false" 
+						page="#{festivoPage.scrollPage}" id="up" reRender="lista, filtro" limitToList="true" ajaxSingle="true">
+						</rich:datascroller>
+					</f:facet>
+					<rich:column>
+						<f:facet name="header"><h:outputText value="Fila" /></f:facet>
+						 <h:outputText value="#{rowKey+1}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header"><h:outputText value="Día"/></f:facet>
+						<h:outputText value="#{dato.fecha}" style="text-transform: capitalize" ><f:convertDateTime timeZone="GMT-5" locale="es" pattern="EEEEEE"/></h:outputText>
+					</rich:column>
+					<rich:column sortable="true" sortBy="#{dato.fecha}">
+						<f:facet name="header"><h:outputText value="Nombre" /></f:facet>
+						<h:outputText value="#{dato.fecha}" style="text-transform: uppercase" ><f:convertDateTime timeZone="GMT-5" locale="es" pattern="dd-MMM-yyyy"/></h:outputText>
+					</rich:column>
+					
+					<!--	Se muestra la información de la cantidad de registros y la pagina actual	-->
+					<f:facet name="footer">
+						<rich:datascroller style="color:black;" align="center" for="table" page="#{festivoPage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide">
+							<f:facet name="pages">
+								<h:outputText value="Visualizando del #{((pageIndex-1)*15)+1 } al #{(pages!=pageIndex)?(pageIndex*15):festivoPage.totalFilas} de un total de #{festivoPage.totalFilas} registros." />
+							</f:facet>
+						</rich:datascroller>
+					</f:facet>
+				</rich:dataTable>
+			</h:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich" >
+	<head>
+		<script type="text/javascript">
+				function isDayEnabled(day){
+					var fechaMin = document.getElementById('globalForm:fechaMinLibre').value;
+					var fechaMax = document.getElementById('globalForm:fechaMaxLibre').value;
+				   	var min=new Date();
+				   	min.setFullYear(parseInt(fechaMin.substring(6, 10), 10),parseInt(fechaMin.substring(3, 5), 10)-1,parseInt(fechaMin.substring(0, 2), 10)-1);
+				   	var max=new Date();
+				   	max.setFullYear(parseInt(fechaMax.substring(6, 10), 10),parseInt(fechaMax.substring(3, 5), 10)-1,parseInt(fechaMax.substring(0, 2), 10));
+				   	var date = new Date(day.date);
+				   	if(date.getDay() == 6){
+						return false;	
+					}
+				   	if(date.getDay() == 0){
+						return false;	
+					}
+				   	if(date &gt; min){
+						if(max &gt; date){ //solo fechas entre min y max
+							return true;
+						} 
+					} 
+					return false;
+				}
+				
+				function isDayEnabledRiesgo(day){
+				   	var max=new Date();
+				   	var date = new Date(day.date);
+					if(max &gt; date){ //solo fechas menores o iguales a hoy
+						return true;
+					}
+					return false;
+				}
+				
+				function getDisabledStyle(day){
+				   if (!isDayEnabled(day)) return 'rich-calendar-boundary-dates disabledDay';
+				}
+
+				function getDisabledStyleRiesgo(day){
+				   if (!isDayEnabledRiesgo(day)) return 'rich-calendar-boundary-dates disabledDay';
+				}
+				
+				function validarMontoLibreAlert(value){
+					var alertCOP = parseFloat(document.getElementById('globalForm:montoAlertaCOPLibre').value);
+					var alertEXT = parseFloat(document.getElementById('globalForm:montoAlertaEXTLibre').value);
+					var divisa = document.getElementById('globalForm:codDivisaNotaContableLibre').value;
+					var warn=false;
+					if(divisa == 'COP'){
+						warn=value &gt; alertCOP;
+					}else{
+						warn=value &gt; alertEXT;
+					}
+					if(warn){
+						alert('Por favor verifique si el importe ingresado es el adecuado.');
+					}
+				}
+		</script>
+		<style>
+			.disabledDay{
+			 background-color:#dedede;
+			}
+		</style>
+	</head>
+	<!-- Formulario de confirmacion de anulacion-->
+	<rich:modalPanel id="popupAnularNotaLibre" autosized="true" domElementAttachment="form"  width="250">
+		<f:facet name="header">
+			<h:panelGroup><h:outputText value="Confirmaci�n de anulaci�n"/></h:panelGroup>
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="../../../common/images/close.png" alt="cerrar" styleClass="hidelink" id="hidelinkAnularNotaLibre" height="20" width="20" />
+				<rich:componentControl for="popupAnularNotaLibre" attachTo="hidelinkAnularNotaLibre" operation="hide" event="onclick" />
+			</h:panelGroup>
+		</f:facet>
+		
+		<h:panelGrid columns="1" width="100%">
+			
+			<h:outputText value="Est� seguro que desea anular la nota actual y borrar toda la informaci�n relacionada?" />
+
+			<!-- Seccion de mensajes y botones de envio y cancelacion-->
+			<ui:include src="../../common/mensajes.xhtml" /> 
+			<h:panelGrid columns="2" styleClass="center" width="100%">
+				<a4j:commandButton action="#{notaContableLibrePage.anular}" value="Si" oncomplete="if (#{facesContext.maximumSeverity.ordinal==0}) {#{rich:component('popupAnularNotaLibre')}.hide(); #{rich:component('popupNotaContableLibre')}.hide();}" reRender="botonesNotaRegLibre,lista" />
+				<a4j:commandButton onclick="#{rich:component('popupAnularNotaLibre')}.hide()" value="No" />
+			</h:panelGrid>
+		</h:panelGrid>
+	</rich:modalPanel>
+	<!-- Formulario Modal de creacion y edicion de temas por concepto-->
+	<rich:modalPanel id="editorRegLibre" domElementAttachment="form" autosized="true">
+		<f:facet name="header">
+			<h:panelGroup><h:outputText value="Registro Nota Contable Libre "/></h:panelGroup>
+		</f:facet>
+		<h:inputHidden id="fechaMinLibre" value="#{notaContableLibrePage.minFecha}" /> 
+		<h:inputHidden id="fechaMaxLibre" value="#{notaContableLibrePage.maxFecha}" /> 
+		<h:inputHidden id="montoAlertaCOPLibre" value="#{notaContableLibrePage.montoAlertaCOP}" /> 
+		<h:inputHidden id="montoAlertaEXTLibre" value="#{notaContableLibrePage.montoAlertaEXT}" /> 
+		
+		<!-- Campos del formulario -->
+        <h:panelGrid columns="1" width="600" id="informacionRegLibre" cellpadding="0" cellspacing="0" >
+			<h:outputText>
+	        	<div style="height:450px;overflow:auto;width: 100%;">
+					<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0">
+		
+						<h:panelGrid columns="2" cellpadding="0" cellspacing="2">
+							<h:outputText value="Cuenta Contable" styleClass="propertie"/>
+							<h:panelGrid columns="1" id="cuentaContableRegLibre">
+								<h:panelGrid columns="2" >
+									<h:inputText value="#{notaContableLibrePage.cuentaContable}" immediate="true" />
+									<a4j:commandButton action="#{notaContableLibrePage.buscarCuentaContable}" value="Buscar cuenta" reRender="cuentaContableRegLibre,informacionRegLibre"/>
+								</h:panelGrid>		
+								<h:selectOneMenu value="#{notaContableLibrePage.temaActual.cuentaContable}" immediate="true" rendered="#{! empty notaContableLibrePage.cuentas}" style="width: 400px;">
+									<a4j:support event="onchange" action="#{notaContableLibrePage.seleccionarCuenta}" reRender="informacionRegLibre" status="status" />
+									<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+									<f:selectItems value="#{notaContableLibrePage.cuentas}" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+		
+							<a4j:commandButton action="#{notaContableLibrePage.cargarModalRiesgo}" value="Riesgo Operacional" oncomplete="#{rich:component('modalRiesgoRegLibre')}.show()" reRender="modalRiesgoRegLibre" 
+							 rendered="#{notaContableLibrePage.temaActual.pucCuenta.indicadorSIRO eq 'T'}"/>
+						</h:panelGrid>
+						<h:panelGrid columns="1" width="580"  cellpadding="0" cellspacing="3" id="panelCuentaRegLibreEd">
+							<rich:panel header="Cuenta Contable" style="width: 100%; height:100%" rendered="#{notaContableLibrePage.temaActual.pucCuenta.numeroCuenta != ''}">
+			
+								<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0">
+									<h:panelGrid columns="2" >
+										<h:outputText value="Cuenta" styleClass="propertie"/>
+										<h:outputText value="#{notaContableLibrePage.temaActual.cuentaContable}"/>
+		
+										<h:outputText value="Naturaleza" styleClass="propertie"/>
+										<h:selectOneMenu value="#{notaContableLibrePage.temaActual.naturalezaCuentaContable}" immediate="true">
+											<f:selectItem itemValue="D" itemLabel="Debe" />
+											<f:selectItem itemValue="H" itemLabel="Haber" />
+										</h:selectOneMenu>
+		
+										<h:outputText value="Sucursal Destino" styleClass="propertie"/>
+										<h:selectOneMenu value="#{notaContableLibrePage.temaActual.codigoSucursalDestino}" immediate="true" >
+											<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+											<f:selectItems value="#{notaContableLibrePage.sucursalesPartida}" />
+										</h:selectOneMenu>
+										
+										<h:outputText value="Referencia de cruce" styleClass="propertie"/>
+										<h:inputText value="#{notaContableLibrePage.temaActual.referencia}" maxlength="12" size="12" onkeypress="return onKeyPressNumbersNoZero(event, this.value)"/>
+		
+										<h:outputText value="Divisa" styleClass="propertie"/>
+										<h:selectOneMenu value="#{notaContableLibrePage.temaActual.codigoDivisa}" immediate="true" style="width:180px;" id="codDivisaNotaContableLibre">
+											<f:selectItems value="#{notaContableLibrePage.divisas}" />
+										</h:selectOneMenu>
+										
+										<h:outputText value="Importe" styleClass="propertie"/>
+										<h:inputText value="#{notaContableLibrePage.temaActual.monto}" size="16" maxlength="16" onkeypress="return onKeyPressNumbers(event,this.value);" converter="javax.faces.Double" immediate="true" converterMessage="Valor invalido para el Importe" onblur="if(this.value==''){this.value='0'}validarMontoLibreAlert(this.value);">
+											<f:convertNumber maxFractionDigits="2" />
+											<a4j:support event="onkeyup" reRender="importeRegLibre" status="none"  limitToList="true" />
+										</h:inputText>
+		
+										<h:outputText value="Importe" styleClass="propertie"/>
+										<h:panelGrid columns="1" id="importeRegLibre" cellpadding="0" cellspacing="0" >
+											<h:outputText value="#{notaContableLibrePage.temaActual.monto}" styleClass="propertie"><f:convertNumber type="currency" /></h:outputText>
+										</h:panelGrid>
+									</h:panelGrid>
+									<rich:panel header="Tercero" style="width:100%;" rendered="#{notaContableLibrePage.temaActual.pucCuenta.tipoApunte eq 'T' or notaContableLibrePage.temaActual.pucCuenta.indicadorTercero eq 'X' or notaContableLibrePage.temaActual.hadtapl.indicadorContrato eq 'S'}">
+										<h:panelGrid columns="2" id="documentoTerceroRegLibreEd" >
+											<h:outputText value="Tipo de documento" styleClass="propertie"/>
+											<h:selectOneMenu value="#{notaContableLibrePage.temaActual.tipoIdentificacion}" immediate="true" >
+												<a4j:support event="onchange" reRender="filtroTerceroRegLibre,terceroRegLibre" status="status" >
+													<a4j:actionparam value="" assignTo="#{notaContableLibrePage.temaActual.nombreCompleto}"/>
+												</a4j:support>
+												<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+												<f:selectItems value="#{notaContableLibrePage.tiposDoc}" />
+											</h:selectOneMenu>
+											
+											<h:outputText value="Numero Documento" styleClass="propertie"/>
+											<h:panelGrid columns="2">
+												<h:inputText value="#{notaContableLibrePage.temaActual.numeroIdentificacion}" size="20" immediate="true">
+													<a4j:support event="onkeyup" reRender="filtroTerceroRegLibre,terceroRegLibre" status="none" >
+														<a4j:actionparam name="numDocRenLibre" value="" assignTo="#{notaContableLibrePage.temaActual.nombreCompleto}"/>
+													</a4j:support>
+												</h:inputText>
+												<h:panelGrid columns="1" id="filtroTerceroRegLibre" >
+													<a4j:commandButton action="#{notaContableLibrePage.buscarTercero}" reRender="documentoTerceroRegLibreEd,terceroRegLibre" value="Buscar" status="status"
+													rendered="#{!empty notaContableLibrePage.temaActual.tipoIdentificacion and !empty notaContableLibrePage.temaActual.numeroIdentificacion}"/>
+												</h:panelGrid>
+											</h:panelGrid>	
+										</h:panelGrid>
+										
+										<h:panelGrid columns="1" id="terceroRegLibre" >
+											<h:panelGrid columns="2" rendered="#{! empty notaContableLibrePage.temaActual.nombreCompleto}" >
+												
+												<h:outputText value="Digito de Verificacion" styleClass="propertie"/>
+												<h:outputText value="#{notaContableLibrePage.temaActual.digitoVerificacion}" />
+											
+												<h:outputText value="Nombre" styleClass="propertie"/>
+												<h:outputText value="#{notaContableLibrePage.temaActual.nombreCompleto}" />
+											
+												<h:outputText value="Contrato" styleClass="propertie" rendered="#{notaContableLibrePage.temaActual.hadtapl.indicadorContrato eq 'S'}"/>
+												<h:selectOneMenu value="#{notaContableLibrePage.temaActual.contrato}" immediate="true" rendered="#{notaContableLibrePage.temaActual.hadtapl.indicadorContrato eq 'S'}">
+													<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+													<f:selectItems value="#{notaContableLibrePage.contratos1}" />
+												</h:selectOneMenu>
+											</h:panelGrid>	
+										</h:panelGrid>
+										
+									</rich:panel>
+								</h:panelGrid>
+								
+							</rich:panel>
+						</h:panelGrid>
+						<ui:include src="../../common/mensajes.xhtml" />
+					</h:panelGrid>
+				</div>
+			</h:outputText>
+			<h:panelGrid columns="2" styleClass="center" width="100%">
+				<a4j:commandButton action="#{notaContableLibrePage.guardarTema}" reRender="formRegLibre" rendered="#{notaContableLibrePage.temaActual.pucCuenta.numeroCuenta != ''}" value="Guardar" oncomplete="if (#{facesContext.maximumSeverity.ordinal==0}) #{rich:component('editorRegLibre')}.hide();" />
+				<a4j:commandButton oncomplete="#{rich:component('popupCancelTemaRegLibre')}.show()" value="Cancelar" />
+				
+				<!-- Modal para cancelaci�n de datos de riesgo-->
+				<rich:modalPanel id="popupCancelTemaRegLibre" autosized="true" domElementAttachment="form" width="450">
+					<f:facet name="header">
+						<h:panelGroup><h:outputText  styleClass="bold" value="Confirmacion de cancelaci�n de registro"/></h:panelGroup>
+					</f:facet>
+					
+					<h:panelGrid columns="1" width="100%">
+						
+						<h:outputText  styleClass="bold" value="Si cancela se perdera toda la informacion registrada asociada al registro actual" />
+						<h:outputText  styleClass="bold" value="Está seguro que desea cancelar y borrar la informacion?" />
+			
+						<!-- Seccion de mensajes y botones de envio y cancelacion-->
+						<h:panelGrid columns="2" styleClass="center" width="100%">
+							<a4j:commandButton action="#{notaContableLibrePage.cancelarTema}" value="Si" oncomplete="#{rich:component('editorRegLibre')}.hide(); #{rich:component('popupCancelTemaRegLibre')}.hide();" reRender="informacionRegLibre,formRegLibre"/>
+							<a4j:commandButton onclick="#{rich:component('popupCancelTemaRegLibre')}.hide()" value="No"   immediate="true" />
+						</h:panelGrid>
+					</h:panelGrid>
+				</rich:modalPanel>
+				
+				<!-- seccion de riesgo operacional -->
+				<rich:modalPanel id="modalRiesgoRegLibre" domElementAttachment="form" autosized="true">
+					<f:facet name="header">
+						<h:panelGroup><h:outputText value="Riesgo operacional"/></h:panelGroup>
+					</f:facet>
+					<h:panelGrid width="500">
+						<h:panelGrid columns="2" width="100%" id="selectsRiesgoRegLibre">
+							<h:outputText value="Importe Total" styleClass="propertie"/>
+							<h:panelGrid columns="2" width="100%" cellpadding="0" cellspacing="0">
+								<h:inputText value="#{notaContableLibrePage.temaActual.riesgoOperacional.importeTotal}" size="16" maxlength="16" onkeypress="return onKeyPressNumbers(event,this.value);" converter="javax.faces.Double" immediate="true" converterMessage="Valor no v�lido para el Importe Total">
+									<f:convertNumber maxFractionDigits="2" />
+									<a4j:support event="onkeyup" reRender="importeTotalLibre" status="none"  />
+								</h:inputText>
+								<h:panelGrid columns="1" id="importeTotalLibre" width="250" cellpadding="0" cellspacing="0">
+									<h:outputText styleClass="propertie" value="#{notaContableLibrePage.temaActual.riesgoOperacional.importeTotal}" ><f:convertNumber type="currency" /></h:outputText>
+								</h:panelGrid>
+							</h:panelGrid>
+
+							<h:outputText value="Importe Parcial" styleClass="propertie"/>
+							<h:panelGrid columns="2" width="100%" cellpadding="0" cellspacing="0">
+								<h:inputText value="#{notaContableLibrePage.temaActual.riesgoOperacional.importeParcial}" size="16" maxlength="16" onkeypress="return onKeyPressNumbers(event,this.value);" converter="javax.faces.Double" immediate="true"  converterMessage="Valor no v�lido para el Importe Parcial">
+									<f:convertNumber maxFractionDigits="2" />
+									<a4j:support event="onkeyup" reRender="importeParcialLibre"   status="none"/>
+								</h:inputText>
+								<h:panelGrid columns="1" id="importeParcialLibre" width="250" cellpadding="0" cellspacing="0">
+									<h:outputText styleClass="propertie" value="#{notaContableLibrePage.temaActual.riesgoOperacional.importeParcial}" ><f:convertNumber type="currency" /></h:outputText>
+								</h:panelGrid>
+							</h:panelGrid>
+							<h:outputText value="Fecha del Evento" styleClass="propertie"/>
+							<rich:calendar value="#{notaContableLibrePage.temaActual.riesgoOperacional.fechaEvento}" isDayEnabled="isDayEnabledRiesgo" dayStyleClass="getDisabledStyleRiesgo" immediate="true" id="fechaEventoRegLibre"/>
+
+							<h:outputText value="Fecha del Descubrimiento" styleClass="propertie"/>
+							<rich:calendar value="#{notaContableLibrePage.temaActual.riesgoOperacional.fechaDescubrimientoEvento}" isDayEnabled="isDayEnabledRiesgo" 
+							dayStyleClass="getDisabledStyleRiesgo" immediate="true" id="fechaDescubrimientoRegLibre"/>
+						
+							<h:outputText value="Clase de Riesgo" styleClass="propertie"/>
+							<h:selectOneMenu value="#{notaContableLibrePage.temaActual.riesgoOperacional.codigoClaseRiesgo}" immediate="true" >
+								<a4j:support event="onchange" action="#{notaContableLibrePage.buscarPerdidasCuenta}" reRender="selectsRiesgoRegLibre" 	 />
+								<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+								<f:selectItems value="#{notaContableLibrePage.clasesRiesgo}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="Pérdida Operacional" rendered="#{!empty notaContableLibrePage.perdidaOper}" styleClass="propertie"/>
+							<h:selectOneMenu value="#{notaContableLibrePage.temaActual.riesgoOperacional.codigoTipoPerdida}" immediate="true" rendered="#{!empty notaContableLibrePage.perdidaOper}">
+								<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+								<f:selectItems value="#{notaContableLibrePage.perdidaOper}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="Proceso" styleClass="propertie"/>
+							<h:selectOneMenu value="#{notaContableLibrePage.temaActual.riesgoOperacional.codigoProceso}" immediate="true" >
+								<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+								<f:selectItems value="#{notaContableLibrePage.procesos}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="Línea Operativa" styleClass="propertie"/>
+							<h:selectOneMenu value="#{notaContableLibrePage.temaActual.riesgoOperacional.codigoLineaOperativa}" immediate="true" >
+								<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+								<f:selectItems value="#{notaContableLibrePage.lineasOperativas}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="Producto Afectado" styleClass="propertie"/>
+							<h:selectOneMenu value="#{notaContableLibrePage.temaActual.riesgoOperacional.codigoProducto}" immediate="true" >
+								<f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+								<f:selectItems value="#{notaContableLibrePage.productos}" />
+							</h:selectOneMenu>
+						</h:panelGrid>
+						<ui:include src="../../common/mensajes.xhtml" /> 
+						<h:panelGrid columns="3" width="100%" style="text-align: center;">
+							<a4j:commandButton value="Guardar" action="#{notaContableLibrePage.guardarRiesgo}" oncomplete="if (#{facesContext.maximumSeverity.ordinal==0}) #{rich:component('modalRiesgoRegLibre')}.hide();" />
+							<a4j:commandButton oncomplete="#{rich:component('popupCancelRiesgoRegLibre')}.show()" value="Cancelar" />
+								
+							<!-- Modal para cancelaci�n de datos de riesgo-->
+							<rich:modalPanel id="popupCancelRiesgoRegLibre" autosized="true" domElementAttachment="form" width="450">
+								<f:facet name="header">
+									<h:panelGroup><h:outputText  styleClass="bold" value="Confirmaci�n de cancelaci�n de registro de informaci�n"/></h:panelGroup>
+								</f:facet>
+								
+								<h:panelGrid columns="1" width="100%">
+									
+									<h:outputText  styleClass="bold" value="Si cancela se perder� toda la informaci�n registrada asociada a riesgo operacional" />
+									<h:outputText  styleClass="bold" value="Est� seguro que desea cancelar y borrar la informaci�n?" />
+						
+									<!-- Seccion de mensajes y botones de envio y cancelacion-->
+									<h:panelGrid columns="2" styleClass="center" width="100%">
+										<a4j:commandButton action="#{notaContableLibrePage.cancelarRiesgo}" value="Si" reRender="formRegLibre" oncomplete="#{rich:component('modalRiesgoRegLibre')}.hide(); #{rich:component('popupCancelRiesgoRegLibre')}.hide();"/>
+										<a4j:commandButton onclick="#{rich:component('popupCancelRiesgoRegLibre')}.hide()" value="No"  immediate="true"/>
+									</h:panelGrid>
+								</h:panelGrid>
+							</rich:modalPanel>
+						</h:panelGrid>
+						
+					</h:panelGrid>
+				</rich:modalPanel>	
+			</h:panelGrid>
+		</h:panelGrid>
+	</rich:modalPanel>
+	
+	<!-- seccion de soportes -->
+	<rich:modalPanel id="modalSoportesRegLibre" domElementAttachment="form" autosized="true">
+		<f:facet name="header">
+			<h:panelGroup><h:outputText value="Subir soportes para la nota contable"/></h:panelGroup>
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="../../../common/images/close.png" alt="cerrar" styleClass="hidelink" id="hidelinkSoportesRegLibre" height="20" width="20" />
+				<rich:componentControl for="modalSoportesRegLibre" attachTo="hidelinkSoportesRegLibre" operation="hide" event="onclick" />
+			</h:panelGroup>
+		</f:facet>
+		<h:panelGrid width="550">
+			<h:panelGrid columns="1" width="100%">
+	            <rich:fileUpload listWidth="100%" fileUploadListener="#{notaContableLibrePage.listener}" id="uploadLibre" acceptedTypes="*" uploadControlLabel="Enviar" cancelEntryControlLabel="Cancelar" 
+	           immediateUpload="true" addControlLabel="Agregar"  clearAllControlLabel="" clearControlLabel="" doneLabel="El archivo ha sido enviado satisfactoriamente al servidor" progressLabel="Procesando..." 
+	           transferErrorLabel="Error transfiriendo el archivo" sizeErrorLabel="El Archivo supera el l�mite permitido. (200 KB)" >
+	         	  <a4j:support event="onfileuploadcomplete" reRender="formRegLibre"  />
+	            </rich:fileUpload>
+	        </h:panelGrid>
+		</h:panelGrid>
+	</rich:modalPanel>	
+	<!--Formulario principal	-->
+	<h:panelGrid columns="1" id="formRegLibre" width="915">
+		<rich:panel header="Informacion basica" style="width: 100%;" >
+			<h:panelGrid columns="2">
+				<h:outputText value="Sucursal de Origen" styleClass="propertie"/>
+				<h:outputText value="#{flujoNotaContableLibrePage.nota.codigoSucursalOrigen} - #{flujoNotaContableLibrePage.nota.sucursalOrigen.nombre}" />
+				
+				<h:outputText value="Fecha Contable" styleClass="propertie"/>
+				<rich:calendar value="#{notaContableLibrePage.fechaNota}" isDayEnabled="isDayEnabled" dayStyleClass="getDisabledStyle" immediate="true">
+					<a4j:support event="onchanged" action="#{notaContableLibrePage.validarFecha}"  status="none" reRender="formRegLibre"/>
+				</rich:calendar>
+				
+				<h:outputText value="Descripcion" styleClass="propertie"/>
+				<h:inputText value="#{notaContableLibrePage.nota.descripcion}" immediate="true" size="80"/>
+				
+				<a4j:commandButton action="#{notaContableLibrePage.editar}" oncomplete="#{rich:component('editorRegLibre')}.show()" reRender="editorRegLibre" value="Agregar Registro" rendered="#{notaContableLibrePage.fechaNota !=null}"/>
+				<a4j:commandButton value="Agregar Soportes" oncomplete="#{rich:component('modalSoportesRegLibre')}.show()" reRender="modalSoportesRegLibre"  rendered="#{!empty notaContableLibrePage.temasNotaContable}"/>
+			</h:panelGrid> 
+		</rich:panel>
+		<rich:panel header="Registros de la Nota" style="width: 100%;" rendered="#{! empty notaContableLibrePage.temasNotaContable}">
+			<rich:dataTable value="#{notaContableLibrePage.temasNotaContable}" var="temaNota" id="tableTemasLibre" rendered="#{! empty notaContableLibrePage.temasNotaContable}" rowKeyVar="rowKey" width="100%"
+			onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+				
+				<rich:column>
+                    <f:facet name="header"><h:outputText value="Cod Sucursal Destino" /></f:facet>
+                    <h:outputText value="#{temaNota.codigoSucursalDestino}" />
+                </rich:column>
+
+				<rich:column>
+                    <f:facet name="header"><h:outputText value="Cuenta Contable" /></f:facet>
+                    <h:outputText value="#{temaNota.cuentaContable}" />
+                </rich:column>
+				
+				<rich:column>
+                    <f:facet name="header"><h:outputText value="Naturaleza" /></f:facet>
+                    <h:outputText value="#{temaNota.naturalezaCuentaContable eq 'D'?'Debe':'Haber'}" />
+                </rich:column>
+				
+				<rich:column>
+                   	<f:facet name="header"><h:outputText value="Divisa" /></f:facet>
+                   	<h:outputText value="#{temaNota.codigoDivisa}" />
+                </rich:column>
+				
+				<rich:column style="text-align: right;">
+                	<f:facet name="header" ><h:outputText value="Importe" /></f:facet>
+                  	<h:outputText value="#{temaNota.monto}" ><f:convertNumber type="currency" /></h:outputText>
+				</rich:column>
+				
+				<rich:column style="text-align: center;">
+				    <f:facet name="header"><h:outputText value="Editar" /></f:facet>
+				    <a4j:commandButton action="#{notaContableLibrePage.editar}" oncomplete="#{rich:component('editorRegLibre')}.show()" reRender="editorRegLibre" image="/common/images/edit.png" alt="Editar">
+				    	<a4j:actionparam name="codigoTemaRegLibre" value="#{temaNota.codigo}" assignTo="#{notaContableLibrePage.codigo}" />
+				    </a4j:commandButton>
+				</rich:column>
+				<f:facet name="footer" >
+					<rich:columnGroup rendered="#{! empty notaContableLibrePage.totalesNota}">
+						<rich:column colspan="3" style="text-align:right;"><h:outputText value="Totales" /></rich:column>
+						<rich:column style="padding: 0px;">
+							<rich:dataTable style="border-width: 0px; background-color: transparent;" value="#{notaContableLibrePage.totalesNota}" var="total" >
+								<rich:column style="border-width: 0px;"><h:outputText value="#{total.codigoDivisa }" /></rich:column>
+							</rich:dataTable>
+						</rich:column>
+						<rich:column style="padding: 0px;">
+							<rich:dataTable style="border-width: 0px; background-color: transparent;" value="#{notaContableLibrePage.totalesNota}" var="total" >
+								<rich:column  style="border-width: 0px; text-align:right;"><h:outputText value="#{total.total}" ><f:convertNumber type="currency" /></h:outputText></rich:column>
+							</rich:dataTable>
+						</rich:column>
+						<rich:column ></rich:column>
+					</rich:columnGroup>
+				</f:facet>
+			</rich:dataTable>
+		</rich:panel>
+		<rich:panel header="Soportes de la nota contable" cellpadding="0" cellspacing="2" id="anexosLibre" style="text-align: center;" width="100%" rendered="#{! empty notaContableLibrePage.anexos}">
+			<rich:dataTable value="#{notaContableLibrePage.anexos}" var="anexo" id="tableAnexosNotaLibre" rowKeyVar="rowKeyAnexos" 
+			onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+				
+				<rich:column width="150" style="text-align: left;">
+					<f:facet name="header"><h:outputText value="Fecha" /></f:facet>
+					<h:outputText value="#{anexo.fechaHora}" /> 
+				</rich:column>
+				
+				<rich:column style="text-align: right;">
+					<f:facet name="header"><h:outputText value="Usuario" /></f:facet>
+					<h:outputText value="#{anexo.usuNombre}" /> 
+				</rich:column>
+				
+				<rich:column style="text-align: right;">
+					<f:facet name="header"><h:outputText value="Archivo" /></f:facet>
+					<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{anexo.nombre}" target="_blank">
+						<a4j:actionparam name="type1" value="#{downloadGeneralPage.SOPORTE}" assignTo="#{downloadGeneralPage.type}"/>
+						<a4j:actionparam name="file1" value="#{anexo.archivo}" assignTo="#{downloadGeneralPage.file}"/>
+					</a4j:htmlCommandLink>
+				</rich:column>
+	
+				<rich:column width="80" style="text-align: center;">
+					<f:facet name="header"><h:outputText value="Eliminar" /></f:facet>
+					<a4j:commandButton image="/common/images/delete.png" alt="Borrar" onclick="#{rich:component('popupBorrarAnexoRegLibre')}.show()"/>
+					
+					<!-- Formulario de confirmacion de borrado de anexos-->
+					<rich:modalPanel id="popupBorrarAnexoRegLibre" autosized="true" domElementAttachment="form" minWidth="250">
+						<f:facet name="header">
+							<h:panelGroup><h:outputText value="Confirmaci�n de borrado de anexo"/></h:panelGroup>
+						</f:facet>
+						<f:facet name="controls">
+							<h:panelGroup>
+								<h:graphicImage value="../../../common/images/close.png" alt="cerrar" styleClass="hidelink" id="hidelinkBorrarAnexoRegLibre" height="20" width="20" />
+								<rich:componentControl for="popupBorrarAnexoRegLibre" attachTo="hidelinkBorrarAnexoRegLibre" operation="hide" event="onclick" />
+							</h:panelGroup>
+						</f:facet>
+						
+						<h:panelGrid columns="1" width="100%">
+							
+							<h:outputText value="Est� seguro que desea borrar el anexo actual?" />
+				
+							<!-- Seccion de mensajes y botones de envio y cancelacion-->
+							 
+							<h:panelGrid columns="2" styleClass="center" width="100%">	
+								<a4j:commandButton action="#{notaContableLibrePage.borrarAnexo}" value="Si" oncomplete="#{rich:component('popupBorrarAnexoRegLibre')}.hide()" immediate="true" reRender="formRegLibre" >
+									<a4j:actionparam name="anexoBorrarAnexoRegLibre" value="true" assignTo="#{anexo.borrar}" converter="javax.faces.Boolean" />
+								</a4j:commandButton>
+								<a4j:commandButton onclick="#{rich:component('popupBorrarAnexoRegLibre')}.hide()" value="No" />
+							</h:panelGrid>
+						</h:panelGrid>
+					</rich:modalPanel>
+				</rich:column>
+			</rich:dataTable>
+		</rich:panel>
+		 <ui:include src="../../common/mensajes.xhtml" /> 
+		<h:panelGrid columns="3" styleClass="center" width="100%" id="botonesNotaRegLibre">
+			<a4j:commandButton action="#{notaContableLibrePage.guardarNota}" reRender="formRegLibre,botonesNotaRegLibre" value="Enviar a Visto Bueno" rendered="#{notaContableLibrePage.nota.codigo le 0 and !empty notaContableLibrePage.temasNotaContable and !empty notaContableLibrePage.anexos}"/>
+			<a4j:commandButton action="#{notaContableLibrePage.guardarNota}" oncomplete="if (#{facesContext.maximumSeverity.ordinal==0}) #{rich:component('popupNotaContableLibre')}.hide()" reRender="lista,botonesNotaRegLibre"  value="Enviar a Visto Bueno" rendered="#{notaContableLibrePage.nota.codigo gt 0 and notaContableLibrePage.nota.puedeEditar and !empty notaContableLibrePage.temasNotaContable and !empty notaContableLibrePage.anexos}"/>
+			<a4j:commandButton value="Anular" rendered="#{notaContableLibrePage.nota.codigo gt 0 and notaContableLibrePage.nota.puedeAnular}" oncomplete="#{rich:component('popupAnularNotaLibre')}.show()" />
+			<a4j:commandButton value="Cancelar" action="#{notaContableLibrePage.cancelarNota}" reRender="formRegLibre" rendered="#{notaContableLibrePage.nota.codigo le 0 and !empty notaContableLibrePage.temasNotaContable}"/>
+			<a4j:commandButton value="Cerrar" oncomplete="#{rich:component('popupNotaContableLibre')}.hide()" reRender="lista" rendered="#{notaContableLibrePage.nota.codigo gt 0}"/>
+		</h:panelGrid>
+	</h:panelGrid>
+</ui:composition>
