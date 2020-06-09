@@ -10,22 +10,22 @@
 	<context-param>
 		<description>Directorio que contiene los reportes de excel generados por el sistema</description>
 		<param-name>DIR_REPORTES_EXCEL</param-name>
-		<param-value>/pr/NotasContables/tx/reportes/</param-value>
+		<param-value>/qa/NotasContables/tx/reportes/</param-value>
 	</context-param>
 	<context-param>
 		<description>Directorio que contiene los archivos de precierre y cierre que se envian a altamira</description>
 		<param-name>DIR_TRANSMISION_ALTAMIRA</param-name>
-		<param-value>/pr/NotasContables/tx/transmision/</param-value>
+		<param-value>/qa/NotasContables/tx/transmision/</param-value>
 	</context-param>
 	<context-param>
 		<description>Directorio que contiene los archivos de respuesta de altamira al realizar los proceso de precierre y cierre</description>
 		<param-name>DIR_RECEPCION_ALTAMIRA</param-name>
-		<param-value>/pr/NotasContables/tx/recepcion/</param-value>
+		<param-value>/qa/NotasContables/tx/recepcion/</param-value>
 	</context-param>
 	<context-param>
 		<description>Directorio que contiene los archivos de carga de datos diarios provenientes de altamira</description>
 		<param-name>DIR_CARGA</param-name>
-		<param-value>/pr/NotasContables/tx/recepcion/</param-value>
+		<param-value>/qa/NotasContables/tx/recepcion/</param-value>
 	</context-param>
 	<context-param>
 		<description>Direccion del LDAP para autenticación de usuarios</description>
@@ -35,7 +35,7 @@
 	<context-param>
 		<description>Indica si se deja activa la validacion por LDAP (0 -> Inactiva, 1 -> Activa)</description>
 		<param-name>ACTIVAR_LDAP</param-name>
-		<param-value>1</param-value>
+		<param-value>0</param-value>
 	</context-param>
 	<!-- Plugging the "Blue Sky" skin into the project -->
 	<context-param>
