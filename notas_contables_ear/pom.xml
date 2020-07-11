@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.bbva.notas_contables</groupId>
+		<artifactId>notas_contables</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>notas_contables_ear</artifactId>
+	<name>notas_contables_ear</name>
+	<packaging>ear</packaging>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>com.bbva.notas_contables</groupId>
+			<artifactId>notas_contables_war</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.10.1</version>
+				<configuration>
+					<packagingExcludes>**/*.jar</packagingExcludes>
+					<earSourceDirectory>src</earSourceDirectory>
+					<finalName>NotasContables</finalName>
+					<modules>
+						<webModule>
+							<groupId>com.bbva.notas_contables</groupId>
+							<artifactId>notas_contables_war</artifactId>
+							<bundleFileName>NotasContablesWeb.war</bundleFileName>
+						</webModule>
+					</modules>
+					<archive>
+						<manifestFile>src\META-INF</manifestFile>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

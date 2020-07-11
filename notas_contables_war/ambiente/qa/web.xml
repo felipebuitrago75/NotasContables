@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>NotasContables</display-name>
+	<!--	PARAMETROS PARA MANEJAR RUTAS DE ARCHIVOS-->
+	<context-param>
+		<description>Directorio que contiene los soportes de cada nota contable</description>
+		<param-name>DIR_SOPORTES</param-name>
+		<param-value>/NOTAS_DOC/</param-value>
+	</context-param>
+	<context-param>
+		<description>Directorio que contiene los reportes de excel generados por el sistema</description>
+		<param-name>DIR_REPORTES_EXCEL</param-name>
+		<param-value>/qa/NotasContables/tx/reportes/</param-value>
+	</context-param>
+	<context-param>
+		<description>Directorio que contiene los archivos de precierre y cierre que se envian a altamira</description>
+		<param-name>DIR_TRANSMISION_ALTAMIRA</param-name>
+		<param-value>/qa/NotasContables/tx/transmision/</param-value>
+	</context-param>
+	<context-param>
+		<description>Directorio que contiene los archivos de respuesta de altamira al realizar los proceso de precierre y cierre</description>
+		<param-name>DIR_RECEPCION_ALTAMIRA</param-name>
+		<param-value>/qa/NotasContables/tx/recepcion/</param-value>
+	</context-param>
+	<context-param>
+		<description>Directorio que contiene los archivos de carga de datos diarios provenientes de altamira</description>
+		<param-name>DIR_CARGA</param-name>
+		<param-value>/qa/NotasContables/tx/recepcion/</param-value>
+	</context-param>
+	<context-param>
+		<description>Direccion del LDAP para autenticación de usuarios</description>
+		<param-name>DIR_AUTH_LDAP</param-name>
+		<param-value>ldap://82.255.50.77:389</param-value>
+	</context-param>
+	<context-param>
+		<description>Indica si se deja activa la validacion por LDAP (0 -> Inactiva, 1 -> Activa)</description>
+		<param-name>ACTIVAR_LDAP</param-name>
+		<param-value>0</param-value>
+	</context-param>
+	<!-- Plugging the "Blue Sky" skin into the project -->
+	<context-param>
+		<param-name>org.ajax4jsf.handleViewExpiredOnClient</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.SKIN</param-name>
+		<param-value>classic</param-value>
+	</context-param>
+	<!-- Making the RichFaces skin spread to standard HTML controls -->
+	<context-param>
+		<param-name>org.richfaces.CONTROL_SKINNING</param-name>
+		<param-value>enable</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>The  location where state information is saved.
+Valid values are 'server' (typically saved in HttpSession) and 'client' (typically
+saved as a hidden field in the form.
+Default is server.</description>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<context-param>
+		<description>Comma-delimited list of context-relative resource paths under which the JSF implementation
+will look for application configuration resources, before loading a configuration resource
+named /WEB-INF/facesconfig.xml (if such a resource exists).</description>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml,/WEB-INF/faces-config-carga.xml,/WEB-INF/faces-config.xml,/WEB-INF/faces-config-adminnotacontable.xml,/WEB-INF/faces-config-parametros.xml,/WEB-INF/faces-config-navegacion.xml,/WEB-INF/faces-config-notacontable.xml,/WEB-INF/faces-config-consultas.xml</param-value>
+	</context-param>
+	<context-param>
+		<description>The default suffix for extension-mapped resources that contain JSF components.
+Default is '.jsp'.</description>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.jsp</param-value>
+	</context-param>
+	<context-param>
+		<description>Monitors Faces JSP files for modifications and synchronizes a running server with
+the changes without restarting the server. If this parameter is set to false or
+removed from the deployment descriptor, any changes made to Faces JSP files may
+not be seen by the server until it is restarted. This parameter is usually set
+to true while the Faces JSP files are being developed and debugged in order to
+improve the performance of the development environment.</description>
+		<param-name>com.ibm.ws.jsf.JSP_UPDATE_CHECK</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>Load JSF runtime when the application server starts up. If this parameter is set to false or removed,
+JSF runtime will be loaded and initialized when the first JSF request is processed.
+This may disable custom JSF extensions, such as factories defined in the project.</description>
+		<param-name>com.ibm.ws.jsf.LOAD_FACES_CONFIG_AT_STARTUP</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>Value, in milliseconds, to be used for Expires header for resources served by the JavaScript Resource Servlet.
+Default is never (31536000000 milliseconds or 1 year).</description>
+		<param-name>com.ibm.faces.RESOURCE_EXPIRE_MS</param-name>
+		<param-value>31536000000</param-value>
+	</context-param>
+	<!-- Defining and mapping the RichFaces filter -->
+	<filter>
+		<display-name>RichFaces Filter</display-name>
+		<filter-name>richfaces</filter-name>
+		<filter-class>org.ajax4jsf.Filter</filter-class>
+		<init-param>
+			<param-name>createTempFiles</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+		<description>El tam maximo por archivo es de 200k (aprox: 204800)</description>
+			<param-name>maxRequestSize</param-name>
+			<param-value>204800</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<display-name>compatibilidadIE</display-name>
+		<filter-name>compatibilidadIE</filter-name>
+		<filter-class>com.papelesinteligentes.bbva.notascontables.jsf.filter.IE9CompatablityFixServlet</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>compatibilidadIE</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>richfaces</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<display-name>ExecuteScheduleServlet</display-name>
+		<servlet-name>ExecuteScheduleServlet</servlet-name>
+		<servlet-class>com.papelesinteligentes.bbva.notascontables.servlet.ExecuteScheduleServlet</servlet-class>
+		<init-param>
+			<param-name>cron</param-name>
+			<param-value>0 0/5 * * * ?</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cronCierreHist</param-name>
+			<param-value>0 0 23 * * ?</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cronCierreAnulado</param-name>
+			<param-value>0 30 23 * * ?</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cronCierreAnular</param-name>
+			<param-value>0 0 23 * * ?</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cronActPendiente</param-name>
+			<param-value>0 10 12 * * ?</param-value>
+		</init-param>
+		<init-param>
+			<param-name>mail</param-name>
+			<param-value>ccontable@bbva.com.co</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>/faces/homePage.xhtml</welcome-file>
+	</welcome-file-list>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+</web-app>
