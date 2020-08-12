@@ -301,9 +301,10 @@ public class CargaAltamiraScheduled extends CargaAltamiraBase {
 				for (ActividadRealizada obs : actividadRealizadaDAO.findByCodigoInstancia(ar)) {
 					actividadRealizadaDAO.delete(obs, 0);
 				}
-				instanciaDAO.delete(i, 0);
+				instanciaDAO.delete(i, 0);				
 
 				notaContableDAO.delete(nc, 0);
+				
 
 			}
 		} catch (Exception e) {
@@ -314,10 +315,12 @@ public class CargaAltamiraScheduled extends CargaAltamiraBase {
 	public void procesarHistorico() {
 		Calendar c = Calendar.getInstance();
 		CierreMensual cm = new CierreMensual();
-		cm.setMes(c.get(Calendar.MONTH) + 1);
-		cm.setYear(c.get(Calendar.YEAR));
+		cm.setMes(c.get(Calendar.MONTH) + 1);//02
+		cm.setYear(c.get(Calendar.YEAR));//2020
 		try {
 			cm = cargaAltamiraManager.getCierreMensual(cm);
+			
+			
 			if (cm == null || cm.getFechaUltimaCarga() == null) {
 				return;
 			}
@@ -329,12 +332,15 @@ public class CargaAltamiraScheduled extends CargaAltamiraBase {
 			int cantMeses = 1;
 			Parametro p = new Parametro();
 			p.setNombre(Parametro.CIERRE_MENSUAL);
-			p = parametroDAO.findByPrimaryKey(p);
+			p = parametroDAO.findByPrimaryKey(p);			
 
 			cantMeses = p.getValor().intValue();
 
 			for (NotaContable nc : notaContableDAO.findToBackup(cantMeses)) {
-				bkNotaContableDAO.add(nc, 0);
+			//for (NotaContable nc : notaContableDAO.findToBackup(5)) {
+				
+				bkNotaContableDAO.add(nc, 0);				
+				
 				for (RechazoSalida rs : rechazoSalidaDAO.findByNotaContable(nc.getNumeroRadicacion())) {
 					bkRechazoSalidaDAO.add(rs, 0);
 					rechazoSalidaDAO.delete(rs, 0);
@@ -356,6 +362,10 @@ public class CargaAltamiraScheduled extends CargaAltamiraBase {
 					notaContableTemaRiesgoDAO.delete(nct, 0);
 				}
 				for (NotaContableTema nct : notaContableTemaDAO.findByNotaContable(nc.getCodigo().intValue())) {
+					nct.setCodigo(nct.getCodigo().intValue());
+					nct.setCodigoTema(nct.getCodigoTema().intValue());
+					nct.setCodigoNotaContable(nct.getCodigoNotaContable().intValue());
+					nct.setMonto(nct.getMonto().doubleValue());
 					bkNotaContableTemaDAO.add(nct, 0);
 					notaContableTemaDAO.delete(nct, 0);
 				}
@@ -368,6 +378,10 @@ public class CargaAltamiraScheduled extends CargaAltamiraBase {
 				i = instanciaDAO.findByNotaContable(i);
 				bkInstanciaDAO.add(i, 0);
 				for (Anexo ane : anexoDAO.findByCodigoInstancia(i.getCodigo().intValue())) {
+					ane.setCodigo(ane.getCodigo().intValue());
+					ane.setCodigoInstancia(ane.getCodigoInstancia().intValue());
+					ane.setCodigoTema(ane.getCodigoTema().intValue());
+					ane.setCodigoUsuario(ane.getCodigoUsuario().intValue());
 					bkAnexoDAO.add(ane, 0);
 					anexoDAO.delete(ane, 0);
 				}
@@ -378,6 +392,10 @@ public class CargaAltamiraScheduled extends CargaAltamiraBase {
 				ActividadRealizada ar = new ActividadRealizada();
 				ar.setCodigoInstancia(i.getCodigo());
 				for (ActividadRealizada obs : actividadRealizadaDAO.findByCodigoInstancia(ar)) {
+					obs.setCodigo(obs.getCodigo().intValue());
+					obs.setCodigoInstancia(obs.getCodigoInstancia().intValue());
+					obs.setCodigoUsuario(obs.getCodigoUsuario().intValue());
+					obs.setDuracionActividad(obs.getDuracionActividad().intValue());
 					bkActividadRealizadaDAO.add(obs, 0);
 					actividadRealizadaDAO.delete(obs, 0);
 				}
@@ -418,6 +436,7 @@ public class CargaAltamiraScheduled extends CargaAltamiraBase {
 				i.setCodigoNotaContable(nc.getCodigo());
 				i = instanciaDAO.findByNotaContable(i);
 				notasContablesManager.anularNotaContable(i, 0);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
