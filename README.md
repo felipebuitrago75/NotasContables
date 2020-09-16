@@ -16,44 +16,67 @@ Aplicativo NOTAS CONTABLES - BBVA
 ### Herramientas
 
 + Java IDE
-	_Se recomienda:_
 	* [Eclipse IDE](https://www.eclipse.org/downloads/)
 	* [IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/)
 	* [Visual Studio Code](https://code.visualstudio.com/)
 
-+ GIT
-	[_Descargar GIT_](https://git-scm.com/downloads)
+> Se recomienda algunos de los anteriores IDEs - Libre elección 
 
-+ JAVA JDK v1.8
-	[_Descargar JDK v1.8_](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 
-+ Apache Maven 3.6.3
-	[_Descargar Maven_](https://maven.apache.org/download.cgi)
++ [GIT](https://git-scm.com/downloads)
+
+
++ [JAVA JDK v1.8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+
+ 
++ [Apache Maven 3.6.3](https://maven.apache.org/download.cgi)
+
 
 
 ### Configurar Variables de Entorno
 
 + Crear `JAVA_HOME` con el path del JDK.
 
+
+
 + Crear `MAVEN_HOME` con el path de la instalación de Maven.
 
-+ Adicionar al `PATH` las siguientes rutas:
 
+
++ Adicionar al `PATH` las siguientes rutas:
 	* `%JAVA_HOME%\bin;`
 	* `%MAVEN_HOME%\bin;`
 
+
+
+### Modificar archivo `settings.xml`
+
+Se debe **cambiar** o **modificar** el archivo `settings.xml` en la instalación de MAVEN.
+
+_PATH:_ `..\apache-maven-3.6.3\conf`
+
+> La configuración anterior para que Maven descargue las librerias del repositorio de _ARTIFACTORY_
+
+
 - - - 
 
-# GIT
+## Repositorio Artifactory
 
-## Configuración de GIT
+[https://globaldevtools.bbva.com/artifactory/list/repository-notas-contables/](https://globaldevtools.bbva.com/artifactory/list/repository-notas-contables/)
+
+
+- - - 
+
+## GIT
+
+### Configuración de GIT
 
 Se debe configurar el usuario y el correo electronico con dominio banco.
 	
 	$ git config --global user.name "Nombre Apellido"
 	$ git config --global user.email correo-electronico@bbva.com
 
-## Comandos Básicos
+### Comandos Básicos
 
 ~~~
 $git clone ssh://git@globaldevtools.bbva.com:7999/bbvacnc/notas_contables.git
@@ -71,7 +94,7 @@ $git add <.> | <cambio específico>
 $git push
 ~~~
 
-## Estándar comentarios para los `COMMIT`
+### Estándar comentarios para los `COMMIT`
 
 _**Estructura**_
 
