@@ -16,23 +16,18 @@ Aplicativo NOTAS CONTABLES - BBVA
 ### Herramientas
 
 + Java IDE
-
 	_Se recomienda:_
-
 	* [Eclipse IDE](https://www.eclipse.org/downloads/)
 	* [IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/)
 	* [Visual Studio Code](https://code.visualstudio.com/)
 
 + GIT
-
 	[_Descargar GIT_](https://git-scm.com/downloads)
 
 + JAVA JDK v1.8
-
 	[_Descargar JDK v1.8_](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 
 + Apache Maven 3.6.3
-
 	[_Descargar Maven_](https://maven.apache.org/download.cgi)
 
 
