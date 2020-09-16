@@ -121,6 +121,8 @@ _**Ejemplos:**_
 	git commit -m "[DELETE] - Se eliminan archivos temporal"
 	git commit -m "[DOCS] - Se actualiza la documentación de la clase Usuario"
 
-
-
+* * *
+* * *
+`@autor <David Rodriguez>` <davidandres.rodriguez@bbva.com>
+* * *
 
