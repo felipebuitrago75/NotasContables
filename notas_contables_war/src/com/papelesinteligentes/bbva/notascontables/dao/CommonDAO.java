@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 //import com.papelesinteligentes.bbva.notascontables.util.Log;
 import com.papelesinteligentes.bbva.notascontables.dto.CommonVO;
 
@@ -23,7 +24,7 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 	private String sql_DELETE_ALL_SENTENCE = null;
 
 	private int maxRows = 1000000000;
-	
+
 	protected abstract void internalUpdate(Connection con, T row) throws Exception;
 
 	protected abstract Object[] getDataToAdd(Connection con, T row) throws Exception;
@@ -129,13 +130,9 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 						id = ((Integer) row.getPK()).intValue();
 					}
 					/**
-					* BLOQUEO BASE DE DATOS
-					* int idAuditoria = addRegistroAuditoria(con, codigoUsuario, ACCION_ADICIONAR, instance.getClass().getSimpleName(), "" + id);
-					* if (instance.getPK() != null) {
-					*	String xmlDataOriginal = getXMLDataByPrimaryKey(con, row);
-					*	addRegistroAuditoriaDetalle(con, idAuditoria, xmlDataOriginal, "");
-					*}
-					**/
+					 * BLOQUEO BASE DE DATOS int idAuditoria = addRegistroAuditoria(con, codigoUsuario, ACCION_ADICIONAR, instance.getClass().getSimpleName(), "" + id); if
+					 * (instance.getPK() != null) { String xmlDataOriginal = getXMLDataByPrimaryKey(con, row); addRegistroAuditoriaDetalle(con, idAuditoria, xmlDataOriginal, ""); }
+					 **/
 				}
 				return id;
 			} catch (Exception e) {
@@ -174,11 +171,8 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 		if (sql_DELETE_ALL_SENTENCE != null) {
 			internalDeleteAll(con);
 			/**
-			// BLOQUEO BASE DE DATOS
-			if (codigoUsuario >= 0) {
-				addRegistroAuditoria(con, codigoUsuario, ACCION_ELIMINAR_TODAS, instance.getClass().getSimpleName(), "0");
-			}
-			**/
+			 * // BLOQUEO BASE DE DATOS if (codigoUsuario >= 0) { addRegistroAuditoria(con, codigoUsuario, ACCION_ELIMINAR_TODAS, instance.getClass().getSimpleName(), "0"); }
+			 **/
 		} else {
 			throw new Exception("Se debe definir la llave primaria para realizar la acción");
 		}
@@ -221,12 +215,9 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 			}
 			internalDelete(con, row);
 			/**
-			// BLOQUEO BASE DE DATOS
-			if (codigoUsuario >= 0) {
-				int idAuditoria = addRegistroAuditoria(con, codigoUsuario, ACCION_ELIMINAR, instance.getClass().getSimpleName(), row.getPK().toString());
-				addRegistroAuditoriaDetalle(con, idAuditoria, xmlDataOriginal, "");
-			}
-			**/
+			 * // BLOQUEO BASE DE DATOS if (codigoUsuario >= 0) { int idAuditoria = addRegistroAuditoria(con, codigoUsuario, ACCION_ELIMINAR, instance.getClass().getSimpleName(),
+			 * row.getPK().toString()); addRegistroAuditoriaDetalle(con, idAuditoria, xmlDataOriginal, ""); }
+			 **/
 		} else {
 			throw new Exception("Se debe definir la llave primaria para realizar la acción");
 		}
@@ -267,9 +258,9 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 				xmlDataOriginal = getXMLDataByPrimaryKey(con, row);
 			}
 			internalUpdate(con, row);
-	
+
 			if (codigoUsuario >= 0) {
-				
+
 				// BLOQUEO BASE DE DATOS
 				//int idAuditoria = addRegistroAuditoria(con, codigoUsuario, ACCION_EDITAR, instance.getClass().getSimpleName(), row.getPK().toString());
 
@@ -294,6 +285,20 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 		}
 	}
 
+	/**
+	 * 
+	 * <b> Modificar sentencia para condicion repetida. </b>
+	 * <p>
+	 * [Author: Usuario, Date: 10/11/2020]
+	 * </p>
+	 *
+	 * @param con
+	 * @param row
+	 * @param codigoUsuario
+	 * @param sentence
+	 * @param params
+	 * @throws Exception
+	 */
 	final public void update(Connection con, T row, int codigoUsuario, String sentence, Object[] params) throws Exception {
 		if (sql_INSERT_SENTENCE != null) {
 			String xmlDataOriginal = "";
@@ -303,12 +308,13 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 
 			executeUpdate(con, sentence, params);
 
-			if (codigoUsuario >= 0) {
+			//Condicion repetida sin ser usada
+			/*if (codigoUsuario >= 0) {
 				// BLOQUEO BASE DE DATOS
 				//int idAuditoria = addRegistroAuditoria(con, codigoUsuario, ACCION_EDITAR, instance.getClass().getSimpleName(), row.getPK().toString());
 				//String xmlDataModificada = getXMLDataByPrimaryKey(con, row);
 				//addRegistroAuditoriaDetalle(con, idAuditoria, xmlDataOriginal, xmlDataModificada);
-			}
+			}*/
 		} else {
 			throw new Exception("Se debe definir la llave primaria para realizar la acción");
 		}
@@ -706,7 +712,7 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 
 	private void println(String string) {
 		//System.out.println(string);
-		/** MODIFICACION DE LOGS EN ARCHIVO INDEPENDIENTE**/
+		/** MODIFICACION DE LOGS EN ARCHIVO INDEPENDIENTE **/
 		//String linea = string;
 		//Log.escribirLogInfo(string);
 	}
@@ -717,7 +723,7 @@ public abstract class CommonDAO<T extends CommonVO<T>> extends SuperDAO<T> {
 
 	private void print(String string) {
 		//System.out.print(string);
-		/** MODIFICACION DE LOGS EN ARCHIVO INDEPENDIENTE**/
+		/** MODIFICACION DE LOGS EN ARCHIVO INDEPENDIENTE **/
 		//String linea = string;
 		//Log.escribirLogInfo(string);
 	}

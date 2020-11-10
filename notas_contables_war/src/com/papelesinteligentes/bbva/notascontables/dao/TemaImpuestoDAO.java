@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Collection;
 
-import com.papelesinteligentes.bbva.notascontables.dto.Tema;
 import com.papelesinteligentes.bbva.notascontables.dto.TemaImpuesto;
 
 public class TemaImpuestoDAO extends CommonSeqDAO<TemaImpuesto> {

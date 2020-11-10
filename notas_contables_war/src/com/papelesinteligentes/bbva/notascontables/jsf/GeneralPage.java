@@ -12,7 +12,6 @@ import com.papelesinteligentes.bbva.notascontables.jsf.beans.ContablesRequestBea
 
 public abstract class GeneralPage extends BasePage {
 
-	private static final long serialVersionUID = 1L;
 
 	protected abstract void _init() throws Exception;
 

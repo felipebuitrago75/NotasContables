@@ -1,14 +1,11 @@
 package com.papelesinteligentes.bbva.notascontables.servlet;
 
-import java.sql.Connection;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-import com.papelesinteligentes.bbva.notascontables.dao.SuperDAO;
-import com.papelesinteligentes.bbva.notascontables.schedule.ScheduleLoadData;
 import com.papelesinteligentes.bbva.notascontables.schedule.ScheduleActualizaUsuarios;
+import com.papelesinteligentes.bbva.notascontables.schedule.ScheduleLoadData;
 import com.papelesinteligentes.bbva.notascontables.schedule.actpendiente.ScheduleActPendiente;
 import com.papelesinteligentes.bbva.notascontables.schedule.cierre.ScheduleLoadCierreFile;
 import com.papelesinteligentes.bbva.notascontables.schedule.historico.ScheduleCierreMensual;

@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.util.Collection;
 
 import com.papelesinteligentes.bbva.notascontables.dto.NotaContableTotal;
-import com.papelesinteligentes.bbva.notascontables.dto.Tema;
 
 public class NotaContableTotalDAO extends CommonSeqDAO<NotaContableTotal> {
 

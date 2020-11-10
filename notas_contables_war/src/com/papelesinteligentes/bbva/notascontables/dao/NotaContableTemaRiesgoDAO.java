@@ -5,12 +5,10 @@
 package com.papelesinteligentes.bbva.notascontables.dao;
 
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.util.Collection;
 
 import com.papelesinteligentes.bbva.notascontables.dto.RiesgoOperacional;
-import com.papelesinteligentes.bbva.notascontables.dto.Tema;
 
 public class NotaContableTemaRiesgoDAO extends CommonSeqDAO<RiesgoOperacional> {
 

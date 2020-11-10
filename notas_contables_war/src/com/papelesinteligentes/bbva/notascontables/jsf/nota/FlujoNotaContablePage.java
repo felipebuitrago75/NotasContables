@@ -40,8 +40,6 @@ import com.papelesinteligentes.bbva.notascontables.util.EMailSender;
 @KeepAlive
 public class FlujoNotaContablePage extends GeneralPage implements IPages {
 
-	private static final long serialVersionUID = 1L;
-
 	protected final EMailSender enviarEMail;
 	// nota contable a manejar
 	protected NotaContable nota = new NotaContable();
@@ -55,7 +53,7 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 
 	private Integer causalDevolucion = 0;
 	private String otraCausalDev = "";
-	
+
 	// gp12833 - aseguramiento anexos
 	private String numeroRadicacion;
 	// fin gp12833 - aseguramiento anexos
@@ -111,7 +109,8 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 			tema.setEstado("A");
 
 			Collection<Tema> temas = notasContablesManager.getTemasPorConceptoYEstado(tema);
-			temasNotaContable = new ArrayList<NotaContableTema>(notasContablesManager.getTemaNotaContablePorConceptoEstadoYTema(nota.getCodigoConcepto().intValue(), "A", nota.getCodigo().intValue()));
+			temasNotaContable = new ArrayList<NotaContableTema>(
+					notasContablesManager.getTemaNotaContablePorConceptoEstadoYTema(nota.getCodigoConcepto().intValue(), "A", nota.getCodigo().intValue()));
 			for (Tema t : temas) {
 				boolean contains = false;
 				for (NotaContableTema nct : temasNotaContable) {
@@ -155,7 +154,8 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 						sucursal.setCodigo(temaActual.getCodigoSucursalDestinoContraPartida());
 						temaActual.setSucursalDestinoContraPartida(cargaAltamiraManager.getSucursal(sucursal));
 
-						temaActual.setRiesgoOperacional(notasContablesManager.getRiesgoPorNotaContableYTemaNotaContable(nota.getCodigo().intValue(), temaActual.getCodigo().intValue()));
+						temaActual.setRiesgoOperacional(
+								notasContablesManager.getRiesgoPorNotaContableYTemaNotaContable(nota.getCodigo().intValue(), temaActual.getCodigo().intValue()));
 						Anexo an = new Anexo();
 						an.setCodigoTema(temaActual.getCodigo().intValue());
 						// gp12833 - aseguramiento anexos
@@ -174,7 +174,8 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 						impuestoTema.setImpuesto(impuesto);
 						NotaContableTemaImpuesto imp = new NotaContableTemaImpuesto();
 						if (codigo.intValue() > 0) {
-							imp = notasContablesManager.getImpuestoPorNotaContableYTemaNotaContableYImpuesto(nota.getCodigo().intValue(), temaActual.getCodigo().intValue(), impuestoTema.getCodigoImpuesto());
+							imp = notasContablesManager.getImpuestoPorNotaContableYTemaNotaContableYImpuesto(nota.getCodigo().intValue(), temaActual.getCodigo().intValue(),
+									impuestoTema.getCodigoImpuesto());
 						}
 						imp.setImpuestoTema(impuestoTema);
 						imp.setBoolExonera(imp.getExonera().equalsIgnoreCase("S"));
@@ -226,7 +227,8 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 				((PendientePage) getBean("pendientePage")).cargarPendientes();
 				nuevoMensaje(FacesMessage.SEVERITY_INFO, "La nota ha sido aprobada correctamente");
 				try {
-					enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(), "Módulo Notas Contables - Registro para aprobar",
+					enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(),
+							"Módulo Notas Contables - Registro para aprobar",
 							"Por favor ingrese al módulo de Notas Contables, se le ha asignado un registro que requiere su verificación");
 				} catch (Exception e) {
 					nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al enviar el correo a la dirección: " + usuarioModulo.getEMailModificado());
@@ -261,7 +263,8 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 						// se carga la informacion del tema
 						verNota();
 					}
-					int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, temasNotaContable, totalesNota, getCodUsuarioLogueado(), false, causalDevolucion, otraCausalDev);
+					int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, temasNotaContable, totalesNota, getCodUsuarioLogueado(), false,
+							causalDevolucion, otraCausalDev);
 
 					UsuarioModulo usuarioModulo = new UsuarioModulo();
 					usuarioModulo.setCodigo(codigoUsuarioAsignado);
@@ -276,7 +279,8 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 					causalDevolucion = 0;
 					otraCausalDev = "";
 					try {
-						enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(), "Módulo Notas Contables - Registro rechazado",
+						enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(),
+								"Módulo Notas Contables - Registro rechazado",
 								"Por favor ingrese al módulo de Notas Contables, se le ha asignado un registro que requiere su verificación");
 					} catch (Exception e) {
 						nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al enviar el correo a la dirección: " + usuarioModulo.getEMailModificado());
@@ -318,7 +322,7 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 		}
 		return null;
 	}
-	
+
 	public boolean isMostrarAsiento() {
 		try {
 			Instancia instancia = new Instancia();
@@ -390,11 +394,13 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 		Sucursal sucursal = getUsuarioLogueado().getSucursal();
 		temaNota.setAutorizada(true);
 		if (!cargaAltamiraManager.isSucursalValidaPUCOrigen(sucursal, partidaContable)) {
-			nuevoMensaje(FacesMessage.SEVERITY_WARN, "La partida contable del tema (" + tema.getNombre() + " - " + tema.getPartidaContable() + ") no está autorizada en el PUC para el centro origen");
+			nuevoMensaje(FacesMessage.SEVERITY_WARN,
+					"La partida contable del tema (" + tema.getNombre() + " - " + tema.getPartidaContable() + ") no está autorizada en el PUC para el centro origen");
 			temaNota.setAutorizada(false);
 		}
 		if (!cargaAltamiraManager.isSucursalValidaPUCOrigen(sucursal, contraPartidaContable)) {
-			nuevoMensaje(FacesMessage.SEVERITY_WARN, "La contrapartida contable del tema (" + tema.getNombre() + " - " + tema.getContraPartidaContable() + ") no está autorizada en el PUC para el centro origen");
+			nuevoMensaje(FacesMessage.SEVERITY_WARN,
+					"La contrapartida contable del tema (" + tema.getNombre() + " - " + tema.getContraPartidaContable() + ") no está autorizada en el PUC para el centro origen");
 			temaNota.setAutorizada(false);
 		}
 
@@ -413,12 +419,12 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 	public String getNumeroRadicacion() {
 		return numeroRadicacion;
 	}
-	
+
 	public void setNumeroRadicacion(String numeroRadicacion) {
 		this.numeroRadicacion = numeroRadicacion;
 	}
 	// fin gp12833 - aseguramiento anexos
-	
+
 	public NotaContableTema getTemaActual() {
 		return temaActual;
 	}

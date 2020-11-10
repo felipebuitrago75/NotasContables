@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.util.Collection;
 
 import com.papelesinteligentes.bbva.notascontables.dto.Anexo;
-import com.papelesinteligentes.bbva.notascontables.dto.Tema;
 
 public class AnexoDAO extends CommonSeqDAO<Anexo> {
 

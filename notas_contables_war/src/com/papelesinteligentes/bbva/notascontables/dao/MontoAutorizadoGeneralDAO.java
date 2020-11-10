@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.papelesinteligentes.bbva.notascontables.carga.dto.Sucursal;
 import com.papelesinteligentes.bbva.notascontables.dto.MontoAutorizadoGeneral;
 
 public class MontoAutorizadoGeneralDAO extends CommonSeqDAO<MontoAutorizadoGeneral> {

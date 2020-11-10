@@ -2,7 +2,6 @@ package com.papelesinteligentes.bbva.notascontables.facade.impl;
 
 import java.rmi.RemoteException;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -97,7 +96,6 @@ import com.papelesinteligentes.bbva.notascontables.util.DateUtils;
 
 public abstract class NotasContablesConsultaSessionBean implements NotasContablesSession {
 
-	private static final long serialVersionUID = 3206093459760846163L;
 	protected static final int IMP_PARTIDA = 0;
 	protected static final int PARTIDA = 1;
 	protected static final int REG_LIBRE = 4;
@@ -956,15 +954,14 @@ public abstract class NotasContablesConsultaSessionBean implements NotasContable
 		return observacionDAO.findByCodigoTema(row);
 	}
 
-	// Funciones del flujo
-	@SuppressWarnings("unchecked")
+	// Funciones del flujo	
 	@Override
 	public int getDiasHabilesDesdeUltimoCierre() throws NamingException, CreateException, Exception, RemoteException {
 		CargaAltamiraSessionBean cargaAltamiraManager = new CargaAltamiraSessionBean();
 		Collection<CierreMensual> cierresMensuales = cargaAltamiraManager.getCierresMensuales();
 		Iterator<CierreMensual> itCierresMensuales;
 		CierreMensual cierreMensual = new CierreMensual();
-		ArrayList<java.util.Date> diasNoHabiles = new ArrayList(cargaAltamiraManager.getFestivosFecha());
+		ArrayList<java.util.Date> diasNoHabiles = new ArrayList<java.util.Date>(cargaAltamiraManager.getFestivosFecha());
 		int diaSemana = 0;
 		int dias = 0;
 

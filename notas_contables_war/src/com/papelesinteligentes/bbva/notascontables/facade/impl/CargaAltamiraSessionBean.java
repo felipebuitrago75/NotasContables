@@ -996,7 +996,7 @@ public class CargaAltamiraSessionBean implements CargaAltamiraSession {
 					sucursal.setCodigo(centroEspecial.getCodigoSucursal());
 					sucursal = getSucursal(sucursal);
 
-					if (sucursales.indexOf(sucursales) == -1) {
+					if (sucursales.indexOf(sucursal) == -1) {
 						sucursales.add(sucursal);
 					}
 				}

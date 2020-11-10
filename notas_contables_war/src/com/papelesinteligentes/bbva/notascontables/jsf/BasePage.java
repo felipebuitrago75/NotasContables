@@ -22,8 +22,6 @@ import com.sun.rave.web.ui.appbase.AbstractPageBean;
 
 public abstract class BasePage extends AbstractPageBean {
 
-	private static final long serialVersionUID = 1L;
-
 	protected final Validador validador;
 	protected static final NotasContablesSession notasContablesManager = new NotasContablesSessionBean();
 	protected static final CargaAltamiraSession cargaAltamiraManager = new CargaAltamiraSessionBean();

@@ -34,8 +34,6 @@ import com.papelesinteligentes.bbva.notascontables.util.EMailSender;
 @KeepAlive
 public class FlujoNotaContableLibrePage extends GeneralPage implements IPages {
 
-	private static final long serialVersionUID = 1L;
-
 	protected final EMailSender enviarEMail;
 
 	// nota contable a manejar
@@ -180,7 +178,8 @@ public class FlujoNotaContableLibrePage extends GeneralPage implements IPages {
 					// se carga la informacion del tema
 					verNota();
 				}
-				int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, new ArrayList<NotaContableTema>(), new ArrayList<NotaContableTotal>(), getCodUsuarioLogueado(), true, 0, null);
+				int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, new ArrayList<NotaContableTema>(), new ArrayList<NotaContableTotal>(),
+						getCodUsuarioLogueado(), true, 0, null);
 
 				UsuarioModulo usuarioModulo = new UsuarioModulo();
 				usuarioModulo.setCodigo(codigoUsuarioAsignado);
@@ -193,7 +192,8 @@ public class FlujoNotaContableLibrePage extends GeneralPage implements IPages {
 				((PendientePage) getBean("pendientePage")).cargarPendientes();
 				nuevoMensaje(FacesMessage.SEVERITY_INFO, "La nota ha sido aprobada correctamente");
 				try {
-					enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(), "Módulo Notas Contables - Registro para aprobar",
+					enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(),
+							"Módulo Notas Contables - Registro para aprobar",
 							"Por favor ingrese al módulo de Notas Contables, se le ha asignado un registro que requiere su verificación ");
 				} catch (Exception e) {
 					nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al enviar el correo a la dirección: " + usuarioModulo.getEMailModificado());
@@ -227,7 +227,8 @@ public class FlujoNotaContableLibrePage extends GeneralPage implements IPages {
 						// se carga la informacion del tema
 						verNota();
 					}
-					int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, new ArrayList<NotaContableTema>(), new ArrayList<NotaContableTotal>(), getCodUsuarioLogueado(), false, causalDevolucion, otraCausalDev);
+					int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, new ArrayList<NotaContableTema>(), new ArrayList<NotaContableTotal>(),
+							getCodUsuarioLogueado(), false, causalDevolucion, otraCausalDev);
 
 					UsuarioModulo usuarioModulo = new UsuarioModulo();
 					usuarioModulo.setCodigo(codigoUsuarioAsignado);
@@ -242,7 +243,8 @@ public class FlujoNotaContableLibrePage extends GeneralPage implements IPages {
 					causalDevolucion = 0;
 					otraCausalDev = "";
 					try {
-						enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(), "Módulo Notas Contables - Registro rechazado",
+						enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(),
+								"Módulo Notas Contables - Registro rechazado",
 								"Por favor ingrese al módulo de Notas Contables, se le ha asignado un registro que requiere su verificación");
 					} catch (Exception e) {
 						nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al enviar el correo a la dirección: " + usuarioModulo.getEMailModificado());

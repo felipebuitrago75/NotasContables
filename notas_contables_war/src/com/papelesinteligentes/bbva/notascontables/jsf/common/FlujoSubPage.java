@@ -17,8 +17,6 @@ import com.papelesinteligentes.bbva.notascontables.util.DateUtils;
 @KeepAlive
 public class FlujoSubPage extends BasePage {
 
-	private static final long serialVersionUID = 8619143247087744064L;
-
 	private ActividadRealizada actividadRealizada;
 
 	private ArrayList<ActividadRealizada> actividadesRealizadas;
@@ -45,7 +43,8 @@ public class FlujoSubPage extends BasePage {
 					dif = ac.getFechaHoraCierreTs().getTime() - ac.getFechaHoraTs().getTime();
 				} else {
 					// se hace el calculo de duracion
-					cantFest = DateUtils.getFestivosEntre(new Date(ac.getFechaHoraTs().getTime()), new Date(Calendar.getInstance().getTimeInMillis()), new ArrayList<Festivo>(festivos));
+					cantFest = DateUtils.getFestivosEntre(new Date(ac.getFechaHoraTs().getTime()), new Date(Calendar.getInstance().getTimeInMillis()),
+							new ArrayList<Festivo>(festivos));
 
 					dif = Calendar.getInstance().getTimeInMillis() - ac.getFechaHoraTs().getTime();
 				}

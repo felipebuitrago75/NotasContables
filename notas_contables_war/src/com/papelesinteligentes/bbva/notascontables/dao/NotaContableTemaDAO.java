@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.papelesinteligentes.bbva.notascontables.dto.NotaContableTema;
-import com.papelesinteligentes.bbva.notascontables.dto.Tema;
 
 public class NotaContableTemaDAO extends CommonSeqDAO<NotaContableTema> {
 

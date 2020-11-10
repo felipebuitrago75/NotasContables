@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 
 import javax.faces.application.FacesMessage;
 
-import com.papelesinteligentes.bbva.notascontables.dto.RiesgoOperacional;
-
 public class Validador {
 
 	private final BasePage page;

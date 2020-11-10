@@ -1,10 +1,6 @@
 package com.papelesinteligentes.bbva.notascontables.schedule;
 
-import java.sql.Connection;
-
 import org.quartz.SchedulerException;
-
-import com.papelesinteligentes.bbva.notascontables.dao.SuperDAO;
 
 public class ScheduleActualizaUsuarios {
 	

@@ -646,6 +646,7 @@ public class NotaContablePage extends FlujoNotaContablePage implements Serializa
 			final InputStream is = new FileInputStream(item.getFile());
 			FileOutputStream fos = null;
 			fos = new FileOutputStream(localFile);
+			//TODO contador no se usa en el codigo
 			int count = 0;
 			int lenght = 1024;
 			final byte[] info = new byte[lenght];

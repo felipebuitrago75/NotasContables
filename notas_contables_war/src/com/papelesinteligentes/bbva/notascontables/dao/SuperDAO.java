@@ -313,7 +313,7 @@ public class SuperDAO<T extends CommonVO<T>> extends DBUtils<T> implements IAudi
 		if (sql_UPDATE_STATE_SENTENCE != null && COLUMN_NAMES != null && TABLE_NAME != null) {
 
 			// se obtiene la informacion original del registro
-			String xmlDataOriginal = getXMLDataByPrimaryKey(con, row);
+			//String xmlDataOriginal = getXMLDataByPrimaryKey(con, row);
 
 			// se actualiza el estado
 			executeUpdate(con, sql_UPDATE_STATE_SENTENCE, new Object[] { row.getEstado(), row.getPK() });

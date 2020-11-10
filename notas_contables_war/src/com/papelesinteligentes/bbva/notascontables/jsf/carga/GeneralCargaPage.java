@@ -61,7 +61,7 @@ public abstract class GeneralCargaPage<T extends CommonVO<T>> extends GeneralPag
 		this.buscarTodos = buscarTodos;
 		_init();
 		try {
-			long time = System.currentTimeMillis();
+			//long time = System.currentTimeMillis();
 			//println("Ejecutando el constructor de la clase " + getClass().getSimpleName());
 			// solo se realiza la busqueda si se está en la ultima fase del ciclo de vida de faces y se quieren buscar todos los datos
 			if (esUltimaFase() && buscarTodos /* && (getDatos() == null || getDatos().isEmpty()) */) {
@@ -110,7 +110,7 @@ public abstract class GeneralCargaPage<T extends CommonVO<T>> extends GeneralPag
 	 */
 	public String buscarTodos() {
 		try {
-			long time = System.currentTimeMillis();
+			//long time = System.currentTimeMillis();
 			//println("Ejecutando el método buscarTodos en la clase " + getClass().getSimpleName());
 			// solo se realiza la busqueda si se está en la ultima fase del ciclo de vida de faces
 			if (esUltimaFase()) {
@@ -145,7 +145,7 @@ public abstract class GeneralCargaPage<T extends CommonVO<T>> extends GeneralPag
 					return _getPage();
 				}
 			}
-			long time = System.currentTimeMillis();
+			//long time = System.currentTimeMillis();
 			println("Ejecutando el método buscarPorFiltro en la clase " + getClass().getSimpleName());
 			datos = new ArrayList<T>(_buscarPorFiltro());
 			if (datos.isEmpty()) {

@@ -15,8 +15,6 @@ import org.ajax4jsf.model.KeepAlive;
 @KeepAlive
 public class DownloadGeneralPage extends BasePage {
 
-	private static final long serialVersionUID = 1L;
-
 	static final int SOPORTE = 1;
 	static final int RECEPCION_ALTAMIRA = 2;
 	static final int TRANSMISION_ALTAMIRA = 3;

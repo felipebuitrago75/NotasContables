@@ -1,6 +1,5 @@
 package com.papelesinteligentes.bbva.notascontables.jsf.parametros;
 
-import java.sql.Connection;
 import java.util.Collection;
 import java.util.List;
 
@@ -12,10 +11,6 @@ import org.ajax4jsf.model.KeepAlive;
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Perfil;
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Sucursal;
 import com.papelesinteligentes.bbva.notascontables.carga.dto.UsuarioAltamira;
-import com.papelesinteligentes.bbva.notascontables.dao.ActividadRealizadaDAO;
-import com.papelesinteligentes.bbva.notascontables.dao.AuditoriaDAO;
-import com.papelesinteligentes.bbva.notascontables.dao.IAuditoriaSentence;
-import com.papelesinteligentes.bbva.notascontables.dao.SuperDAO;
 import com.papelesinteligentes.bbva.notascontables.dto.EnteAutorizador;
 import com.papelesinteligentes.bbva.notascontables.dto.Padrino;
 import com.papelesinteligentes.bbva.notascontables.dto.Rol;
@@ -41,7 +36,7 @@ public class UsuarioPage extends GeneralParametrosPage<UsuarioModulo, UsuarioMod
 	private List<SelectItem> roles;
 	private List<SelectItem> sucursales;
 	private List<SelectItem> perfiles;
-	protected final SuperDAO actividadSuperDAO = new SuperDAO(null);
+	//protected final SuperDAO actividadSuperDAO = new SuperDAO(null);
 	private String rolSel;
 
 	/**
@@ -257,8 +252,8 @@ public class UsuarioPage extends GeneralParametrosPage<UsuarioModulo, UsuarioMod
 	public boolean _cambiarEstado() throws Exception {
 		
 		try {
-			String consultaEstadoUsuarioSalida = IAuditoriaSentence.SQL_SELECT_ALL_SENTENCE_LOGUSUARIOSALIDA;
-			String consultaEstadoUsuarioIngreso = IAuditoriaSentence.SQL_SELECT_ALL_SENTENCE_LOGUSUARIOSINGRESO;
+			//String consultaEstadoUsuarioSalida = IAuditoriaSentence.SQL_SELECT_ALL_SENTENCE_LOGUSUARIOSALIDA;
+			//String consultaEstadoUsuarioIngreso = IAuditoriaSentence.SQL_SELECT_ALL_SENTENCE_LOGUSUARIOSINGRESO;
 			/**
 			//int Usuariosalida = 0;
 			//int usuarioEntrada = 0;
