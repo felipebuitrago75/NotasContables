@@ -752,17 +752,30 @@ public class DateUtils {
 		return DateUtils.getDate(String.valueOf(day) + "-" + String.valueOf(month) + "-" + String.valueOf(year), "d-M-yyyy");
 	}
 
-	@SuppressWarnings("deprecation")
-	public static int getFestivosEntre(Date from, Date to, List<Festivo> festivos) {
+	/**
+	 * 
+	 * <b> Modificar metodo paara utilizar libreria Calendar. </b>
+	 * <p>
+	 * [Author: Usuario, Date: 10/11/2020]
+	 * </p>
+	 *
+	 * @param from
+	 * @param to
+	 * @param festivos
+	 * @return
+	 */
+	public static int getFestivosEntre(Calendar from, Calendar to, List<Festivo> festivos) {
 		int ret = 0;
-		Date date = from;
-		while (date.before(to)) {
+		while (from.before(to)) {
 			for (Festivo f : festivos) {
-				if (date.getYear() == f.getFecha().getYear() && date.getMonth() == f.getFecha().getMonth() && date.getDate() == f.getFecha().getDate()) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(f.getFecha());
+				if (from.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) && from.get(Calendar.MONTH) == calendar.get(Calendar.YEAR)
+						&& from.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)) {
 					ret++;
 				}
 			}
-			date.setDate(date.getDate() + 1);
+			from.set(Calendar.DAY_OF_MONTH, from.get(Calendar.DAY_OF_MONTH) + 1);
 		}
 
 		return ret;

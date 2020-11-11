@@ -1,6 +1,7 @@
 package com.papelesinteligentes.bbva.notascontables.facade.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +33,20 @@ public class Test {
 		} else {
 			System.out.println("no");
 		}
-		Date a = new Date();
+		/*Date a = new Date();		
 		a.setMonth(11);
 		a.setDate(1);
 
 		Date b = new Date();
 		b.setMonth(12);
-		b.setDate(24);
-		System.out.println(DateUtils.getFestivosEntre(a, b, new ArrayList<Festivo>()));
+		b.setDate(24);*/
+		Calendar calA = Calendar.getInstance();
+		calA.set(Calendar.MONTH, 11);
+		calA.set(Calendar.DAY_OF_MONTH, 1);
+		
+		Calendar calB = Calendar.getInstance();
+		calB.set(Calendar.MONTH, 12);
+		calB.set(Calendar.DAY_OF_MONTH, 24);
+		System.out.println(DateUtils.getFestivosEntre(calA, calB, new ArrayList<Festivo>()));
 	}
 }

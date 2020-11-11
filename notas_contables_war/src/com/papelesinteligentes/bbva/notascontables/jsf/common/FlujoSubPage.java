@@ -3,7 +3,6 @@ package com.papelesinteligentes.bbva.notascontables.jsf.common;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 
@@ -27,6 +26,15 @@ public class FlujoSubPage extends BasePage {
 		actividadesRealizadas = new ArrayList<ActividadRealizada>();
 	}
 
+	/**
+	 * 
+	 * <b> Modificar metodo para fechas tipo Date a Calendar. </b>
+	 * <p>
+	 * [Author: Usuario, Date: 11/11/2020]
+	 * </p>
+	 *
+	 * @return
+	 */
 	public String consultarFlujo() {
 		try {
 			actividadesRealizadas = new ArrayList<ActividadRealizada>(notasContablesManager.getActividadesRealizadasPorInstancia(actividadRealizada));
@@ -38,13 +46,22 @@ public class FlujoSubPage extends BasePage {
 				int cantFest = 0;
 				if (ac.getFechaHoraCierreTs() != null) {
 					// se hace el calculo de duracion
-					cantFest = DateUtils.getFestivosEntre(new Date(ac.getFechaHoraTs().getTime()), new Date(ac.getFechaHoraCierreTs().getTime()), new ArrayList<Festivo>(festivos));
+					Calendar calendarHoraC = Calendar.getInstance();
+					calendarHoraC.setTimeInMillis(ac.getFechaHoraCierreTs().getTime());
+					Calendar calendarHotaTS = Calendar.getInstance();
+					calendarHotaTS.setTimeInMillis(ac.getFechaHoraTs().getTime());
+
+					cantFest = DateUtils.getFestivosEntre(calendarHotaTS, calendarHoraC, new ArrayList<Festivo>(festivos));
 
 					dif = ac.getFechaHoraCierreTs().getTime() - ac.getFechaHoraTs().getTime();
 				} else {
 					// se hace el calculo de duracion
-					cantFest = DateUtils.getFestivosEntre(new Date(ac.getFechaHoraTs().getTime()), new Date(Calendar.getInstance().getTimeInMillis()),
-							new ArrayList<Festivo>(festivos));
+					Calendar calendarHoraTS = Calendar.getInstance();
+					calendarHoraTS.setTimeInMillis(ac.getFechaHoraTs().getTime());
+
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTimeInMillis(Calendar.getInstance().getTimeInMillis());
+					cantFest = DateUtils.getFestivosEntre(calendarHoraTS, calendar, new ArrayList<Festivo>(festivos));
 
 					dif = Calendar.getInstance().getTimeInMillis() - ac.getFechaHoraTs().getTime();
 				}

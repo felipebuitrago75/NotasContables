@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -64,7 +65,6 @@ import oracle.sql.TIMESTAMP;
 
 public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean {
 
-	
 	/*
 	 * Nombre DTO: MontoMaximo Nombre DAO: montoMaximoDAO Plural: MontoMaximos
 	 */
@@ -1287,7 +1287,6 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		}
 	}
 
-
 	@Override
 	public String verificarUsuarioSiguienteActividad(Instancia instancia, int codigoUsuario, boolean aprobada, int codigoCausalDevolucion) throws Exception {
 		CargaAltamiraSessionBean cargaAltamiraManager = new CargaAltamiraSessionBean();
@@ -1944,7 +1943,13 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		// se obtienen los festivos
 		Collection<Festivo> festivos = cargaAltamiraManager.getFestivos();
 		// se hace el calculo de duracion
-		int cantFest = DateUtils.getFestivosEntre(new Date(ultAcRe.getFechaHoraCierreTs().getTime()), new Date(fecha.getTime()), new ArrayList<Festivo>(festivos));
+		Calendar calendarHoraCierre = Calendar.getInstance();
+		calendarHoraCierre.setTimeInMillis(ultAcRe.getFechaHoraCierreTs().getTime());
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(Calendar.getInstance().getTimeInMillis());
+
+		int cantFest = DateUtils.getFestivosEntre(calendarHoraCierre, calendar, new ArrayList<Festivo>(festivos));
 		int duracion = (int) ((fecha.getTime() - ultAcRe.getFechaHoraCierreTs().getTime()) / 1000 / 60);
 		duracion -= cantFest * 24 * 60;
 
@@ -1965,6 +1970,9 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 	}
 
 	@Override
+	/**
+	 * Metodo modificado para librerias Date
+	 */
 	public void anularNotaContable(Instancia instancia, int codigoUsuario) throws Exception {
 
 		Connection con = null;
@@ -2014,7 +2022,13 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 			Collection<Festivo> festivos = cargaAltamiraManager.getFestivos();
 			Timestamp fecha = DateUtils.getTimestamp();
 			// se hace el calculo de duracion
-			int cantFest = DateUtils.getFestivosEntre(new Date(actividadAnt.getFechaHoraCierreTs().getTime()), new Date(fecha.getTime()), new ArrayList<Festivo>(festivos));
+			Calendar calendarHoraCierre = Calendar.getInstance();
+			calendarHoraCierre.setTimeInMillis(actividadAnt.getFechaHoraCierreTs().getTime());
+
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTimeInMillis(Calendar.getInstance().getTimeInMillis());
+
+			int cantFest = DateUtils.getFestivosEntre(calendarHoraCierre, calendar, new ArrayList<Festivo>(festivos));
 			int duracion = (int) ((fecha.getTime() - actividadAnt.getFechaHoraCierreTs().getTime()) / 1000 / 60);
 			duracion -= cantFest * 24 * 60;
 
