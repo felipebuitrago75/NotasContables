@@ -1464,6 +1464,9 @@ public interface NotasContablesSession {
 	public int siguienteActividad(Instancia instancia, Collection<NotaContableTema> temasNotaContableAux, Collection<NotaContableTotal> totalesNotaContableAux, int codigoUsuario, boolean aprobada, int codigoCausalDevolucion, String otraCausalDev)
 			throws Exception, java.rmi.RemoteException;
 
+	
+	public int siguienteActividad(Instancia instancia, Collection<NotaContableTema> temasNotaContableAux, Collection<NotaContableTotal> totalesNotaContableAux, int codigoUsuario, boolean aprobada, int codigoCausalDevolucion, String otraCausalDev,boolean cheqeoReasignacion)
+	throws Exception, java.rmi.RemoteException;
 	/**
 	 * @param palabraClave
 	 * @param estado

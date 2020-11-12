@@ -40,6 +40,8 @@ import com.papelesinteligentes.bbva.notascontables.util.EMailSender;
 @KeepAlive
 public class FlujoNotaContablePage extends GeneralPage implements IPages {
 
+	private static final long serialVersionUID = 1L;
+
 	protected final EMailSender enviarEMail;
 	// nota contable a manejar
 	protected NotaContable nota = new NotaContable();
@@ -53,11 +55,17 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 
 	private Integer causalDevolucion = 0;
 	private String otraCausalDev = "";
-
+	
 	// gp12833 - aseguramiento anexos
 	private String numeroRadicacion;
 	// fin gp12833 - aseguramiento anexos
-
+	
+	private boolean  chequeoReasignacion=false;
+	
+	private int usuariologueado=0;
+	
+	private int usuarioinstancia=0;
+	
 	private List<SelectItem> causalesDev = new ArrayList<SelectItem>();
 
 	public FlujoNotaContablePage() {
@@ -86,6 +94,7 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 			}
 
 			totalesNota = new ArrayList<NotaContableTotal>(notasContablesManager.getTotalesPorNotaContable(nota.getCodigo().intValue()));
+			
 			iniciarConcepto();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,8 +118,7 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 			tema.setEstado("A");
 
 			Collection<Tema> temas = notasContablesManager.getTemasPorConceptoYEstado(tema);
-			temasNotaContable = new ArrayList<NotaContableTema>(
-					notasContablesManager.getTemaNotaContablePorConceptoEstadoYTema(nota.getCodigoConcepto().intValue(), "A", nota.getCodigo().intValue()));
+			temasNotaContable = new ArrayList<NotaContableTema>(notasContablesManager.getTemaNotaContablePorConceptoEstadoYTema(nota.getCodigoConcepto().intValue(), "A", nota.getCodigo().intValue()));
 			for (Tema t : temas) {
 				boolean contains = false;
 				for (NotaContableTema nct : temasNotaContable) {
@@ -154,8 +162,7 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 						sucursal.setCodigo(temaActual.getCodigoSucursalDestinoContraPartida());
 						temaActual.setSucursalDestinoContraPartida(cargaAltamiraManager.getSucursal(sucursal));
 
-						temaActual.setRiesgoOperacional(
-								notasContablesManager.getRiesgoPorNotaContableYTemaNotaContable(nota.getCodigo().intValue(), temaActual.getCodigo().intValue()));
+						temaActual.setRiesgoOperacional(notasContablesManager.getRiesgoPorNotaContableYTemaNotaContable(nota.getCodigo().intValue(), temaActual.getCodigo().intValue()));
 						Anexo an = new Anexo();
 						an.setCodigoTema(temaActual.getCodigo().intValue());
 						// gp12833 - aseguramiento anexos
@@ -174,8 +181,7 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 						impuestoTema.setImpuesto(impuesto);
 						NotaContableTemaImpuesto imp = new NotaContableTemaImpuesto();
 						if (codigo.intValue() > 0) {
-							imp = notasContablesManager.getImpuestoPorNotaContableYTemaNotaContableYImpuesto(nota.getCodigo().intValue(), temaActual.getCodigo().intValue(),
-									impuestoTema.getCodigoImpuesto());
+							imp = notasContablesManager.getImpuestoPorNotaContableYTemaNotaContableYImpuesto(nota.getCodigo().intValue(), temaActual.getCodigo().intValue(), impuestoTema.getCodigoImpuesto());
 						}
 						imp.setImpuestoTema(impuestoTema);
 						imp.setBoolExonera(imp.getExonera().equalsIgnoreCase("S"));
@@ -207,15 +213,42 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 			instancia = notasContablesManager.getInstanciaPorNotaContable(instancia);
 
 			String errorMessage = notasContablesManager.verificarUsuarioSiguienteActividad(instancia, getCodUsuarioLogueado(), true, 0);
-
+			//Codigo nuevo 
+			//Para Resolver incidencia que ocurre cuando una
+			//Nota Contable Es Aprobada en una misma sesión; en diferentes Navegadores Web
+			//lo que ocasionaba que se saltara de Estado; y subsequentemente que notas no se encuentren en Altamira
+			this.chequeoReasignacion=true;
+			this.usuariologueado =getCodUsuarioLogueado();
+			this.usuarioinstancia=instancia.getCodigoUsuarioActual().intValue();
+			if(getCodUsuarioLogueado()==instancia.getCodigoUsuarioActual().intValue())
+			 {
+				chequeoReasignacion=true;
+				
+			 }else
+			 {
+				 chequeoReasignacion=false;
+			 } //fin codigo
+			
+			
 			if (errorMessage.equals("")) {
 				for (NotaContableTema tema : temasNotaContable) {
 					temaActual = tema;
 					// se carga la informacion del tema
 					verNota();
 				}
-				int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, temasNotaContable, totalesNota, getCodUsuarioLogueado(), true, 0, null);
-
+				int codigoUsuarioAsignado = 0;
+				
+				int evaluoActividad=notasContablesManager.siguienteActividad(instancia, temasNotaContable, totalesNota, getCodUsuarioLogueado(), true, 0, null,chequeoReasignacion);
+				if(evaluoActividad!=-1)
+				{
+					 codigoUsuarioAsignado = evaluoActividad;
+				}else{
+					nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al aprobar la nota: Verfique que el Aplicativo Notas Contables esté  abierto en  un único navegador Web y en una única pestaña.  ");
+					
+					return null;
+				}
+				
+				
 				UsuarioModulo usuarioModulo = new UsuarioModulo();
 				usuarioModulo.setCodigo(codigoUsuarioAsignado);
 				usuarioModulo = notasContablesManager.getUsuarioModulo(usuarioModulo);
@@ -227,8 +260,7 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 				((PendientePage) getBean("pendientePage")).cargarPendientes();
 				nuevoMensaje(FacesMessage.SEVERITY_INFO, "La nota ha sido aprobada correctamente");
 				try {
-					enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(),
-							"Módulo Notas Contables - Registro para aprobar",
+					enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(), "Módulo Notas Contables - Registro para aprobar",
 							"Por favor ingrese al módulo de Notas Contables, se le ha asignado un registro que requiere su verificación");
 				} catch (Exception e) {
 					nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al enviar el correo a la dirección: " + usuarioModulo.getEMailModificado());
@@ -244,50 +276,76 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 
 	public String rechazar() {
 		try {
-			validador.validarSeleccion(causalDevolucion, "Causal de devolucion");
-			if (causalDevolucion == 18) {// causal: otra
-				validador.validarRequerido(otraCausalDev, "Descripción de la causal");
-			}
-			// si no hay errores de validacion
-			if (!getFacesContext().getMessages().hasNext()) {
-				Instancia instancia = new Instancia();
-				instancia.setCodigoNotaContable(nota.getCodigo());
-				instancia = notasContablesManager.getInstanciaPorNotaContable(instancia);
+			
+			Instancia instanciado = new Instancia();
+			instanciado.setCodigoNotaContable(nota.getCodigo());
+			instanciado = notasContablesManager.getInstanciaPorNotaContable(instanciado);
 
-				String errorMessage = notasContablesManager.verificarUsuarioSiguienteActividad(instancia, getCodUsuarioLogueado(), false, causalDevolucion);
-
-				if (errorMessage.equals("")) {
-					for (NotaContableTema tema : temasNotaContable) {
-						temaActual = tema;
-						codigo = temaActual.getCodigo().intValue();
-						// se carga la informacion del tema
-						verNota();
-					}
-					int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, temasNotaContable, totalesNota, getCodUsuarioLogueado(), false,
-							causalDevolucion, otraCausalDev);
-
-					UsuarioModulo usuarioModulo = new UsuarioModulo();
-					usuarioModulo.setCodigo(codigoUsuarioAsignado);
-					usuarioModulo = notasContablesManager.getUsuarioModulo(usuarioModulo);
-					// se cargan los pendientes
-					nota.setPuedeAprobar(false);
-					nota.setPuedeRechazar(false);
-					nota.setPuedeEditar(false);
-					nota.setPuedeAnular(false);
-					((PendientePage) getBean("pendientePage")).cargarPendientes();
-					nuevoMensaje(FacesMessage.SEVERITY_INFO, "La nota ha sido rechazada correctamente");
-					causalDevolucion = 0;
-					otraCausalDev = "";
-					try {
-						enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(),
-								"Módulo Notas Contables - Registro rechazado",
-								"Por favor ingrese al módulo de Notas Contables, se le ha asignado un registro que requiere su verificación");
-					} catch (Exception e) {
-						nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al enviar el correo a la dirección: " + usuarioModulo.getEMailModificado());
-					}
-				} else {
-					nuevoMensaje(FacesMessage.SEVERITY_INFO, errorMessage);
+			//Codigo nuevo 
+			//Para Resolver incidencia que ocurre cuando una
+			//Nota Contable Es Aprobada en una misma sesión; en diferentes Navegadores Web
+			//lo que ocasionaba que se saltara de Estado; y subsequentemente que notas no se encuentren en Altamira
+			this.chequeoReasignacion=true;
+			this.usuariologueado =getCodUsuarioLogueado();
+			this.usuarioinstancia=instanciado.getCodigoUsuarioActual().intValue();
+			if(getCodUsuarioLogueado()==instanciado.getCodigoUsuarioActual().intValue())
+			 {
+				chequeoReasignacion=true;
+				
+			 }else
+			 {
+				 chequeoReasignacion=false;
+			 } //fin codigo
+			
+			if(chequeoReasignacion)
+			{
+				validador.validarSeleccion(causalDevolucion, "Causal de devolucion");
+				if (causalDevolucion == 18) {// causal: otra
+					validador.validarRequerido(otraCausalDev, "Descripción de la causal");
 				}
+				// si no hay errores de validacion
+				if (!getFacesContext().getMessages().hasNext()) {
+					Instancia instancia = new Instancia();
+					instancia.setCodigoNotaContable(nota.getCodigo());
+					instancia = notasContablesManager.getInstanciaPorNotaContable(instancia);
+	
+					String errorMessage = notasContablesManager.verificarUsuarioSiguienteActividad(instancia, getCodUsuarioLogueado(), false, causalDevolucion);
+	
+					if (errorMessage.equals("")) {
+						for (NotaContableTema tema : temasNotaContable) {
+							temaActual = tema;
+							codigo = temaActual.getCodigo().intValue();
+							// se carga la informacion del tema
+							verNota();
+						}
+						int codigoUsuarioAsignado = notasContablesManager.siguienteActividad(instancia, temasNotaContable, totalesNota, getCodUsuarioLogueado(), false, causalDevolucion, otraCausalDev);
+	
+						UsuarioModulo usuarioModulo = new UsuarioModulo();
+						usuarioModulo.setCodigo(codigoUsuarioAsignado);
+						usuarioModulo = notasContablesManager.getUsuarioModulo(usuarioModulo);
+						// se cargan los pendientes
+						nota.setPuedeAprobar(false);
+						nota.setPuedeRechazar(false);
+						nota.setPuedeEditar(false);
+						nota.setPuedeAnular(false);
+						((PendientePage) getBean("pendientePage")).cargarPendientes();
+						nuevoMensaje(FacesMessage.SEVERITY_INFO, "La nota ha sido rechazada correctamente");
+						causalDevolucion = 0;
+						otraCausalDev = "";
+						try {
+							enviarEMail.sendEmail(usuarioModulo.getEMailModificado(), getUsuarioLogueado().getUsuario().getEMailModificado(), "Módulo Notas Contables - Registro rechazado",
+									"Por favor ingrese al módulo de Notas Contables, se le ha asignado un registro que requiere su verificación");
+						} catch (Exception e) {
+							nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al enviar el correo a la dirección: " + usuarioModulo.getEMailModificado());
+						}
+					} else {
+						nuevoMensaje(FacesMessage.SEVERITY_INFO, errorMessage);
+					}
+				}
+			}else
+			{
+				nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al rechazar la nota: Verfique que el Aplicativo Notas Contables /n esté  abierto en  un único navegador Web y en una única pestaña. ");
+				return null;
 			}
 		} catch (Exception e) {
 			lanzarError(e, "Se presentó un error al rechazar la nota contable");
@@ -297,17 +355,46 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 
 	public String anular() {
 		try {
-			Instancia instancia = new Instancia();
-			instancia.setCodigoNotaContable(nota.getCodigo());
-			instancia = notasContablesManager.getInstanciaPorNotaContable(instancia);
+			
+			Instancia instanciado = new Instancia();
+			instanciado.setCodigoNotaContable(nota.getCodigo());
+			instanciado = notasContablesManager.getInstanciaPorNotaContable(instanciado);
 
-			notasContablesManager.anularNotaContable(instancia, getCodUsuarioLogueado());
-			nota.setPuedeAprobar(false);
-			nota.setPuedeRechazar(false);
-			nota.setPuedeEditar(false);
-			nota.setPuedeAnular(false);
-			nuevoMensaje(FacesMessage.SEVERITY_INFO, "La nota ha sido anulada correctamente");
-			((PendientePage) getBean("pendientePage")).cargarPendientes();
+			//Codigo nuevo 
+			//Para Resolver incidencia que ocurre cuando una
+			//Nota Contable Es Aprobada en una misma sesión; en diferentes Navegadores Web
+			//lo que ocasionaba que se saltara de Estado; y subsequentemente que notas no se encuentren en Altamira
+			this.chequeoReasignacion=true;
+			this.usuariologueado =getCodUsuarioLogueado();
+			this.usuarioinstancia=instanciado.getCodigoUsuarioActual().intValue();
+			if(getCodUsuarioLogueado()==instanciado.getCodigoUsuarioActual().intValue())
+			 {
+				chequeoReasignacion=true;
+				
+			 }else
+			 {
+				 chequeoReasignacion=false;
+			 } //fin codigo
+			
+			if(chequeoReasignacion)
+			{
+				Instancia instancia = new Instancia();
+				instancia.setCodigoNotaContable(nota.getCodigo());
+				instancia = notasContablesManager.getInstanciaPorNotaContable(instancia);
+	
+				notasContablesManager.anularNotaContable(instancia, getCodUsuarioLogueado());
+				nota.setPuedeAprobar(false);
+				nota.setPuedeRechazar(false);
+				nota.setPuedeEditar(false);
+				nota.setPuedeAnular(false);
+				nuevoMensaje(FacesMessage.SEVERITY_INFO, "La nota ha sido anulada correctamente");
+				((PendientePage) getBean("pendientePage")).cargarPendientes();
+			
+			}else
+			{
+				nuevoMensaje(FacesMessage.SEVERITY_INFO, "Se presentó un error al anular la nota: Verfique que el Aplicativo Notas Contables /n esté  abierto en  un único navegador Web y en una única pestaña. ");
+				return null;
+			}
 		} catch (Exception e) {
 			lanzarError(e, "Se presentó un error al anular la nota contable");
 		}
@@ -322,7 +409,7 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 		}
 		return null;
 	}
-
+	
 	public boolean isMostrarAsiento() {
 		try {
 			Instancia instancia = new Instancia();
@@ -394,13 +481,11 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 		Sucursal sucursal = getUsuarioLogueado().getSucursal();
 		temaNota.setAutorizada(true);
 		if (!cargaAltamiraManager.isSucursalValidaPUCOrigen(sucursal, partidaContable)) {
-			nuevoMensaje(FacesMessage.SEVERITY_WARN,
-					"La partida contable del tema (" + tema.getNombre() + " - " + tema.getPartidaContable() + ") no está autorizada en el PUC para el centro origen");
+			nuevoMensaje(FacesMessage.SEVERITY_WARN, "La partida contable del tema (" + tema.getNombre() + " - " + tema.getPartidaContable() + ") no está autorizada en el PUC para el centro origen");
 			temaNota.setAutorizada(false);
 		}
 		if (!cargaAltamiraManager.isSucursalValidaPUCOrigen(sucursal, contraPartidaContable)) {
-			nuevoMensaje(FacesMessage.SEVERITY_WARN,
-					"La contrapartida contable del tema (" + tema.getNombre() + " - " + tema.getContraPartidaContable() + ") no está autorizada en el PUC para el centro origen");
+			nuevoMensaje(FacesMessage.SEVERITY_WARN, "La contrapartida contable del tema (" + tema.getNombre() + " - " + tema.getContraPartidaContable() + ") no está autorizada en el PUC para el centro origen");
 			temaNota.setAutorizada(false);
 		}
 
@@ -419,12 +504,12 @@ public class FlujoNotaContablePage extends GeneralPage implements IPages {
 	public String getNumeroRadicacion() {
 		return numeroRadicacion;
 	}
-
+	
 	public void setNumeroRadicacion(String numeroRadicacion) {
 		this.numeroRadicacion = numeroRadicacion;
 	}
 	// fin gp12833 - aseguramiento anexos
-
+	
 	public NotaContableTema getTemaActual() {
 		return temaActual;
 	}

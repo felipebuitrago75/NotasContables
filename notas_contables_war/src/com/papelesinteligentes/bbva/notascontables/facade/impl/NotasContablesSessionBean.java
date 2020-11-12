@@ -65,6 +65,8 @@ import oracle.sql.TIMESTAMP;
 
 public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean {
 
+	private static final long serialVersionUID = 672910592969816297L;
+
 	/*
 	 * Nombre DTO: MontoMaximo Nombre DAO: montoMaximoDAO Plural: MontoMaximos
 	 */
@@ -1287,14 +1289,15 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public String verificarUsuarioSiguienteActividad(Instancia instancia, int codigoUsuario, boolean aprobada, int codigoCausalDevolucion) throws Exception {
 		CargaAltamiraSessionBean cargaAltamiraManager = new CargaAltamiraSessionBean();
 
 		NotaContable notaContable = new NotaContable();
 		NotaContableTotal notaContableTotal = new NotaContableTotal();
-		Collection<NotaContableTotal> totalesNotaContable;
-		Iterator<NotaContableTotal> itTotalesNotaContable;
+		Collection totalesNotaContable;
+		Iterator itTotalesNotaContable;
 		double totalNotaContable = 0;
 
 		Concepto concepto = new Concepto();
@@ -1309,15 +1312,13 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		int posicionMontoAutorizado = 0;
 		int errorAsignacion = 0;
 		ArrayList<Object> posicionMontosAutorizadosGenerales;
-		//TODO 
-		//Verificar utilizacion de la variable
 		int contadorMontoAutorizadoEncontrado = 0;
-		Collection<Sucursal> sucursalAutorizacion = new ArrayList<Sucursal>();
+		Collection sucursalAutorizacion = new ArrayList();
 		ArrayList<Sucursal> NuevaSucursalAutorizacion = new ArrayList<Sucursal>();
-		Iterator<Sucursal> itSucursalAutorizacion;
-		Iterator<Object> itAutorizacionMonto;
+		Iterator itSucursalAutorizacion;
+		Iterator itAutorizacionMonto;
 		Sucursal sucursal = new Sucursal();
-		Collection<UsuarioModulo> usuariosModulo;
+		Collection usuariosModulo;
 		int cs_CODIGO_ADMINISTRADOR_CONSOLIDACION = 2;
 		String mensaje = "";
 
@@ -1613,6 +1614,26 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		}
 	}
 
+	@Override
+	public int siguienteActividad(Instancia instancia, Collection<NotaContableTema> temasNotaContableAux, Collection<NotaContableTotal> totalesNotaContableAux, int codigoUsuario,
+			boolean aprobada, int codigoCausalDevolucion, String otraCausalDev, boolean cheqeoReasignacion) throws Exception {
+		Connection con = null;
+		try {
+			con = actividadRealizadaDAO.getConexion(false);
+			int codigoUsuarioAsignado = siguienteActividad(con, instancia, temasNotaContableAux, totalesNotaContableAux, codigoUsuario, aprobada, codigoCausalDevolucion,
+					otraCausalDev, cheqeoReasignacion);
+			if (codigoUsuarioAsignado != -1) {
+				con.commit();
+			}
+			return codigoUsuarioAsignado;
+		} catch (final Exception e) {
+			con.rollback();
+			throw e;
+		} finally {
+			actividadRealizadaDAO.closeConnection(con);
+		}
+	}
+
 	public int siguienteActividad(Connection con, Instancia instancia, Collection<NotaContableTema> temasNotaContableAux, Collection<NotaContableTotal> totalesNotaContableAux,
 			int codigoUsuario, boolean aprobada, int codigoCausalDevolucion, String otraCausalDev) throws Exception {
 
@@ -1635,10 +1656,10 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		MontoAutorizadoGeneral montoAutorizadoGeneral = new MontoAutorizadoGeneral();
 		int posicionMontoAutorizado = 0;
 		Collection<Sucursal> sucursalAutorizacion = new ArrayList<Sucursal>();
-		Iterator<Object> itAutorizacionMonto;
+		Iterator itAutorizacionMonto;
 
 		Collection<UsuarioModulo> usuariosModulo = new ArrayList<UsuarioModulo>();
-
+		Iterator itUsuarioModulo;
 		UsuarioModulo usuarioModulo = new UsuarioModulo();
 		int cs_CODIGO_SUBGERENTE_GERENTE_Y_RESPONSABLE_DE_AREA_CENTRAL = 6;
 		int cs_CODIGO_ADMINISTRADOR_CONSOLIDACION = 2;
@@ -1653,7 +1674,7 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		boolean indEstadoEnteAutorizador = false;
 		boolean indEstadoCentroSuperiorAutorizador = false;
 		boolean indEstadoPrecierre = false;
-		Iterator<Sucursal> itSucursalAutorizacion;
+		Iterator itSucursalAutorizacion;
 		ArrayList<Sucursal> NuevaSucursalAutorizacion = new ArrayList<Sucursal>();
 		ArrayList<Object> posicionMontosAutorizadosGenerales;
 		MontoAutorizadoGeneralDAO objMontosAutorizadosGenerales = new MontoAutorizadoGeneralDAO();
@@ -1941,6 +1962,7 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		ActividadRealizada ultAcRe = actividadRealizadaDAO.getUltima(actividadRealizada);
 
 		// se obtienen los festivos
+		// se obtienen los festivos
 		Collection<Festivo> festivos = cargaAltamiraManager.getFestivos();
 		// se hace el calculo de duracion
 		Calendar calendarHoraCierre = Calendar.getInstance();
@@ -1969,10 +1991,414 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 		return codigoUsuarioAsignado;
 	}
 
+	public int siguienteActividad(Connection con, Instancia instancia, Collection<NotaContableTema> temasNotaContableAux, Collection<NotaContableTotal> totalesNotaContableAux,
+			int codigoUsuario, boolean aprobada, int codigoCausalDevolucion, String otraCausalDev, boolean chequeoReasignacion) throws Exception {
+
+		CargaAltamiraSessionBean cargaAltamiraManager = new CargaAltamiraSessionBean();
+		Instancia instanciaActualizada = new Instancia();
+
+		NotaContable notaContable = new NotaContable();
+		Collection<NotaContableTotal> totalesNotaContable;
+		double totalNotaContable = 0;
+
+		ArrayList<ActividadRealizada> actividadesRealizadas = new ArrayList<ActividadRealizada>();
+		ActividadRealizada actividadRealizada = new ActividadRealizada();
+		Concepto concepto = new Concepto();
+		UnidadAnalisis unidadAnalisis = new UnidadAnalisis();
+
+		ArrayList<Padrino> padrinos = new ArrayList<Padrino>();
+		Padrino padrino = new Padrino();
+		MontoAutorizado montoAutorizado = new MontoAutorizado();
+		EnteAutorizador enteAutorizador = new EnteAutorizador();
+		MontoAutorizadoGeneral montoAutorizadoGeneral = new MontoAutorizadoGeneral();
+		int posicionMontoAutorizado = 0;
+		Collection<Sucursal> sucursalAutorizacion = new ArrayList<Sucursal>();
+		Iterator itAutorizacionMonto;
+
+		Collection<UsuarioModulo> usuariosModulo = new ArrayList<UsuarioModulo>();
+		Iterator itUsuarioModulo;
+		UsuarioModulo usuarioModulo = new UsuarioModulo();
+		int cs_CODIGO_SUBGERENTE_GERENTE_Y_RESPONSABLE_DE_AREA_CENTRAL = 6;
+		int cs_CODIGO_ADMINISTRADOR_CONSOLIDACION = 2;
+		int cs_CODIGO_PADRINOS = 4;
+		@SuppressWarnings("unused")
+		int cs_CODIGO_AUTORIZADOR = 5;
+		int codigoUsuarioAsignado = 0;
+		@SuppressWarnings("unused")
+		int codigoUnidadAnalisisAsignada = 0;
+		String siguienteEstado = "";
+
+		boolean indEstadoEnteAutorizador = false;
+		boolean indEstadoCentroSuperiorAutorizador = false;
+		boolean indEstadoPrecierre = false;
+		Iterator itSucursalAutorizacion;
+		ArrayList<Sucursal> NuevaSucursalAutorizacion = new ArrayList<Sucursal>();
+		ArrayList<Object> posicionMontosAutorizadosGenerales;
+		MontoAutorizadoGeneralDAO objMontosAutorizadosGenerales = new MontoAutorizadoGeneralDAO();
+
+		notaContable.setCodigo(instancia.getCodigoNotaContable().intValue());
+		notaContable = getNotaContable(notaContable);
+
+		concepto.setCodigo(notaContable.getCodigoConcepto());
+		concepto = getConcepto(concepto);
+
+		if (aprobada && (instancia.getEstado().equals("4") || instancia.getEstado().equals("5"))) {
+			if (chequeoReasignacion && instancia.getEstado().equals("4")) {
+				usuariosModulo = getUsuariosModuloPorRolYEstado(cs_CODIGO_ADMINISTRADOR_CONSOLIDACION, "A");
+
+				if (!usuariosModulo.isEmpty()) {
+					usuarioModulo = usuariosModulo.iterator().next();
+
+					siguienteEstado = "" + (new Integer(instancia.getEstado()) + 1);
+					codigoUsuarioAsignado = usuarioModulo.getCodigo().intValue();
+					codigoUnidadAnalisisAsignada = 0;
+				}
+			} else {
+				if (instancia.getEstado().equals("5")) {
+					usuariosModulo = getUsuariosModuloPorRolYEstado(cs_CODIGO_ADMINISTRADOR_CONSOLIDACION, "A");
+
+					if (!usuariosModulo.isEmpty()) {
+						usuarioModulo = usuariosModulo.iterator().next();
+
+						siguienteEstado = "" + (new Integer(instancia.getEstado()) + 1);
+						codigoUsuarioAsignado = usuarioModulo.getCodigo().intValue();
+						codigoUnidadAnalisisAsignada = 0;
+					}
+				} else {
+					return -1;
+				}
+			}
+		} else {
+			if (notaContable.getTipoNota().equals("R")) {
+				if (aprobada) {
+					if (instancia.getEstado().equals("0")) {
+						if (chequeoReasignacion) {
+							if (concepto.getVistoBuenoAnalisis().equals("S")) {
+								unidadAnalisis.setCodigo(concepto.getCodigoUnidadAnalisis());
+								unidadAnalisis = getUnidadAnalisis(unidadAnalisis);
+
+								padrino.setCodigoUnidadAnalisis(unidadAnalisis.getCodigo().intValue());
+								padrino.setEstado("A");
+								padrinos = new ArrayList<Padrino>(getPadrinosPorUnidadAnalisisYEstado(padrino));
+
+								// Se debe balancear por carga
+								if (!padrinos.isEmpty()) {
+									siguienteEstado = "2";
+									// codigoUsuarioAsignado = ((Padrino)padrinos.get(0)).getCodigoUsuario();
+
+									try {
+										codigoUsuarioAsignado = getUsuarioAsignadoPorBalanceo(siguienteEstado, unidadAnalisis.getCodigoSucursal(), cs_CODIGO_PADRINOS).getCodigo()
+												.intValue();
+									} catch (Exception le_e) {
+										codigoUsuarioAsignado = padrinos.get(0).getCodigoUsuario().intValue();
+									}
+									codigoUnidadAnalisisAsignada = 0;
+								}
+							} else {
+								indEstadoEnteAutorizador = true;
+							}
+						} else {
+							return -1;
+						}
+					}
+
+					if (instancia.getEstado().equals("1")) {
+						if (chequeoReasignacion) {
+							siguienteEstado = "0";
+							codigoUsuarioAsignado = updateNotaContableRegistro(notaContable, temasNotaContableAux, totalesNotaContableAux, codigoUsuario);
+						} else {
+							return -1;
+						}
+					}
+
+					if (indEstadoEnteAutorizador || instancia.getEstado().equals("2")) {
+						if (chequeoReasignacion) {
+							if (concepto.getAutorizacionTercero().equals("S")) {
+								totalesNotaContable = getTotalesPorNotaContable(notaContable.getCodigo().intValue());
+
+								// El total de la Nota Contable no se está calculando porque son diferentes Divisa. Se está tomando el primer total
+								for (NotaContableTotal notaContableTotal : totalesNotaContable) {
+									if (totalNotaContable == 0 && notaContableTotal.getCodigoDivisa().equals("COP")) {
+										totalNotaContable = notaContableTotal.getTotal();
+									}
+								}
+
+								montoAutorizado.setCodigoTemaAutorizacion(concepto.getCodigoTemaAutorizacion());
+								montoAutorizado.setCodigoTipoAutorizacion(notaContable.getCodigoTipoEvento());
+								montoAutorizado.setEstado("A");
+								montoAutorizado = getMontoAutorizadoPorTemaAutorizacionYTipoEventoNotaContableYEstado(montoAutorizado);
+
+								if (montoAutorizado.getCodigoEnteAutorizador().intValue() != 0) {
+									enteAutorizador.setCodigo(montoAutorizado.getCodigoEnteAutorizador());
+									enteAutorizador = getEnteAutorizador(enteAutorizador);
+
+									if (enteAutorizador.getCodigoUsuarioModulo().intValue() != 0 && enteAutorizador.getEstado().equals("A")) {
+										siguienteEstado = "3";
+										codigoUsuarioAsignado = enteAutorizador.getCodigoUsuarioModulo().intValue();
+										codigoUnidadAnalisisAsignada = 0;
+									}
+								}
+
+								/* FLUJO ADICIONAL */
+								montoAutorizadoGeneral.setCodigoTemaAutorizacion(concepto.getCodigoTemaAutorizacion());
+								montoAutorizadoGeneral.setCodigoTipoAutorizacion(notaContable.getCodigoTipoEvento());
+								montoAutorizadoGeneral.setEstado("A");
+								montoAutorizadoGeneral = getMontoAutorizadoGeneralPorTemaAutorizacionYTipoEventoNotaContableYEstado(montoAutorizadoGeneral, totalNotaContable);
+								posicionMontoAutorizado = getPosicionMontoAutorizadoGeneralPorTemaAutorizacionYTipoEventoNotaContableYEstado(montoAutorizadoGeneral,
+										totalNotaContable);
+								posicionMontosAutorizadosGenerales = objMontosAutorizadosGenerales.posicion(montoAutorizadoGeneral, totalNotaContable);
+								/**
+								 * COL514313I001449 MODIFICACION PARA VALIDAR LOS NIVELES DE AUTORIZACION SE CARGA EN UNA COLECCION LAS SUCURSALES AUTORIZADAS CON USUARIOS Y SE
+								 * COMPARA COMTRA LA POSICION DEL MONTO AUTORIZADO GENERAL SEGUN POSICION posicionMontoAutorizado
+								 ****/
+
+								if (montoAutorizadoGeneral.getCodigoRol().intValue() != 0) {
+									Sucursal sucursal = new Sucursal();
+									sucursal.setCodigo(notaContable.getCodigoSucursalOrigen());
+									try {
+										sucursalAutorizacion = cargaAltamiraManager.getCadenaAutorizacionSucursal(sucursal);
+										indEstadoCentroSuperiorAutorizador = false;
+										if (!sucursalAutorizacion.isEmpty()) {
+											itSucursalAutorizacion = sucursalAutorizacion.iterator();
+											itAutorizacionMonto = posicionMontosAutorizadosGenerales.iterator();
+											montoAutorizadoGeneral = (MontoAutorizadoGeneral) itAutorizacionMonto.next();
+
+											for (Sucursal suc : sucursalAutorizacion) {
+												sucursal = (Sucursal) itSucursalAutorizacion.next();
+												usuariosModulo = getUsuariosModuloPorAreaYRolYEstado(suc.getCodigo(), montoAutorizadoGeneral.getCodigoRol().intValue(), "A");
+												if (usuariosModulo.size() != 0) {
+													NuevaSucursalAutorizacion.add(sucursal);
+													if (itAutorizacionMonto.hasNext()) {
+														montoAutorizadoGeneral = (MontoAutorizadoGeneral) itAutorizacionMonto.next();
+													}
+												}
+											}
+
+											if (NuevaSucursalAutorizacion.size() == posicionMontosAutorizadosGenerales.size()) {
+												sucursal = NuevaSucursalAutorizacion.get(posicionMontoAutorizado);
+												montoAutorizadoGeneral = (MontoAutorizadoGeneral) posicionMontosAutorizadosGenerales.get(posicionMontoAutorizado);
+												usuariosModulo = getUsuariosModuloPorAreaYRolYEstado(sucursal.getCodigo(), montoAutorizadoGeneral.getCodigoRol().intValue(), "A");
+												indEstadoCentroSuperiorAutorizador = true;
+											}
+											/**
+											 * if (!indEstadoCentroSuperiorAutorizador) { usuariosModulo = getUsuariosModuloPorAreaYRolYEstado(sucursal.getCodigo(),
+											 * montoAutorizadoGeneral.getCodigoRol().intValue(), "A"); if (!usuariosModulo.isEmpty()) { usuarioModulo =
+											 * usuariosModulo.iterator().next();
+											 * 
+											 * if (contadorMontoAutorizadoEncontrado == posicionMontoAutorizado) { indEstadoCentroSuperiorAutorizador = true; } } }
+											 **/
+										}
+
+										if (indEstadoCentroSuperiorAutorizador) {
+											siguienteEstado = "3";
+											usuarioModulo = usuariosModulo.iterator().next();
+											codigoUsuarioAsignado = usuarioModulo.getCodigo().intValue();
+											codigoUnidadAnalisisAsignada = 0;
+										}
+									} catch (Exception le_e) {
+									}
+								}
+							} else {
+								indEstadoPrecierre = true;
+							}
+						} else {
+							return -1;
+						}
+					}
+
+					if (indEstadoPrecierre || instancia.getEstado().equals("3")) {
+						if (chequeoReasignacion) {
+							usuariosModulo = getUsuariosModuloPorRolYEstado(cs_CODIGO_ADMINISTRADOR_CONSOLIDACION, "A");
+
+							if (!usuariosModulo.isEmpty()) {
+								usuarioModulo = usuariosModulo.iterator().next();
+
+								siguienteEstado = "4";
+								codigoUsuarioAsignado = usuarioModulo.getCodigo().intValue();
+								codigoUnidadAnalisisAsignada = 0;
+							}
+						} else {
+							return -1;
+						}
+					}
+				} else {
+					if (instancia.getEstado().equals("0") || instancia.getEstado().equals("2") || instancia.getEstado().equals("3") || instancia.getEstado().equals("4")
+							|| instancia.getEstado().equals("5")) {
+						actividadRealizada.setCodigoInstancia(instancia.getCodigo().intValue());
+						actividadesRealizadas = new ArrayList<ActividadRealizada>(getActividadesRealizadasPorInstancia(actividadRealizada));
+
+						siguienteEstado = "1";
+						if (actividadesRealizadas.size() != 0) {
+							codigoUsuarioAsignado = actividadesRealizadas.get(0).getCodigoUsuario().intValue();
+						}
+						codigoUnidadAnalisisAsignada = 0;
+					}
+				}
+			} else if (notaContable.getTipoNota().equals("C")) {
+				if (aprobada) {
+
+					if (instancia.getEstado().equals("0")) {
+						if (chequeoReasignacion) {
+							unidadAnalisis.setEstado("A");
+							unidadAnalisis.setAutorizaReferenciaCruce("S");
+							unidadAnalisis = getUnidadAnalisisPorAutorizaReferenciaCruceYEstado(unidadAnalisis);
+
+							padrino.setCodigoUnidadAnalisis(unidadAnalisis.getCodigo().intValue());
+							padrino.setEstado("A");
+							padrinos = new ArrayList<Padrino>(getPadrinosPorUnidadAnalisisYEstado(padrino));
+
+							// Se debe balancear por carga
+							if (padrinos.size() != 0) {
+								siguienteEstado = "2";
+								// codigoUsuarioAsignado = ((Padrino)padrinos.get(0)).getCodigoUsuario();
+
+								try {
+									codigoUsuarioAsignado = getUsuarioAsignadoPorBalanceo(siguienteEstado, unidadAnalisis.getCodigoSucursal(), cs_CODIGO_PADRINOS).getCodigo()
+											.intValue();
+								} catch (Exception le_e) {
+									codigoUsuarioAsignado = padrinos.get(0).getCodigoUsuario().intValue();
+								}
+								codigoUnidadAnalisisAsignada = 0;
+							}
+						} else {
+							return -1;
+						}
+					}
+
+					if (indEstadoPrecierre || instancia.getEstado().equals("2")) {
+						if (chequeoReasignacion) {
+							usuariosModulo = getUsuariosModuloPorRolYEstado(cs_CODIGO_ADMINISTRADOR_CONSOLIDACION, "A");
+
+							if (!usuariosModulo.isEmpty()) {
+								usuarioModulo = usuariosModulo.iterator().next();
+
+								siguienteEstado = "4";
+								codigoUsuarioAsignado = usuarioModulo.getCodigo().intValue();
+								codigoUnidadAnalisisAsignada = 0;
+							}
+						} else {
+							return -1;
+						}
+					}
+
+					if (instancia.getEstado().equals("1")) {
+						if (chequeoReasignacion) {
+							siguienteEstado = "0";
+							usuariosModulo = getUsuariosModuloPorAreaYRolYEstado(notaContable.getCodigoSucursalOrigen(), cs_CODIGO_SUBGERENTE_GERENTE_Y_RESPONSABLE_DE_AREA_CENTRAL,
+									"A");
+
+							if (!usuariosModulo.isEmpty()) {
+								usuarioModulo = usuariosModulo.iterator().next();
+								codigoUsuarioAsignado = usuarioModulo.getCodigo().intValue();
+							}
+						} else {
+							return -1;
+						}
+					}
+
+				} else {
+					if (instancia.getEstado().equals("0") || instancia.getEstado().equals("2") || instancia.getEstado().equals("3") || instancia.getEstado().equals("4")
+							|| instancia.getEstado().equals("5")) {
+						actividadRealizada.setCodigoInstancia(instancia.getCodigo().intValue());
+						actividadesRealizadas = new ArrayList<ActividadRealizada>(getActividadesRealizadasPorInstancia(actividadRealizada));
+
+						siguienteEstado = "1";
+						if (actividadesRealizadas.size() != 0) {
+							codigoUsuarioAsignado = actividadesRealizadas.get(0).getCodigoUsuario().intValue();
+						}
+						codigoUnidadAnalisisAsignada = 0;
+					}
+				}
+			} else if (notaContable.getTipoNota().equals("L")) {
+				if (aprobada) {
+					if (indEstadoPrecierre || instancia.getEstado().equals("0")) {
+						if (chequeoReasignacion) {
+							usuariosModulo = getUsuariosModuloPorRolYEstado(cs_CODIGO_ADMINISTRADOR_CONSOLIDACION, "A");
+
+							if (!usuariosModulo.isEmpty()) {
+								usuarioModulo = usuariosModulo.iterator().next();
+								siguienteEstado = "4";
+								codigoUsuarioAsignado = usuarioModulo.getCodigo().intValue();
+								codigoUnidadAnalisisAsignada = 0;
+							}
+						} else {
+							return -1;
+						}
+					}
+					if (instancia.getEstado().equals("1")) {
+						if (chequeoReasignacion) {
+							siguienteEstado = "0";
+							usuariosModulo = getUsuariosModuloPorAreaYRolYEstado(notaContable.getCodigoSucursalOrigen(), cs_CODIGO_SUBGERENTE_GERENTE_Y_RESPONSABLE_DE_AREA_CENTRAL,
+									"A");
+
+							if (!usuariosModulo.isEmpty()) {
+								usuarioModulo = usuariosModulo.iterator().next();
+								codigoUsuarioAsignado = usuarioModulo.getCodigo().intValue();
+							}
+						} else {
+							return -1;
+						}
+					}
+				} else {
+					if (instancia.getEstado().equals("0") || instancia.getEstado().equals("2") || instancia.getEstado().equals("3") || instancia.getEstado().equals("4")
+							|| instancia.getEstado().equals("5")) {
+						actividadRealizada.setCodigoInstancia(instancia.getCodigo().intValue());
+						actividadesRealizadas = new ArrayList<ActividadRealizada>(getActividadesRealizadasPorInstancia(actividadRealizada));
+
+						siguienteEstado = "1";
+						if (actividadesRealizadas.size() != 0) {
+							codigoUsuarioAsignado = actividadesRealizadas.get(0).getCodigoUsuario().intValue();
+						}
+						codigoUnidadAnalisisAsignada = 0;
+					}
+				}
+			}
+		}
+
+		Timestamp fecha = DateUtils.getTimestamp();
+
+		// Actualiza Instancia
+		instanciaActualizada = instancia;
+		instanciaActualizada.setCodigoUsuarioActual(codigoUsuarioAsignado);
+		instanciaActualizada.setEstado(siguienteEstado);
+		instanciaActualizada.setUltimaActualizacionTs(fecha);
+
+		updateInstancia(con, instanciaActualizada, codigoUsuario);
+
+		// se consulta la actividad previa
+		actividadRealizada.setCodigoInstancia(instancia.getCodigo().intValue());
+		ActividadRealizada ultAcRe = actividadRealizadaDAO.getUltima(actividadRealizada);
+
+		// se obtienen los festivos
+		Collection<Festivo> festivos = cargaAltamiraManager.getFestivos();
+		// se hace el calculo de duracion
+		Calendar calendarHoraCierre = Calendar.getInstance();
+		calendarHoraCierre.setTimeInMillis(ultAcRe.getFechaHoraCierreTs().getTime());
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(Calendar.getInstance().getTimeInMillis());
+		
+		int cantFest = DateUtils.getFestivosEntre(calendarHoraCierre, calendar, new ArrayList<Festivo>(festivos));
+		int duracion = (int) ((fecha.getTime() - ultAcRe.getFechaHoraCierreTs().getTime()) / 1000 / 60);
+		duracion -= cantFest * 24 * 60;
+
+		// Adiciona Actividad Realizada al historial
+		ActividadRealizada actividadNueva = new ActividadRealizada();
+
+		actividadNueva.setCodigoInstancia(instancia.getCodigo().intValue());
+		actividadNueva.setCodigoUsuario(codigoUsuario);
+		actividadNueva.setFechaHoraTs(ultAcRe.getFechaHoraCierreTs());
+		actividadNueva.setFechaHoraCierreTs(fecha);
+		actividadNueva.setDuracionActividad(duracion);
+		actividadNueva.setEstado(instancia.getEstado());
+		actividadNueva.setValor1(codigoCausalDevolucion != 0 ? String.valueOf(codigoCausalDevolucion) : "");
+		actividadNueva.setValor2(otraCausalDev != null ? otraCausalDev : "");
+		actividadNueva.setValor3("");
+		addActividadRealizada(con, actividadNueva, codigoUsuario);
+		return codigoUsuarioAsignado;
+	}
+
 	@Override
-	/**
-	 * Metodo modificado para librerias Date
-	 */
 	public void anularNotaContable(Instancia instancia, int codigoUsuario) throws Exception {
 
 		Connection con = null;
@@ -2024,10 +2450,10 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 			// se hace el calculo de duracion
 			Calendar calendarHoraCierre = Calendar.getInstance();
 			calendarHoraCierre.setTimeInMillis(actividadAnt.getFechaHoraCierreTs().getTime());
-
+			
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTimeInMillis(Calendar.getInstance().getTimeInMillis());
-
+			
 			int cantFest = DateUtils.getFestivosEntre(calendarHoraCierre, calendar, new ArrayList<Festivo>(festivos));
 			int duracion = (int) ((fecha.getTime() - actividadAnt.getFechaHoraCierreTs().getTime()) / 1000 / 60);
 			duracion -= cantFest * 24 * 60;
@@ -2145,7 +2571,6 @@ public class NotasContablesSessionBean extends NotasContablesConsultaSessionBean
 	@Override
 	public ArrayList<NotaContableTotal> getDatosDeInstancias(Collection<Instancia> instancias, boolean totales) throws Exception {
 		ArrayList<NotaContableTotal> totalesNotas = new ArrayList<NotaContableTotal>();
-		//TODO Contador no se usa en el codigo
 		int count = 0;
 
 		for (Instancia ins : instancias) {
