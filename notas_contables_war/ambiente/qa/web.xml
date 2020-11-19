@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
 	<display-name>NotasContables</display-name>
 	<!--	PARAMETROS PARA MANEJAR RUTAS DE ARCHIVOS-->
 	<context-param>
@@ -72,9 +72,9 @@ named /WEB-INF/facesconfig.xml (if such a resource exists).</description>
 	</context-param>
 	<context-param>
 		<description>The default suffix for extension-mapped resources that contain JSF components.
-Default is '.jsp'.</description>
+Default is '.xhtml'.</description>
 		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-		<param-value>.jsp</param-value>
+		<param-value>.xhtml</param-value>
 	</context-param>
 	<context-param>
 		<description>Monitors Faces JSP files for modifications and synchronizes a running server with
