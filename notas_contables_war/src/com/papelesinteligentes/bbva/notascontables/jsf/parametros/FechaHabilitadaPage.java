@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.faces.application.FacesMessage;
-
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.dto.FechaHabilitada;
 
@@ -15,7 +14,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.FechaHabilitada;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class FechaHabilitadaPage extends GeneralParametrosPage<FechaHabilitada, FechaHabilitada> {
 
 	private static final long serialVersionUID = 1L;

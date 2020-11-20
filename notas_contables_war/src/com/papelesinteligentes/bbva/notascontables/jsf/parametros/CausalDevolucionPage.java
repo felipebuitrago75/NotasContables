@@ -2,7 +2,7 @@ package com.papelesinteligentes.bbva.notascontables.jsf.parametros;
 
 import java.util.Collection;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.dto.CausalDevolucion;
 
@@ -12,7 +12,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.CausalDevolucion;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class CausalDevolucionPage extends GeneralParametrosPage<CausalDevolucion, CausalDevolucion> {
 
 	private static final long serialVersionUID = 1L;

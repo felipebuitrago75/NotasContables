@@ -4,9 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Perfil;
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Sucursal;
@@ -25,7 +24,7 @@ import com.papelesinteligentes.bbva.notascontables.util.StringUtils;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class UsuarioPage extends GeneralParametrosPage<UsuarioModulo, UsuarioModulo> {
 
 	/**

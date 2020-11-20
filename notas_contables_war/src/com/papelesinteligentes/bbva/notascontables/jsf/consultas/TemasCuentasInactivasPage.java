@@ -3,11 +3,11 @@ package com.papelesinteligentes.bbva.notascontables.jsf.consultas;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.dto.Tema;
 
-@KeepAlive
+@ViewScoped
 public class TemasCuentasInactivasPage extends GeneralConsultaPage<Tema> {
 
 	private static final long serialVersionUID = -6709113217662690209L;

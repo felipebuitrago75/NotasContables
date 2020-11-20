@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.faces.application.FacesMessage;
-
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.dto.Instancia;
 import com.papelesinteligentes.bbva.notascontables.jsf.consultas.GeneralConsultaPage;
 
-@KeepAlive
+@ViewScoped
 public class PendientePage extends GeneralConsultaPage<Instancia> {
 
 	private static final long serialVersionUID = -6709113217662690209L;

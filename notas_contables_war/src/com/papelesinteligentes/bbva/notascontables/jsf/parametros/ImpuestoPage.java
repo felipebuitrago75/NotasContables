@@ -7,9 +7,8 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.PUC;
 import com.papelesinteligentes.bbva.notascontables.dto.Impuesto;
@@ -20,7 +19,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.Impuesto;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class ImpuestoPage extends GeneralParametrosPage<Impuesto, Impuesto> {
 
 	private static final long serialVersionUID = 1L;

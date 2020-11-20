@@ -2,7 +2,7 @@ package com.papelesinteligentes.bbva.notascontables.jsf.carga;
 
 import java.util.Collection;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.ActividadEconomica;
 
@@ -13,7 +13,7 @@ import com.papelesinteligentes.bbva.notascontables.carga.dto.ActividadEconomica;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class ActividadEconomicaPage extends GeneralCargaPage<ActividadEconomica> {
 
 	private static final long serialVersionUID = -2215153957937462919L;

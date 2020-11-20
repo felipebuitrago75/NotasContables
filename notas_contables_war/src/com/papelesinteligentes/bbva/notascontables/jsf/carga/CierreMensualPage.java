@@ -7,8 +7,7 @@ import java.util.Collection;
 import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
-
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.CierreMensual;
 import com.papelesinteligentes.bbva.notascontables.jsf.GeneralPage;
@@ -21,7 +20,7 @@ import com.papelesinteligentes.bbva.notascontables.jsf.IPages;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class CierreMensualPage extends GeneralPage implements IPages, Serializable {
 
 	private String cierreMensual;

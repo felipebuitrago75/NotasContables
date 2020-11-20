@@ -3,8 +3,7 @@ package com.papelesinteligentes.bbva.notascontables.jsf.parametros;
 import java.util.Collection;
 
 import javax.faces.application.FacesMessage;
-
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.dto.MontoMaximo;
 
@@ -14,7 +13,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.MontoMaximo;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class MontoMaximoPage extends GeneralParametrosPage<MontoMaximo, MontoMaximo> {
 
 	private static final long serialVersionUID = 1L;

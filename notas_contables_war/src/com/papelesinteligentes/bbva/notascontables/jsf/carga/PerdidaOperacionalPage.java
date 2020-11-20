@@ -2,7 +2,7 @@ package com.papelesinteligentes.bbva.notascontables.jsf.carga;
 
 import java.util.Collection;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.PerdidaOperacional;
 
@@ -13,7 +13,7 @@ import com.papelesinteligentes.bbva.notascontables.carga.dto.PerdidaOperacional;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class PerdidaOperacionalPage extends GeneralCargaPage<PerdidaOperacional> {
 
 	/**

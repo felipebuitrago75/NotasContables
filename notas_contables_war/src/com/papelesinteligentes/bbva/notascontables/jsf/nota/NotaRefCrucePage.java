@@ -8,9 +8,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.PartidaPendiente;
 import com.papelesinteligentes.bbva.notascontables.dto.Anexo;
@@ -33,7 +32,7 @@ import com.papelesinteligentes.bbva.notascontables.util.EMailSender;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class NotaRefCrucePage extends GeneralPage implements IPages, Serializable {
 
 	private static final long serialVersionUID = 1L;

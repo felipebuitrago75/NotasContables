@@ -5,9 +5,8 @@ import java.util.List;
 import java.util.TreeMap;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Sucursal;
 import com.papelesinteligentes.bbva.notascontables.dto.CentroEspecial;
@@ -18,7 +17,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.CentroEspecial;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class CentroEspecialPage extends GeneralParametrosPage<CentroEspecial, CentroEspecial> {
 
 	private static final long serialVersionUID = 1L;

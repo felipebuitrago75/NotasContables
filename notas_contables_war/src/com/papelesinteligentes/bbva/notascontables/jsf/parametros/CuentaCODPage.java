@@ -7,9 +7,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.PUC;
 import com.papelesinteligentes.bbva.notascontables.dto.CuentaCOD;
@@ -21,7 +20,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.Tema;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class CuentaCODPage extends GeneralParametrosPage<CuentaCOD, CuentaCOD> {
 
 	private static final long serialVersionUID = 1L;

@@ -1,6 +1,6 @@
 package com.papelesinteligentes.bbva.notascontables.jsf.parametros;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 /**
  * <p>
@@ -8,7 +8,7 @@ import org.ajax4jsf.model.KeepAlive;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class CentroOrigenPage extends GeneralCentroPage {
 
 	private static final long serialVersionUID = 1L;

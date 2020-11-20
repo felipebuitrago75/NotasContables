@@ -7,14 +7,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.dto.Instancia;
 import com.papelesinteligentes.bbva.notascontables.dto.NotaContable;
 
-@KeepAlive
+@ViewScoped
 public class ConsultaNotaContablePage extends GeneralConsultaPage<Instancia> {
 
 	private static final long serialVersionUID = -6709113217662690209L;

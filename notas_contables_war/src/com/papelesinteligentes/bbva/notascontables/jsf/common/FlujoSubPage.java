@@ -5,15 +5,14 @@ import java.util.Calendar;
 import java.util.Collection;
 
 import javax.faces.application.FacesMessage;
-
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Festivo;
 import com.papelesinteligentes.bbva.notascontables.dto.ActividadRealizada;
 import com.papelesinteligentes.bbva.notascontables.jsf.BasePage;
 import com.papelesinteligentes.bbva.notascontables.util.DateUtils;
 
-@KeepAlive
+@ViewScoped
 public class FlujoSubPage extends BasePage {
 
 	private ActividadRealizada actividadRealizada;

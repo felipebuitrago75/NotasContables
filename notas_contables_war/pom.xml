@@ -109,7 +109,6 @@
 			<artifactId>richfaces-core-impl</artifactId>
 			<version>4.2.2.Final</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.richfaces.core/richfaces-core-api -->
 		<dependency>
 			<groupId>org.richfaces.core</groupId>
 			<artifactId>richfaces-core-api</artifactId>

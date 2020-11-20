@@ -4,9 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.dto.MontoAutorizado;
 import com.papelesinteligentes.bbva.notascontables.dto.TemaAutorizacion;
@@ -18,7 +17,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.TipoEvento;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class MontoAutorizadoPage extends GeneralParametrosPage<MontoAutorizado, MontoAutorizado> {
 
 	private static final long serialVersionUID = 1L;

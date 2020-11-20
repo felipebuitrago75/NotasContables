@@ -4,9 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.dto.Concepto;
 import com.papelesinteligentes.bbva.notascontables.dto.TemaAutorizacion;
@@ -17,7 +16,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.TemaAutorizacion;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class ConceptoPage extends GeneralParametrosPage<Concepto, Concepto> {
 
 	private static final long serialVersionUID = 1L;

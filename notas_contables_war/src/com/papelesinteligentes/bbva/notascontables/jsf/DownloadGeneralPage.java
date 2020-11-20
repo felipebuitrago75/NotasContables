@@ -8,11 +8,10 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 
+import javax.faces.bean.ViewScoped;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ajax4jsf.model.KeepAlive;
-
-@KeepAlive
+@ViewScoped
 public class DownloadGeneralPage extends BasePage {
 
 	static final int SOPORTE = 1;

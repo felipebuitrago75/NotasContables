@@ -2,7 +2,7 @@ package com.papelesinteligentes.bbva.notascontables.jsf.carga;
 
 import java.util.Collection;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.PerdidaOperacionalClaseRiesgo;
 
@@ -13,7 +13,7 @@ import com.papelesinteligentes.bbva.notascontables.carga.dto.PerdidaOperacionalC
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class PerdidaOperacionalClaseRiesgoTipoPerdidaPage extends GeneralCargaPage<PerdidaOperacionalClaseRiesgo> {
 
 	private static final long serialVersionUID = -7767388810824414064L;

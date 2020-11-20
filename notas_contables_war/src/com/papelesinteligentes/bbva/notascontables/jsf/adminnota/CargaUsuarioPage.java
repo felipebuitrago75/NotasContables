@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Sucursal;
 import com.papelesinteligentes.bbva.notascontables.dto.Rol;
 import com.papelesinteligentes.bbva.notascontables.dto.UsuarioInstancias;
 import com.papelesinteligentes.bbva.notascontables.jsf.consultas.GeneralConsultaPage;
 
-@KeepAlive
+@ViewScoped
 public class CargaUsuarioPage extends GeneralConsultaPage<UsuarioInstancias> {
 
 	private static final long serialVersionUID = -6709113217662690209L;

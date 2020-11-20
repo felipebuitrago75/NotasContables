@@ -3,7 +3,7 @@ package com.papelesinteligentes.bbva.notascontables.jsf.carga;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Contrato;
 
@@ -14,7 +14,7 @@ import com.papelesinteligentes.bbva.notascontables.carga.dto.Contrato;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class ContratoPage extends GeneralCargaPage<Contrato> {
 
 	/**

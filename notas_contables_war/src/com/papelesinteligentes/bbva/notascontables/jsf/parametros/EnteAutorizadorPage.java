@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.TreeMap;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Sucursal;
 import com.papelesinteligentes.bbva.notascontables.dto.EnteAutorizador;
@@ -21,7 +20,7 @@ import com.papelesinteligentes.bbva.notascontables.util.IRol;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class EnteAutorizadorPage extends GeneralParametrosPage<EnteAutorizador, EnteAutorizador> {
 
 	private static final long serialVersionUID = 1L;

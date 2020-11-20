@@ -7,9 +7,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.dto.ActividadRealizada;
 import com.papelesinteligentes.bbva.notascontables.dto.UsuarioModulo;
@@ -17,7 +16,7 @@ import com.papelesinteligentes.bbva.notascontables.util.DateUtils;
 import com.papelesinteligentes.bbva.notascontables.util.ReportesExcel;
 import com.papelesinteligentes.bbva.notascontables.util.StringUtils;
 
-@KeepAlive
+@ViewScoped
 public class ReporteTiemposPage extends GeneralConsultaPage<UsuarioModulo> {
 
 	enum MESES {

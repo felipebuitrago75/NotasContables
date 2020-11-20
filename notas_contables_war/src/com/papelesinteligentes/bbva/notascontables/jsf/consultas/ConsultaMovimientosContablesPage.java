@@ -2,7 +2,7 @@ package com.papelesinteligentes.bbva.notascontables.jsf.consultas;
 
 import java.util.ArrayList;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
 import com.papelesinteligentes.bbva.notascontables.dto.Instancia;
 import com.papelesinteligentes.bbva.notascontables.dto.NotaContable;
@@ -10,7 +10,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.NotaContableCrucePartidaP
 import com.papelesinteligentes.bbva.notascontables.dto.NotaContableRegistroLibre;
 import com.papelesinteligentes.bbva.notascontables.dto.NotaContableTema;
 
-@KeepAlive
+@ViewScoped
 public class ConsultaMovimientosContablesPage extends ReporteGeneralPage {
 
 	private static final long serialVersionUID = 5090751661160357021L;

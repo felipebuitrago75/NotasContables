@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.TreeSet;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 
-import org.ajax4jsf.model.KeepAlive;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
@@ -53,7 +53,7 @@ import com.papelesinteligentes.bbva.notascontables.util.StringUtils;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class NotaContableLibrePage extends FlujoNotaContableLibrePage implements Serializable {
 
 	private static final long serialVersionUID = 1L;

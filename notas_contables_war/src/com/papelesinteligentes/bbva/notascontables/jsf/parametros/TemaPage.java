@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.TreeSet;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.PUC;
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Producto;
@@ -25,7 +24,7 @@ import com.papelesinteligentes.bbva.notascontables.dto.TemaProducto;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class TemaPage extends GeneralParametrosPage<Concepto, Tema> {
 
 	private static final long serialVersionUID = 1L;

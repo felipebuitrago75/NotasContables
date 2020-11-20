@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import org.ajax4jsf.model.KeepAlive;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.HADTAPL;
 import com.papelesinteligentes.bbva.notascontables.carga.dto.PUC;
@@ -31,7 +30,7 @@ import com.papelesinteligentes.bbva.notascontables.util.EMailSender;
  * </p>
  * 
  */
-@KeepAlive
+@ViewScoped
 public class FlujoNotaContableLibrePage extends GeneralPage implements IPages {
 
 	private static final long serialVersionUID = 1L;

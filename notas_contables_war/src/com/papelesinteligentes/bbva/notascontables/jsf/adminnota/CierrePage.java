@@ -1,8 +1,8 @@
 package com.papelesinteligentes.bbva.notascontables.jsf.adminnota;
 
-import org.ajax4jsf.model.KeepAlive;
+import javax.faces.bean.ViewScoped;
 
-@KeepAlive
+@ViewScoped
 public class CierrePage extends PrecierreCierrePage {
 
 	private static final long serialVersionUID = -6709113217662690209L;
