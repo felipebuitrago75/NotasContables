@@ -4,13 +4,13 @@ import java.util.HashSet;
 import java.util.Map;
 
 import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext; 
-import javax.faces.event.PhaseEvent; 
+import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 import javax.servlet.http.HttpSession;
 
-import org.richfaces.component.html.HtmlMenuItem;
+import org.richfaces.component.UIMenuItem;
 
 import com.papelesinteligentes.bbva.notascontables.jsf.beans.ContablesSessionBean;
 import com.papelesinteligentes.bbva.notascontables.jsf.beans.MenuVisual;
@@ -144,7 +144,7 @@ public class LifeCycleListener implements PhaseListener {
 		String filtro = viewId.substring(viewId.lastIndexOf('/') + 1, viewId.lastIndexOf('.'));
 		if (c != null) {
  			for (MenuVisual m : c.getLoginUser().getOpcionesMenu()) {
-				for (HtmlMenuItem item : m.getMenuItems()) {
+				for (UIMenuItem item : m.getMenuItems()) {
 					String action = item.getActionExpression().getExpressionString();
 					String actActual = action.substring(action.indexOf('{') + 1, action.lastIndexOf('.'));
 					if (actActual.equals(filtro)) {

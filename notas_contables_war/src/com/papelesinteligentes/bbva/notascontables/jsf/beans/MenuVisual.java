@@ -3,6 +3,8 @@ package com.papelesinteligentes.bbva.notascontables.jsf.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.richfaces.component.UIMenuItem;
+
 import com.papelesinteligentes.bbva.notascontables.dto.Menu;
 
 public class MenuVisual implements java.io.Serializable, Comparable<MenuVisual> {
@@ -13,7 +15,7 @@ public class MenuVisual implements java.io.Serializable, Comparable<MenuVisual> 
 	private int ordenVisual = 0;
 	private String nombre = "";
 
-	private List<String> menuItems = new ArrayList<String>();
+	private List<UIMenuItem> menuItems = new ArrayList<UIMenuItem>();
 
 	public MenuVisual(Menu m) {
 		this.codigo = m.getCodigo();
@@ -48,11 +50,11 @@ public class MenuVisual implements java.io.Serializable, Comparable<MenuVisual> 
 		return o.getOrdenVisual() - getOrdenVisual();
 	}
 
-	public List<String> getMenuItems() {
+	public List<UIMenuItem> getMenuItems() {
 		return menuItems;
 	}
 
-	public void setMenuItems(List<String> menuItems) {
+	public void setMenuItems(List<UIMenuItem> menuItems) {
 		this.menuItems = menuItems;
 	}
 

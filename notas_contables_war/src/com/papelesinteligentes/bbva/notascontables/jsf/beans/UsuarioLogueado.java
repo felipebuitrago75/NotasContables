@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeMap;  
+import java.util.TreeMap;
 import java.util.TreeSet;
- 
-import javax.el.MethodExpression; 
+
+import javax.el.MethodExpression;
 import javax.faces.application.Application;
 import javax.faces.context.FacesContext;
 
-import org.richfaces.component.html.HtmlMenuItem;
+import org.richfaces.component.UIMenuItem;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Sucursal;
 import com.papelesinteligentes.bbva.notascontables.carga.dto.UsuarioAltamira;
@@ -103,11 +103,11 @@ public class UsuarioLogueado implements Serializable {
 		return opcionesMenu;
 	} 
   
-	private List<HtmlMenuItem> getMenuList(TreeSet<SubMenu> opciones) {
-		LinkedList<HtmlMenuItem> menuList = new LinkedList<HtmlMenuItem>();
+	private List<UIMenuItem> getMenuList(TreeSet<SubMenu> opciones) {
+		LinkedList<UIMenuItem> menuList = new LinkedList<UIMenuItem>();
 		for (SubMenu sm : opciones) {
 			// make binding
-			HtmlMenuItem htmlMenuItem = new HtmlMenuItem();
+			UIMenuItem htmlMenuItem = new UIMenuItem();
 			Class<?>[] params = {};
 			MethodExpression actionExpression = application.getExpressionFactory().createMethodExpression(FacesContext.getCurrentInstance().getELContext(), sm.getAccion(), String.class, params);
 			htmlMenuItem.setActionExpression(actionExpression);  

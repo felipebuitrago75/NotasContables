@@ -18,8 +18,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 
-import org.richfaces.event.UploadEvent;
-import org.richfaces.model.UploadItem;
+import org.richfaces.event.FileUploadEvent;
+import org.richfaces.model.UploadedFile;
 
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Cliente;
 import com.papelesinteligentes.bbva.notascontables.carga.dto.Contrato;
@@ -624,24 +624,24 @@ public class NotaContablePage extends FlujoNotaContablePage implements Serializa
 	 * @param event
 	 * @throws Exception
 	 */
-	public void listener(UploadEvent event) throws Exception {
+	public void listener(FileUploadEvent event) throws Exception {
 		String fileName = "";
 		try {
 			//System.out.println("INICIANDO PROCESO DE CARGA DE ARCHIVO.....");
 			long time = new Date().getTime();
 			// se obtiene el archivo a cargar
-			UploadItem item = event.getUploadItem();
+			UploadedFile	 item = event.getUploadedFile();
 
 			String prefijo = getNumArchivo() + "_";
 
-			fileName = (prefijo + time + item.getFileName().substring(item.getFileName().lastIndexOf("."))).toUpperCase();
+			fileName = (prefijo + time + item.getName().substring(item.getName().lastIndexOf("."))).toUpperCase();
 			//System.out.println("Archivo a cargar: " + fileName);
 			// ruta de destino del archivo
 			// File file = item.getFile();
 			File localFile = new File(DIR_SOPORTES + fileName);
 			// localFile.renameTo(f);
 
-			final InputStream is = new FileInputStream(item.getFile());
+			final InputStream is = new FileInputStream(item.getName());
 			FileOutputStream fos = null;
 			fos = new FileOutputStream(localFile);
 			//TODO contador no se usa en el codigo
@@ -654,14 +654,14 @@ public class NotaContablePage extends FlujoNotaContablePage implements Serializa
 			}
 			is.close();
 			fos.close();
-			item.getFile().delete();
+			item.delete();
 
 			//System.out.println("************* Archivo cargado en : " + DIR_SOPORTES + fileName);
 
 			// se crea el anexo correspondiente al archivo
 			Anexo anexo = new Anexo();
 			anexo.setArchivo(fileName);
-			anexo.setNombre(item.getFileName());
+			anexo.setNombre(item.getName());
 			anexo.setCodigoUsuario(getCodUsuarioLogueado());
 			anexo.setFechaHora(new Timestamp(new Date().getTime()));
 			anexo.setBorrar(false);
