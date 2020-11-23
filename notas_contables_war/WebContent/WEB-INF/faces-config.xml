@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-              http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"> 
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
 	<managed-bean>
 		<managed-bean-name>contablesSessionBean</managed-bean-name>
 		<managed-bean-class>com.papelesinteligentes.bbva.notascontables.jsf.beans.ContablesSessionBean</managed-bean-class>
@@ -34,9 +35,9 @@
 			<value />
 		</managed-property>
 	</managed-bean>
-<!--  	<application>
+  	<application>
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
-	</application>-->
+	</application>
 	<lifecycle>
 		<phase-listener>com.papelesinteligentes.bbva.notascontables.jsf.LifeCycleListener</phase-listener>
 	</lifecycle>

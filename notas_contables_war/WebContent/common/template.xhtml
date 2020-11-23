@@ -1,9 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich" xmlns:f="http://java.sun.com/jsf/core" contentType="text/html">
-<html>
-	<head>
-	<title>::: SISTEMA DE CONTABILIDAD -- BBVA - Seccion #{title} :::</title>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+	<title>::: SISTEMA DE CONTABILIDAD -- BBVA - Seccion #{title}
+		:::</title>
 	<a4j:loadStyle src="resource:///common/stylesheet/theme.xcss" />
 	<a4j:loadStyle src="resource:///common/stylesheet/theme.css" />
 	<script type="text/javascript">
@@ -68,35 +74,41 @@
 		
 	</script>
 	<ui:insert name="head" />
-	</head>
-	<body>
-	
-		<div id="layout">
-			<a4j:status id="status" onstart="Richfaces.showModalPanel('statusPanel')" onstop="Richfaces.hideModalPanel('statusPanel')" />
-			<a4j:status id="none" forceId="true"/>
-			<rich:modalPanel id="statusPanel" height="100" width="220" zindex="2000" >
-				<f:facet name="header">
-					<h:outputText value="Procesando..."/>
-				</f:facet>
-				<div align="center" style="width: 100%">
-					<p>Un momento por favor...</p>
-					<h:graphicImage value="/common/images/loading.gif" alt="Logo - BBVA" width="200"/>
-				</div>
-			</rich:modalPanel>
-			<div id="contenido" >
-				<a4j:form id="globalForm">
-					<table border="0" cellpadding="0" cellspacing="0" width="100%" id="datos" style="height:100%;">
-						<tr>
-							<td  align="center" bgcolor="#ffffff" valign="top">
-								<ui:include src="menu.xhtml" />
-				<!--				<p><a4j:log level="ALL" popup="false" width="400" height="200"/></p>-->
-								<ui:insert name="body" />
-							</td>
-						</tr>
-					</table>
-				</a4j:form>
-			</div> 
-			<div id="pie" >
+	<meta http-equiv="Content-Type"
+		content="application/xhtml+xml; charset=UTF-8" />
+</h:head>
+<h:body>
+
+	<f:subview id="layout">
+		<a4j:status id="status"
+			onstart="Richfaces.showModalPanel('statusPanel')"
+			onstop="Richfaces.hideModalPanel('statusPanel')" />
+		<a4j:status id="none" forceId="true" />
+		<rich:popupPanel id="statusPanel" height="100" width="220"
+			zindex="2000">
+			<f:facet name="header">
+				<h:outputText value="Procesando..." />
+			</f:facet>
+			<h:div align="center" style="width: 100%">
+				<p>Un momento por favor...</p>
+				<h:graphicImage value="/common/images/loading.gif" alt="Logo - BBVA"
+					width="200" />
+			</h:div>
+		</rich:popupPanel>
+		<f:subview id="contenido">
+			<h:form id="globalForm">
+				<h:table border="0" cellpadding="0" cellspacing="0" width="100%"
+					id="datos" style="height: 100%;">
+					<tr>
+						<td align="center" bgcolor="#ffffff" valign="top"><ui:include src="menu.xhtml" /> 
+						<ui:insert name="body" />
+						</td>
+						
+					</tr>
+				</h:table>
+			</h:form>
+		</f:subview>
+		<f:subview id="pie">
 			<!-- 
 			   La version indica NF.0.ME.MC 
 			   donde,
@@ -114,11 +126,8 @@
 			 v.1.1.6	COL472316S007232 - GP12833
 			 
 			 -->
-				Notas Contables - Versión 1.1.6<br/>
-				BBVA Colombia 2017
-			</div>
-		</div>
-	
-	</body>
+			Notas Contables - Versión 1.1.6<br /> BBVA Colombia 2017
+		</f:subview>
+	</f:subview>
+</h:body>
 </html>
-</f:view>
