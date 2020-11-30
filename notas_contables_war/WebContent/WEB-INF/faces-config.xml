@@ -36,7 +36,11 @@
 		</managed-property>
 	</managed-bean>
   	<application>
+  		<message-bundle>resources.application</message-bundle>
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
 	</application>
 	<lifecycle>
 		<phase-listener>com.papelesinteligentes.bbva.notascontables.jsf.LifeCycleListener</phase-listener>

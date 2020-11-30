@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	template="../../common/template.xhtml">
 	<ui:param name="title" value="Contratos" />
 	<ui:define name="body">
@@ -19,35 +23,35 @@
 			<!--	Tabla de resultados	-->
 			<h:panelGrid columns="1" width="100%" style="align:center;" id="lista">
 				
-				<rich:dataTable value="#{contratoPage.datos}" var="dato" id="table" rows="15" rendered="#{! empty contratoPage.datos}" rowKeyVar="rowKey"
+				<p:dataTable value="#{contratoPage.datos}" var="dato" id="table" rows="15" rendered="#{! empty contratoPage.datos}" rowKeyVar="rowKey"
 				footerClass="row2" onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
 					<f:facet name="header">
-						<rich:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="table" maxPages="5" renderIfSinglePage="false" 
+						<p:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="table" maxPages="5" renderIfSinglePage="false" 
 						page="#{contratoPage.scrollPage}" id="up" reRender="lista, filtro" limitToList="true" ajaxSingle="true">
-						</rich:datascroller>
+						</p:datascroller>
 					</f:facet>
-					<rich:column>
+					<p:column>
 						<f:facet name="header"><h:outputText value="Fila" /></f:facet>
 						 <h:outputText value="#{rowKey+1}"/>
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.numeroContrato}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.numeroContrato}">
 						<f:facet name="header"><h:outputText value="Contrato" /></f:facet>
 						<h:outputText value="#{dato.numeroContrato}" />
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.numeroCliente}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.numeroCliente}">
 						<f:facet name="header"><h:outputText value="Cliente" /></f:facet>
 						<h:outputText value="#{dato.numeroCliente} " /> 
-					</rich:column>
+					</p:column>
 					
 					<!--	Se muestra la información de la cantidad de registros y la pagina actual	-->
 					<f:facet name="footer">
-						<rich:datascroller style="color:black;" align="center" for="table" page="#{contratoPage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide">
+						<p:datascroller style="color:black;" align="center" for="table" page="#{contratoPage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide">
 							<f:facet name="pages">
 								<h:outputText value="Visualizando del #{((pageIndex-1)*15)+1 } al #{(pages!=pageIndex)?(pageIndex*15):contratoPage.totalFilas} de un total de #{contratoPage.totalFilas} registros." />
 							</f:facet>
-						</rich:datascroller>
+						</p:datascroller>
 					</f:facet>
-				</rich:dataTable>
+				</p:dataTable>
 			</h:panelGrid>
 		</div>
 	</ui:define>

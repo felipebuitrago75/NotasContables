@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich">
-	<rich:dataTable value="#{precierreCierrePage.datos}" var="dato" id="tablePendiente" rows="10" rendered="#{! empty precierreCierrePage.datos}" rowKeyVar="rowKey" width="100%" onRowMouseOver="this.style.backgroundColor='#9fbdeb'"
-		onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../../common/template.xhtml">
+	<p:dataTable value="#{precierreCierrePage.datos}" var="dato" id="tablePendiente" rows="10" rendered="#{! empty precierreCierrePage.datos}" rowKeyVar="rowKey" width="100%" onRowMouseOver="this.style.backgroundColor='#9fbdeb'"
+		onRowMouseOut="this.style.backgroundColor='#{pSkin.rowBackgroundColor}'" rowClasses="row1, row2">
 		<f:facet name="header">
-			<rich:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="tablePendiente" maxPages="5" renderIfSinglePage="false" page="#{precierreCierrePage.scrollPage}" id="up" reRender="lista, filtro"
+			<p:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="tablePendiente" maxPages="5" renderIfSinglePage="false" page="#{precierreCierrePage.scrollPage}" id="up" reRender="lista, filtro"
 				limitToList="true" ajaxSingle="true">
-			</rich:datascroller>
+			</p:datascroller>
 		</f:facet>
 
-		<rich:column sortable="true" sortBy="#{dato.NC.numeroRadicacion}">
+		<p:column sortable="true" sortBy="#{dato.NC.numeroRadicacion}">
 			<f:facet name="header">
 				<h:panelGroup>
 					<h:outputText value="Número" />
@@ -18,106 +23,106 @@
 				</h:panelGroup>
 			</f:facet>
 			<h:outputText value="#{dato.NC.numeroRadicacion}" />
-		</rich:column>
-		<rich:column sortable="true" sortBy="#{dato.estado}">
+		</p:column>
+		<p:column sortable="true" sortBy="#{dato.estado}">
 			<f:facet name="header">
 				<h:outputText value="Estado" />
 			</f:facet>
 			<h:outputText value="#{dato.nombreEstado}" />
-		</rich:column>
-		<rich:column style="text-align: right;">
+		</p:column>
+		<p:column style="text-align: right;">
 			<f:facet name="header">
 				<h:outputText value="Detalle de la nota contable" />
 			</f:facet>
 			<h:panelGrid columns="1" rendered="#{dato.NC.tipoNota eq 'R' }" width="100%">
-				<rich:dataTable style="border-width: 0px; background-color: transparent;" var="tema" value="#{dato.NC.temas}">
-					<rich:column style="border-width: 0px; text-align: left;" >
+				<p:dataTable style="border-width: 0px; background-color: transparent;" var="tema" value="#{dato.NC.temas}">
+					<p:column style="border-width: 0px; text-align: left;" >
 						<h:outputText value="${tema.tema.nombre}" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align: left;" width="80" >
+					</p:column>
+					<p:column style="border-width: 0px; text-align: left;" width="80" >
 						<h:panelGrid columns="1" cellpadding="0" cellspacing="0">
 							<h:outputText value="#{tema.partidaContable} " />
 							<h:outputText value="#{tema.contrapartidaContable}" />
 						</h:panelGrid>
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align: left;" width="20" >
+					</p:column>
+					<p:column style="border-width: 0px; text-align: left;" width="20" >
 						<h:panelGrid columns="1" cellpadding="0" cellspacing="0">
 							<h:outputText value="[#{tema.naturalezaPartidaContable}]" />
 							<h:outputText value="[#{tema.naturalezaContrapartidaContable}]" />
 						</h:panelGrid>
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align: left;" width="30" >
+					</p:column>
+					<p:column style="border-width: 0px; text-align: left;" width="30" >
 						<h:outputText value="#{tema.codigoDivisa}" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align:right;" width="140" >
+					</p:column>
+					<p:column style="border-width: 0px; text-align:right;" width="140" >
 						<h:outputText value="#{tema.monto}" ><f:convertNumber type="currency" /></h:outputText>
-					</rich:column>
-				</rich:dataTable>
+					</p:column>
+				</p:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="1" rendered="#{dato.NC.tipoNota eq 'C' }" style="width: 100%">
-				<rich:dataTable style="border-width: 0px; background-color: transparent;" var="temaCruce" value="#{dato.NC.temasCruce}" cellpadding="0" cellspacing="0">
-					<rich:column style="border-width: 0px; text-align: left;" >
+				<p:dataTable style="border-width: 0px; background-color: transparent;" var="temaCruce" value="#{dato.NC.temasCruce}" cellpadding="0" cellspacing="0">
+					<p:column style="border-width: 0px; text-align: left;" >
 						<h:outputText value="REFERENCIA DE CRUCE" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align: left;" width="80">
+					</p:column>
+					<p:column style="border-width: 0px; text-align: left;" width="80">
 						<h:outputText value="${temaCruce.cuentaContable}" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align: left;" width="20">
+					</p:column>
+					<p:column style="border-width: 0px; text-align: left;" width="20">
 						<h:outputText value="[${temaCruce.naturaleza}]" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align: left;" width="30">
+					</p:column>
+					<p:column style="border-width: 0px; text-align: left;" width="30">
 						<h:outputText value="${temaCruce.divisa}" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align:right;" width="140">
+					</p:column>
+					<p:column style="border-width: 0px; text-align:right;" width="140">
 						<h:outputText value="#{temaCruce.importe}" ><f:convertNumber type="currency" /></h:outputText>
-					</rich:column>
+					</p:column>
 
-				</rich:dataTable>
+				</p:dataTable>
 			</h:panelGrid>
 			<h:panelGrid columns="1" rendered="#{dato.NC.tipoNota eq 'L' }"  width="100%">
-				<rich:dataTable style="border-width: 0px; background-color: transparent; " var="temaLibre" value="#{dato.NC.temasLibre}" cellpadding="0" cellspacing="0">
-					<rich:column style="border-width: 0px; text-align: left;" >
+				<p:dataTable style="border-width: 0px; background-color: transparent; " var="temaLibre" value="#{dato.NC.temasLibre}" cellpadding="0" cellspacing="0">
+					<p:column style="border-width: 0px; text-align: left;" >
 						<h:outputText value="CONTABILIDAD LIBRE"/>
-					</rich:column>
-					<rich:column  style="border-width: 0px; text-align: left;" width="80">
+					</p:column>
+					<p:column  style="border-width: 0px; text-align: left;" width="80">
 						<h:outputText value="${temaLibre.cuentaContable}" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align: left;" width="20">
+					</p:column>
+					<p:column style="border-width: 0px; text-align: left;" width="20">
 						<h:outputText value="[${temaLibre.naturalezaCuentaContable}]" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align: left;" width="30">
+					</p:column>
+					<p:column style="border-width: 0px; text-align: left;" width="30">
 						<h:outputText value="${temaLibre.codigoDivisa}" />
-					</rich:column>
-					<rich:column style="border-width: 0px; text-align:right;" width="140">
+					</p:column>
+					<p:column style="border-width: 0px; text-align:right;" width="140">
 						<h:outputText value="#{temaLibre.monto}" ><f:convertNumber type="currency" /></h:outputText>
-					</rich:column>
-				</rich:dataTable>
+					</p:column>
+				</p:dataTable>
 			</h:panelGrid>
-		</rich:column>
-		<rich:column rendered="#{precierreCierrePage.esPrecierre }">
+		</p:column>
+		<p:column rendered="#{precierreCierrePage.esPrecierre }">
 			<f:facet name="header">
 				<h:outputText value="Causales de Rechazo" />
 			</f:facet>
 			<h:outputText value="#{dato.NC.causalDeRechazo}" escape="false" />
-		</rich:column>
-		<rich:column style="text-align: center;">
+		</p:column>
+		<p:column style="text-align: center;">
 			<f:facet name="header">
 				<h:panelGroup>
 					<h:outputText value="Ver Nota" /><br/>
 					<h:outputText value="Contable" />
 				</h:panelGroup>
 			</f:facet>
-			<a4j:commandButton value="Ver" oncomplete="#{rich:component('popupFlujoNotaContableVer')}.show()" action="#{flujoNotaContablePage.consultarFlujo}" reRender="popupFlujoNotaContableVer" rendered="#{dato.NC.tipoNota eq 'R' and dato.estado != 1}">
-				<a4j:actionparam name="codNotaVer" value="#{dato.codigoNotaContable}" assignTo="#{flujoNotaContablePage.nota.codigo}" converter="javax.faces.Integer" />
-			</a4j:commandButton>
-			<a4j:commandButton value="Ver" oncomplete="#{rich:component('notaContableLibreVer')}.show()" action="#{flujoNotaContableLibrePage.consultarFlujo}" reRender="notaContableLibreVer" rendered="#{dato.NC.tipoNota eq 'L' and dato.estado != 1}">
-				<a4j:actionparam name="codNotaLibreVer" value="#{dato.codigoNotaContable}" assignTo="#{flujoNotaContableLibrePage.nota.codigo}" converter="javax.faces.Integer" />
-			</a4j:commandButton>
-			<a4j:commandButton value="Ver" oncomplete="#{rich:component('popupFlujoNotaContableRefCruceVer')}.show()" action="#{notaRefCrucePage.consultarFlujo}" reRender="popupFlujoNotaContableRefCruceVer" rendered="#{dato.NC.tipoNota eq 'C'}">
-				<a4j:actionparam name="codNotaRefCruceVer" value="#{dato.codigoNotaContable}" assignTo="#{notaRefCrucePage.nota.codigo}" converter="javax.faces.Integer" />
-			</a4j:commandButton>
-		</rich:column>
-		<rich:column style="text-align: center;" rendered="false">
+			<p:commandButton value="Ver" oncomplete="#{p:component('popupFlujoNotaContableVer')}.show()" action="#{flujoNotaContablePage.consultarFlujo}" reRender="popupFlujoNotaContableVer" rendered="#{dato.NC.tipoNota eq 'R' and dato.estado != 1}">
+				<p:actionparam name="codNotaVer" value="#{dato.codigoNotaContable}" assignTo="#{flujoNotaContablePage.nota.codigo}" converter="javax.faces.Integer" />
+			</p:commandButton>
+			<p:commandButton value="Ver" oncomplete="#{p:component('notaContableLibreVer')}.show()" action="#{flujoNotaContableLibrePage.consultarFlujo}" reRender="notaContableLibreVer" rendered="#{dato.NC.tipoNota eq 'L' and dato.estado != 1}">
+				<p:actionparam name="codNotaLibreVer" value="#{dato.codigoNotaContable}" assignTo="#{flujoNotaContableLibrePage.nota.codigo}" converter="javax.faces.Integer" />
+			</p:commandButton>
+			<p:commandButton value="Ver" oncomplete="#{p:component('popupFlujoNotaContableRefCruceVer')}.show()" action="#{notaRefCrucePage.consultarFlujo}" reRender="popupFlujoNotaContableRefCruceVer" rendered="#{dato.NC.tipoNota eq 'C'}">
+				<p:actionparam name="codNotaRefCruceVer" value="#{dato.codigoNotaContable}" assignTo="#{notaRefCrucePage.nota.codigo}" converter="javax.faces.Integer" />
+			</p:commandButton>
+		</p:column>
+		<p:column style="text-align: center;" rendered="false">
 			<f:facet name="header">
 				<h:panelGroup>
 					<h:outputText value="Ver Nota" />
@@ -125,16 +130,16 @@
 					<h:outputText value="Contable" />
 				</h:panelGroup>
 			</f:facet>
-			<a4j:commandButton value="Ver" oncomplete="#{rich:component('popupFlujoNotaContableVer')}.show()" action="#{flujoNotaContablePage.consultarFlujo}" reRender="popupFlujoNotaContableVer"
+			<p:commandButton value="Ver" oncomplete="#{p:component('popupFlujoNotaContableVer')}.show()" action="#{flujoNotaContablePage.consultarFlujo}" reRender="popupFlujoNotaContableVer"
 				rendered="#{dato.NC.tipoNota eq 'R' and dato.estado != 1}">
-				<a4j:actionparam name="codEditar" value="#{dato.codigoNotaContable}" assignTo="#{flujoNotaContablePage.nota.codigo}" converter="javax.faces.Integer" />
-				<a4j:actionparam name="codUsuEditar" value="#{contablesSessionBean.loginUser.usuario.codigo}" assignTo="#{flujoNotaContablePage.nota.codUsuAsignado}" converter="javax.faces.Integer" />
-			</a4j:commandButton>
-			<a4j:commandButton value="Ver" oncomplete="#{rich:component('popupNotaContable')}.show()" action="#{notaContablePage.iniciarPagina}" reRender="popupNotaContable" rendered="#{dato.NC.tipoNota eq 'R' and dato.estado eq 1}">
-				<a4j:actionparam name="codConsultar" value="#{dato.codigo}" assignTo="#{notaContablePage.nota.codigo}" converter="javax.faces.Integer" />
-			</a4j:commandButton>
-		</rich:column>
-		<rich:column style="text-align: center;">
+				<p:actionparam name="codEditar" value="#{dato.codigoNotaContable}" assignTo="#{flujoNotaContablePage.nota.codigo}" converter="javax.faces.Integer" />
+				<p:actionparam name="codUsuEditar" value="#{contablesSessionBean.loginUser.usuario.codigo}" assignTo="#{flujoNotaContablePage.nota.codUsuAsignado}" converter="javax.faces.Integer" />
+			</p:commandButton>
+			<p:commandButton value="Ver" oncomplete="#{p:component('popupNotaContable')}.show()" action="#{notaContablePage.iniciarPagina}" reRender="popupNotaContable" rendered="#{dato.NC.tipoNota eq 'R' and dato.estado eq 1}">
+				<p:actionparam name="codConsultar" value="#{dato.codigo}" assignTo="#{notaContablePage.nota.codigo}" converter="javax.faces.Integer" />
+			</p:commandButton>
+		</p:column>
+		<p:column style="text-align: center;">
 			<f:facet name="header">
 				<h:panelGroup>
 					<h:outputText value="Consultar Nota" />
@@ -142,30 +147,30 @@
 					<h:outputText value="Contable" />
 				</h:panelGroup>
 			</f:facet>
-			<a4j:commandButton value="Consultar" oncomplete="#{rich:component('popupFlujo')}.show()" action="#{flujoSubPage.consultarFlujo}" reRender="popupFlujo">
-				<a4j:actionparam name="codConsultar" value="#{dato.codigo}" assignTo="#{flujoSubPage.actividadRealizada.codigoInstancia}" converter="javax.faces.Integer" />
-			</a4j:commandButton>
-		</rich:column>
+			<p:commandButton value="Consultar" oncomplete="#{p:component('popupFlujo')}.show()" action="#{flujoSubPage.consultarFlujo}" reRender="popupFlujo">
+				<p:actionparam name="codConsultar" value="#{dato.codigo}" assignTo="#{flujoSubPage.actividadRealizada.codigoInstancia}" converter="javax.faces.Integer" />
+			</p:commandButton>
+		</p:column>
 
 		<f:facet name="footer">
-			<rich:columnGroup>
-				<rich:column colspan="2" style="text-align:right;"></rich:column>
-				<rich:column >
-						<rich:dataTable style="border-width: 0px; background-color: transparent; width: 100%;" value="#{precierreCierrePage.totales}" var="total" id="tableTotales" rendered="#{! empty precierreCierrePage.totales}" rowKeyVar="rowKeyTot" >
-							<rich:column style="border-width:0px; text-align: right;"><h:outputText value="Totales" /></rich:column>
-							<rich:column width="30" style="border-width:0px; text-align: left;"><h:outputText value="#{total.codigoDivisa }" /></rich:column>
-							<rich:column width="140" style="border-width:0px; text-align:right;"><h:outputText value="#{total.total}" ><f:convertNumber type="currency" /></h:outputText></rich:column>
-						</rich:dataTable>
-				</rich:column>
-				<rich:column colspan="3"></rich:column>
-				<rich:column colspan="6" breakBefore="true" rendered="#{precierreCierrePage.totalFilas} gt 10">
-					<rich:datascroller style="color:black;" align="center" for="tablePendiente" page="#{precierreCierrePage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide" renderIfSinglePage="true">
+			<p:columnGroup>
+				<p:column colspan="2" style="text-align:right;"></p:column>
+				<p:column >
+						<p:dataTable style="border-width: 0px; background-color: transparent; width: 100%;" value="#{precierreCierrePage.totales}" var="total" id="tableTotales" rendered="#{! empty precierreCierrePage.totales}" rowKeyVar="rowKeyTot" >
+							<p:column style="border-width:0px; text-align: right;"><h:outputText value="Totales" /></p:column>
+							<p:column width="30" style="border-width:0px; text-align: left;"><h:outputText value="#{total.codigoDivisa }" /></p:column>
+							<p:column width="140" style="border-width:0px; text-align:right;"><h:outputText value="#{total.total}" ><f:convertNumber type="currency" /></h:outputText></p:column>
+						</p:dataTable>
+				</p:column>
+				<p:column colspan="3"></p:column>
+				<p:column colspan="6" breakBefore="true" rendered="#{precierreCierrePage.totalFilas} gt 10">
+					<p:datascroller style="color:black;" align="center" for="tablePendiente" page="#{precierreCierrePage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide" renderIfSinglePage="true">
 						<f:facet name="pages">
 							<h:outputText value="Visualizando del #{((pageIndex-1)*10)+1 } al #{(pages!=pageIndex)?(pageIndex*10):precierreCierrePage.totalFilas} de un total de #{precierreCierrePage.totalFilas} registros." />
 						</f:facet>
-					</rich:datascroller>
-				</rich:column>
-			</rich:columnGroup>
+					</p:datascroller>
+				</p:column>
+			</p:columnGroup>
 		</f:facet>
-	</rich:dataTable>
+	</p:dataTable>
 </ui:composition>

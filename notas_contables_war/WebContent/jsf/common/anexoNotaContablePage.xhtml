@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../../common/template.xhtml">
 	<h:panelGrid columns="1" cellpadding="0" cellspacing="2" style="text-align: center;" width="100%">
-		<rich:dataTable value="#{flujoNotaContablePage.temaActual.anexoTema}" var="anexo" rowKeyVar="rowKeyAnexos" rendered="#{! empty flujoNotaContablePage.temaActual.anexoTema}"
-		onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+		<p:dataTable value="#{flujoNotaContablePage.temaActual.anexoTema}" var="anexo" rowKeyVar="rowKeyAnexos" rendered="#{! empty flujoNotaContablePage.temaActual.anexoTema}"
+		onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{pSkin.rowBackgroundColor}'" rowClasses="row1, row2">
 			
 			<f:facet name="header"><h:outputText value="Soportes del tema" /></f:facet>
 			
-			<rich:column width="150" style="text-align: left;">
+			<p:column width="150" style="text-align: left;">
 				<f:facet name="header"><h:outputText value="Fecha" /></f:facet>
 				<h:outputText value="#{anexo.fechaHora}" /> 
-			</rich:column>
+			</p:column>
 			
-			<rich:column style="text-align: right;">
+			<p:column style="text-align: right;">
 				<f:facet name="header"><h:outputText value="Usuario" /></f:facet>
 				<h:outputText value="#{anexo.usuNombre}" /> 
-			</rich:column>
+			</p:column>
 			
-			<rich:column style="text-align: right;">
+			<p:column style="text-align: right;">
 				<f:facet name="header"><h:outputText value="Archivo" /></f:facet>
-				<a4j:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{anexo.nombre}" target="_blank">
-					<a4j:actionparam name="type2" value="#{downloadGeneralPage.SOPORTE}" assignTo="#{downloadGeneralPage.type}"/>
-					<a4j:actionparam name="file2" value="#{anexo.archivo}" assignTo="#{downloadGeneralPage.file}"/>
-				</a4j:htmlCommandLink>
-			</rich:column>
-		</rich:dataTable>
+				<p:htmlCommandLink action="#{downloadGeneralPage.download}" styleClass="bold" value="#{anexo.nombre}" target="_blank">
+					<p:actionparam name="type2" value="#{downloadGeneralPage.SOPORTE}" assignTo="#{downloadGeneralPage.type}"/>
+					<p:actionparam name="file2" value="#{anexo.archivo}" assignTo="#{downloadGeneralPage.file}"/>
+				</p:htmlCommandLink>
+			</p:column>
+		</p:dataTable>
 	</h:panelGrid>
 </ui:composition>

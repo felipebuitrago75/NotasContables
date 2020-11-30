@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../../common/template.xhtml">
 
 	<!-- Formulario de flujo-->
-	<rich:modalPanel id="popupFlujo" autosized="true" domElementAttachment="form" minWidth="250">
+	<p:modalPanel id="popupFlujo" autosized="true" domElementAttachment="form" minWidth="250">
 		<f:facet name="header">
 			<h:panelGroup>
 				<h:outputText value="Flujo Histórico" />
@@ -12,51 +17,51 @@
 		<f:facet name="controls">
 			<h:panelGroup>
 				<h:graphicImage value="../../../common/images/close.png" alt="cerrar" styleClass="hidelink" id="hidelinkCerrarFlujoSubPage" height="20" width="20" />
-				<rich:componentControl for="popupFlujo" attachTo="hidelinkCerrarFlujoSubPage" operation="hide" event="onclick" />
+				<p:componentControl for="popupFlujo" attachTo="hidelinkCerrarFlujoSubPage" operation="hide" event="onclick" />
 			</h:panelGroup>
 		</f:facet>
 
 		<h:panelGrid columns="1" width="970px" id="listaAct" cellspacing="0" cellpadding="0">
 
-			<rich:dataTable value="#{flujoSubPage.actividadesRealizadas}" var="act" id="tableAct" rendered="#{! empty flujoSubPage.actividadesRealizadas}" rowKeyVar="rowKeyAct" width="970px"  
-				onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
+			<p:dataTable value="#{flujoSubPage.actividadesRealizadas}" var="act" id="tableAct" rendered="#{! empty flujoSubPage.actividadesRealizadas}" rowKeyVar="rowKeyAct" width="970px"  
+				onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{pSkin.rowBackgroundColor}'" rowClasses="row1, row2">
 
-				<rich:column width="120">
+				<p:column width="120">
 					<f:facet name="header"><h:outputText value="Fecha" /></f:facet>
 					<h:outputText value="#{act.fechaHoraTs}"/>
-				</rich:column>
-				<rich:column width="50">
+				</p:column>
+				<p:column width="50">
 					<f:facet name="header"><h:outputText value="Acción" /></f:facet>
 					<h:outputText value="#{rowKeyAct eq 0 ? 'Registro' :act.estado eq '9'? 'Anuló': !empty act.valor1? 'Rechazó':'Aprobó'}" />
-				</rich:column>
-				<rich:column width="60">
+				</p:column>
+				<p:column width="60">
 					<f:facet name="header"><h:outputText value="Usuario" /></f:facet>
 					<h:outputText value="#{act.usuMod.codigoEmpleado}" />
-				</rich:column>
-				<rich:column width="250">
+				</p:column>
+				<p:column width="250">
 					<f:facet name="header"><h:outputText value="Área" /></f:facet>
 					<h:panelGrid columns="2">
 						<h:outputText value="#{act.usuMod.codigoAreaModificado}" />
 						<h:outputText value="#{act.usuMod.nombreAreaModificado}" />
 					</h:panelGrid>
-				</rich:column>
-				<rich:column width="220">
+				</p:column>
+				<p:column width="220">
 					<f:facet name="header"><h:outputText value="Perfil" /></f:facet>
 					<h:outputText value="#{act.rol.nombre}" />
-				</rich:column>
-				<rich:column width="220">
+				</p:column>
+				<p:column width="220">
 					<f:facet name="header"><h:outputText value="Valores" /></f:facet>
 					<h:panelGroup rendered="#{!empty act.valor1}">
 						<b><h:outputText value="Devolución:"/><br/><h:outputText value="#{act.cauDev.nombre}" rendered="#{empty act.valor2}"/></b><h:outputText value="#{act.valor2}" rendered="#{!empty act.valor2}"/>
 					</h:panelGroup>
-				</rich:column>
-				<rich:column width="50" style="text-align:right;">
+				</p:column>
+				<p:column width="50" style="text-align:right;">
 					<f:facet name="header"><h:panelGroup><h:outputText value="Días" /><br/><h:outputText value="Etapa" /></h:panelGroup></f:facet>
 					<h:outputText value="#{act.horasEtapa}" converter="javax.faces.Integer"/>
-				</rich:column>
+				</p:column>
 
-			</rich:dataTable>
+			</p:dataTable>
 		</h:panelGrid>
-	</rich:modalPanel>
+	</p:modalPanel>
 
 </ui:composition>

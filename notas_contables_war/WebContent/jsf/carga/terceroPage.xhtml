@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	template="../../common/template.xhtml">
 	<ui:param name="title" value="Terceros" />
 	<ui:define name="body">
 	
 	<!-- Formulario Modal de creacion y edicion de nuevos registros-->
-	<rich:modalPanel id="editor" autosized="true" domElementAttachment="form">
+	<p:modalPanel id="editor" autosized="true" domElementAttachment="form">
 		<f:facet name="header">
 			<h:panelGroup><h:outputText value="Formulario"/></h:panelGroup>
 		</f:facet>
@@ -24,7 +28,7 @@
 							<h:outputText value="Tipo de Identificaci�n" style="width: 100px;"/>
 							<h:selectOneMenu value="#{terceroPage.objActual.tipoIdentificacion}">
 							    <f:selectItems value="#{terceroPage.tiposIdentificacion}"/>
-							    <a4j:support event="onchange" reRender="identificacion" limitToList="true" />
+							    <p:support event="onchange" reRender="identificacion" limitToList="true" />
 							</h:selectOneMenu>
 							
 							<h:outputText value="N�mero de Identificaci�n" style="width: 100px;"/>
@@ -57,14 +61,14 @@
 							<h:outputText value="Pa�s" />
 							<h:selectOneMenu value="#{terceroPage.objActual.pais}" immediate="true">
 							    <f:selectItems value="#{terceroPage.paises}"/>
-							    <a4j:support event="onchange" action="#{terceroPage.cargarDepartamentos }" reRender="municipioPanel,departamentosPanel" ajaxSingle="true" />
+							    <p:support event="onchange" action="#{terceroPage.cargarDepartamentos }" reRender="municipioPanel,departamentosPanel" ajaxSingle="true" />
 							</h:selectOneMenu>
 						
 							<h:panelGroup id="departamentosPanel" >
 								<h:outputText value="Departamento" rendered="#{!empty terceroPage.departamentos}"/>
 								<h:selectOneMenu value="#{terceroPage.objActual.departamento}" rendered="#{!empty terceroPage.departamentos}" immediate="true">
 								    <f:selectItems value="#{terceroPage.departamentos}"/>
-								    <a4j:support event="onchange" action="#{terceroPage.cargarMunicipios }" reRender="municipioPanel" ajaxSingle="true" />
+								    <p:support event="onchange" action="#{terceroPage.cargarMunicipios }" reRender="municipioPanel" ajaxSingle="true" />
 								</h:selectOneMenu>
 							</h:panelGroup>
 							<h:panelGroup id="municipioPanel" >
@@ -80,7 +84,7 @@
 							<h:outputText value="Tipo de Tel�fono"  style="width: 50px;"/>
 							<h:selectOneMenu value="#{terceroPage.objActual.tipoTelefono}">
 							    <f:selectItems value="#{terceroPage.tiposTelefono}"/>
-							    <a4j:support event="onchange" reRender="indicativo1" />
+							    <p:support event="onchange" reRender="indicativo1" />
 							</h:selectOneMenu>
 							<h:outputText value="Indicativo" style="width: 50px;"/>
 							<h:panelGroup id="indicativo1">
@@ -97,7 +101,7 @@
 							<h:outputText value="Tipo de Tel�fono 2"  style="width: 50px;"/>
 							<h:selectOneMenu value="#{terceroPage.objActual.tipoTelefono2}">
 							    <f:selectItems value="#{terceroPage.tiposTelefono}"/>
-							    <a4j:support event="onchange" reRender="indicativo2" />
+							    <p:support event="onchange" reRender="indicativo2" />
 							</h:selectOneMenu>
 							<h:outputText value="Indicativo 2" style="width: 50px;"/>
 							<h:panelGroup id="indicativo2">
@@ -115,7 +119,7 @@
 							<h:outputText value="Actividad Econ�mica" />
 							<h:panelGrid columns="2" id="tipoActividad">
 								<h:inputText value="#{terceroPage.actividad}" size="70"/>
-								<a4j:commandButton action="#{terceroPage.buscarActividades}" value="Buscar Actividad" reRender="tipoActividad"/>
+								<p:commandButton action="#{terceroPage.buscarActividades}" value="Buscar Actividad" reRender="tipoActividad"/>
 								<h:selectOneMenu value="#{terceroPage.objActual.actividadEconomica}" style="max-width: 400px;" immediate="true" id="paramActividad"  disabledClass="disabledItem" rendered="#{! empty terceroPage.actividades}">
 									<f:selectItem itemValue="-1" itemLabel="Seleccione una opcion" />
 									<f:selectItems value="#{terceroPage.actividades}" />
@@ -128,11 +132,11 @@
 			</h:outputText>
 				<!-- Seccion de mensajes y botones de envio y cancelacion-->
 			<h:panelGrid columns="2" styleClass="center" width="100%">
-				<a4j:commandButton action="#{terceroPage.guardar}" reRender="informacion,lista"  value="Guardar" oncomplete="if (#{facesContext.maximumSeverity.ordinal==0}) #{rich:component('editor')}.hide();" />
-				<a4j:commandButton oncomplete="#{rich:component('popupCancel')}.show()" value="Cancelar" />
+				<p:commandButton action="#{terceroPage.guardar}" reRender="informacion,lista"  value="Guardar" oncomplete="if (#{facesContext.maximumSeverity.ordinal==0}) #{p:component('editor')}.hide();" />
+				<p:commandButton oncomplete="#{p:component('popupCancel')}.show()" value="Cancelar" />
 				
 				<!-- Modal para cancelaci�n de datos de riesgo-->
-				<rich:modalPanel id="popupCancel" autosized="true" domElementAttachment="form" width="450">
+				<p:modalPanel id="popupCancel" autosized="true" domElementAttachment="form" width="450">
 					<f:facet name="header">
 						<h:panelGroup><h:outputText  styleClass="bold" value="Confirmaci�n de cancelaci�n de registro"/></h:panelGroup>
 					</f:facet>
@@ -144,15 +148,15 @@
 			
 						<!-- Seccion de mensajes y botones de envio y cancelacion-->
 						<h:panelGrid columns="2" styleClass="center" width="100%">
-							<a4j:commandButton action="#{terceroPage.cancelar}" value="Si" oncomplete="#{rich:component('editor')}.hide(); #{rich:component('popupCancel')}.hide();" reRender="editor"/>
-							<a4j:commandButton onclick="#{rich:component('popupCancel')}.hide()" value="No"  ajaxSingle="true" immediate="true" />
+							<p:commandButton action="#{terceroPage.cancelar}" value="Si" oncomplete="#{p:component('editor')}.hide(); #{p:component('popupCancel')}.hide();" reRender="editor"/>
+							<p:commandButton onclick="#{p:component('popupCancel')}.hide()" value="No"  ajaxSingle="true" immediate="true" />
 						</h:panelGrid>
 					</h:panelGrid>
-				</rich:modalPanel>
+				</p:modalPanel>
 				
 			</h:panelGrid>
 		</h:panelGrid>
-	</rich:modalPanel>
+	</p:modalPanel>
 		
 		<!--Filtro de busqueda	-->
 		<div style="width: 850px;">
@@ -160,11 +164,11 @@
 
 			
 			<!-- Panel de opciones --> 
-			<rich:panel header="Opciones" style="width: 600px;">
+			<p:panel header="Opciones" style="width: 600px;">
 				<h:panelGrid columns="2" id="filtro">
 					<h:panelGrid columns="1" width="380">
 						<!-- Funcionalidad para abrir el editor y crear un nuevo registro-->
-						<a4j:commandButton action="#{terceroPage.editar}" oncomplete="#{rich:component('editor')}.show()" reRender="editor,informacion" value="Nuevo Registro" rendered="#{terceroPage.usuarioLogueado.rolActual.codigo eq 6 or  terceroPage.usuarioLogueado.rolActual.codigo eq 7}"/>
+						<p:commandButton action="#{terceroPage.editar}" oncomplete="#{p:component('editor')}.show()" reRender="editor,informacion" value="Nuevo Registro" rendered="#{terceroPage.usuarioLogueado.rolActual.codigo eq 6 or  terceroPage.usuarioLogueado.rolActual.codigo eq 7}"/>
 					</h:panelGrid>
 	
 					<h:panelGrid columns="2">
@@ -173,25 +177,25 @@
 					</h:panelGrid> 
 					
 				</h:panelGrid>
-			</rich:panel> 
+			</p:panel> 
 			
 			<ui:include src="../../common/mensajes.xhtml" /> 
 			
 			<!--	Tabla de resultados	-->
 			<h:panelGrid columns="1" width="100%" style="align:center;" id="lista">
 				
-				<rich:dataTable value="#{terceroPage.datos}" var="dato" id="table" rows="15" rendered="#{! empty terceroPage.datos}" rowKeyVar="rowKey"
+				<p:dataTable value="#{terceroPage.datos}" var="dato" id="table" rows="15" rendered="#{! empty terceroPage.datos}" rowKeyVar="rowKey"
 				footerClass="row2" onRowMouseOver="this.style.backgroundColor='#9fbdeb'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="row1, row2">
 					<f:facet name="header">
-						<rich:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="table" maxPages="5" renderIfSinglePage="false" 
+						<p:datascroller fastControls="false" pageIndexVar="pageIndex" pagesVar="pages" style="color:black;" for="table" maxPages="5" renderIfSinglePage="false" 
 						page="#{terceroPage.scrollPage}" id="up" reRender="lista, filtro" limitToList="true" ajaxSingle="true">
-						</rich:datascroller>
+						</p:datascroller>
 					</f:facet>
-					<rich:column>
+					<p:column>
 						<f:facet name="header"><h:outputText value="Fila" /></f:facet>
 						 <h:outputText value="#{rowKey+1}"/>
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.tipoIdentificacionStr}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.tipoIdentificacionStr}">
 						<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Tipo" /><br />
@@ -199,8 +203,8 @@
 					</h:panelGroup>
 						</f:facet>
 						<h:outputText value="#{dato.tipoIdentificacionStr} " /> 
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.numeroIdentificacion}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.numeroIdentificacion}">
 						<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="N�mero de" /><br />
@@ -208,12 +212,12 @@
 					</h:panelGroup>
 						</f:facet>
 						<h:outputText value="#{dato.numeroIdentificacion}" />
-					</rich:column>
-					<rich:column>
+					</p:column>
+					<p:column>
 						<f:facet name="header"><h:outputText value="DV" /></f:facet>
 						<h:outputText value="#{dato.digitoVerificacion}" />
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.primerApellido}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.primerApellido}">
 						<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Primer " /><br />
@@ -221,8 +225,8 @@
 					</h:panelGroup>
 						</f:facet>
 						<h:outputText value="#{dato.primerApellido}" />
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.segundoApellido}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.segundoApellido}">
 						<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Segundo" /><br />
@@ -230,8 +234,8 @@
 					</h:panelGroup>
 						</f:facet>
 						<h:outputText value="#{dato.segundoApellido}" />
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.primerNombre}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.primerNombre}">
 						<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Primer" /><br />
@@ -239,8 +243,8 @@
 					</h:panelGroup>
 						</f:facet>
 						<h:outputText value="#{dato.primerNombre}" />
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.segundoNombre}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.segundoNombre}">
 						<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Segundo" /><br />
@@ -248,8 +252,8 @@
 					</h:panelGroup>
 						</f:facet>
 						<h:outputText value="#{dato.segundoNombre}" />
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.actividadEconomica}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.actividadEconomica}">
 						<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Actividad " /><br />
@@ -257,8 +261,8 @@
 					</h:panelGroup>
 						</f:facet>
 						<h:outputText value="#{dato.actividadEconomica}" />
-					</rich:column>
-					<rich:column sortable="true" sortBy="#{dato.ingresoApp}">
+					</p:column>
+					<p:column sortable="true" sortBy="#{dato.ingresoApp}">
 						<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Ingreso " /><br />
@@ -266,17 +270,17 @@
 					</h:panelGroup>
 						</f:facet>
 						<h:outputText value="#{dato.ingresoApp == 0 ? 'No' : 'Si'}" />
-					</rich:column>
+					</p:column>
 				
 					<!--	Se muestra la informaci�n de la cantidad de registros y la pagina actual	-->
 					<f:facet name="footer">
-						<rich:datascroller style="color:black;" align="center" for="table" page="#{terceroPage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide">
+						<p:datascroller style="color:black;" align="center" for="table" page="#{terceroPage.scrollPage}" boundaryControls="hide" fastControls="hide" stepControls="hide">
 							<f:facet name="pages">
 								<h:outputText value="Visualizando del #{((pageIndex-1)*15)+1 } al #{(pages!=pageIndex)?(pageIndex*15):terceroPage.totalFilas} de un total de #{terceroPage.totalFilas} registros." />
 							</f:facet>
-						</rich:datascroller>
+						</p:datascroller>
 					</f:facet>
-				</rich:dataTable>
+				</p:dataTable>
 			</h:panelGrid>
 		</div>
 	</ui:define>
