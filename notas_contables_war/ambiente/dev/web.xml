@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.5"
-	xmlns="http://java.sun.com/xml/ns/j2ee"
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd"
-	metadata-complete="true">
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
 	<display-name>NotasContables</display-name>
 	<!-- PARAMETROS PARA MANEJAR RUTAS DE ARCHIVOS -->
 	<context-param>
@@ -63,15 +64,46 @@
 		<param-name>javax.faces.DISABLE_FACELET_JSF_VIEWHANDLER</param-name>
 		<param-value>true</param-value>
 	</context-param>
+
+
+
 	<context-param>
-		<param-name>org.richfaces.SKIN</param-name>
-		<param-value>blueSky</param-value>
+		<param-name>primefaces.FONT_AWESOME</param-name>
+		<param-value>true</param-value>
 	</context-param>
-	<!-- Making the RichFaces skin spread to standard HTML controls -->
-	<context-param>
-		<param-name>org.richfaces.CONTROL_SKINNING</param-name>
-		<param-value>enable</param-value>
-	</context-param>
+	<!-- add context parameter for theme if non-default theme is used <context-param> 
+		<param-name>primefaces.THEME</param-name> <param-value>ProperThemeNameIfUsedForExamplesunny</param-value> 
+		</context-param> -->
+
+	<mime-mapping>
+		<extension>woff</extension>
+		<mime-type>application/x-font-woff</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>woff2</extension>
+		<mime-type>application/x-font-woff2</mime-type>
+	</mime-mapping>
+
+	<!-- add primeFacesFileUploadFilter when file upload component is used -->
+	<filter>
+		<filter-name>primeFacesFileUploadFilter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+		<init-param>
+			<param-name>thresholdSize</param-name>
+			<param-value>1048576</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>primeFacesFileUploadFilter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<!--filter-name>richfaces</filter-name> <servlet-name>Faces Servlet</servlet-name -->
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+
+
+
 	<context-param>
 		<param-name>facelets.DEVELOPMENT</param-name>
 		<param-value>true</param-value>
@@ -86,8 +118,7 @@
 	</context-param>
 
 	<context-param>
-		<param-name>org.apache.myfaces.INITIALIZE_ALWAYS_STANDALONE
-		</param-name>
+		<param-name>org.apache.myfaces.INITIALIZE_ALWAYS_STANDALONE</param-name>
 		<param-value>true</param-value>
 	</context-param>
 	<context-param>
@@ -163,14 +194,8 @@
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
 		<param-value>server</param-value>
 	</context-param>
-	
-	<filter-mapping>
-		<filter-name>richfaces</filter-name>
-		<servlet-name>Faces Servlet</servlet-name>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-	</filter-mapping>
+
+
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -180,8 +205,7 @@
 	<servlet>
 		<display-name>ExecuteScheduleServlet</display-name>
 		<servlet-name>ExecuteScheduleServlet</servlet-name>
-		<servlet-class>com.papelesinteligentes.bbva.notascontables.servlet.ExecuteScheduleServlet
-		</servlet-class>
+		<servlet-class>com.papelesinteligentes.bbva.notascontables.servlet.ExecuteScheduleServlet</servlet-class>
 		<init-param>
 			<param-name>cron</param-name>
 			<param-value>0 0/5 * * * ?</param-value>
@@ -210,10 +234,10 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
+		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>/faces/homePage.xhtml</welcome-file>
+		<welcome-file>/loginPage.xhtml</welcome-file>
 	</welcome-file-list>
 	<login-config>
 		<auth-method>BASIC</auth-method>

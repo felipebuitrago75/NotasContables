@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:p="http://primefaces.org/ui">
 	
-	<rich:messages infoClass="msgInfo" warnClass="msgWarn" errorClass="msgError" >
+	<p:messages infoClass="msgInfo" warnClass="msgWarn" errorClass="msgError" >
 		<f:facet name="infoMarker"> 
 			<h:graphicImage value="/common/images/msginfo.png" alt="info"/>
 		</f:facet>
@@ -16,6 +15,6 @@
 		<f:facet name="warnMarker">
 			<h:graphicImage value="/common/images/msgwarn.png" alt="warn"/>
 		</f:facet>
-	</rich:messages>
+	</p:messages>
 
 </ui:composition>
